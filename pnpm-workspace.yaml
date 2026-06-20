@@ -1,0 +1,4 @@
+allowBuilds:
+  opencode-ai: true
+storeDire: ".pnpm-store"
+minimumReleaseAge: 0
