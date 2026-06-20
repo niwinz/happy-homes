@@ -103,4 +103,4 @@ Sin dudas. Sin confianza ciega.
 
 ---
 
-[Ver preguntas frecuentes](faq.md) · [Contacta con nosotros](contacto.md)
+[Ver preguntas frecuentes](/faq) · [Contacta con nosotros](/contacto)

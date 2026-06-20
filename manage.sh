@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 export ORGANIZATION="niwinz";
-export ENV_IMG_NAME="$ORGANIZATION/happy-homes";
-export ENV_NAME="happy-homes";
+export ENV_IMG_NAME="$ORGANIZATION/ai-sandbox";
+export ENV_NAME="ai-sandbox";
 
 export CURRENT_USER_ID=$(id -u);
 
@@ -25,8 +25,8 @@ function run-env-shell {
            --mount source=${ENV_NAME}_user_data,type=volume,target=/home/niwinz/ \
            --mount source=`pwd`,type=bind,target=/home/niwinz/happy-homes \
            -e EXTERNAL_UID=$CURRENT_USER_ID \
-           -p 4069:4069 \
-           -p 4070:4070 \
+           -p 4169:4169 \
+           -p 4170:4170 \
            -w /home/niwinz/happy-homes \
            $ENV_IMG_NAME:latest sudo -EH -u niwinz $@
 }

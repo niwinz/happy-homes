@@ -1,0 +1,185 @@
+---
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+
+const nav = [
+  { href: "/", label: "Inicio" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/sobre-nosotros", label: "Sobre nosotros" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contacto", label: "Contacto" },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header class="site-header">
+  <Container>
+    <div class="bar">
+      <a class="wordmark" href="/" aria-label="HappyHomes — inicio">
+        HappyHomes
+      </a>
+
+      <nav class="nav-desktop" aria-label="Principal">
+        {
+          nav.map((item) => (
+            <a
+              class:list={["nav-link", { active: isActive(item.href) }]}
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="cta-desktop">
+        <Button href="/contacto" variant="primary" size="sm">
+          Hablar con nosotros
+        </Button>
+      </div>
+
+      <details class="nav-mobile">
+        <summary aria-label="Abrir menú">
+          <span class="burger" aria-hidden="true"></span>
+        </summary>
+        <nav class="nav-mobile-menu" aria-label="Principal móvil">
+          {
+            nav.map((item) => (
+              <a
+                class:list={["nav-link", { active: isActive(item.href) }]}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+          <Button href="/contacto" variant="primary" size="sm" class="mobile-cta">
+            Hablar con nosotros
+          </Button>
+        </nav>
+      </details>
+    </div>
+  </Container>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: color-mix(in srgb, var(--color-white) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    min-height: 4rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-petrol);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .cta-desktop {
+    display: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding-block: var(--space-xs);
+    border-bottom: 2px solid transparent;
+    transition:
+      color var(--motion-base),
+      border-color var(--motion-base);
+  }
+  .nav-link:hover {
+    color: var(--accent);
+  }
+  .nav-link.active {
+    border-bottom-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-mobile {
+    position: relative;
+  }
+  .nav-mobile summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+  }
+  .nav-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+  .burger {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--color-petrol);
+    box-shadow:
+      0 5px 0 0 var(--color-petrol),
+      0 -5px 0 0 var(--color-petrol);
+    border-radius: 2px;
+  }
+  .nav-mobile-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + var(--space-sm));
+    min-width: 14rem;
+    background: var(--color-white);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .mobile-cta {
+    margin-top: var(--space-sm);
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .nav-mobile {
+      display: none;
+    }
+    .nav-desktop {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cta-desktop {
+      display: inline-flex;
+    }
+  }
+</style>

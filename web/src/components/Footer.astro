@@ -1,0 +1,178 @@
+---
+import Container from "./Container.astro";
+
+const year = new Date().getFullYear();
+
+const cols = [
+  {
+    title: "Servicios",
+    links: [
+      { label: "Planes", href: "/servicios" },
+      { label: "Add-ons", href: "/servicios#addons" },
+      { label: "Cobertura", href: "/#cobertura" },
+    ],
+  },
+  {
+    title: "HappyHomes",
+    links: [
+      { label: "Sobre nosotros", href: "/sobre-nosotros" },
+      { label: "Preguntas frecuentes", href: "/faq" },
+      { label: "Contacto", href: "/contacto" },
+    ],
+  },
+];
+
+const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
+const coverage = [
+  "Olot",
+  "Costa Brava",
+  "Alt Empordà",
+  "De Llançà a Tossa de Mar",
+  "Interior del Empordà",
+];
+---
+
+<footer class="site-footer">
+  <Container>
+    <div class="grid">
+      <div class="brand">
+        <a class="wordmark" href="/" aria-label="HappyHomes — inicio">
+          HappyHomes
+        </a>
+        <p class="tagline">
+          Cuidamos de tu casa para que disfrutes de ella.
+        </p>
+        <p class="meta">
+          {coverage.join(" · ")}
+        </p>
+      </div>
+
+      {
+        cols.map((col) => (
+          <nav class="col" aria-label={col.title}>
+            <h2 class="col-title">{col.title}</h2>
+            <ul>
+              {col.links.map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+
+      <div class="col">
+        <h2 class="col-title">Hablamos tu idioma</h2>
+        <p class="meta">{languages.join(" · ")}</p>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <p>© {year} HappyHomes. Tranquilidad para tu segunda residencia.</p>
+      <p class="promise">Cada visita, grabada y visible.</p>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    padding-block: var(--space-4xl) var(--space-2xl);
+    border-top: 1px solid var(--border-default);
+  }
+  .site-footer :global(a) {
+    color: var(--text-on-dark-muted);
+    text-decoration: none;
+  }
+  .site-footer :global(a:hover) {
+    color: var(--color-white);
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+  }
+
+  .wordmark {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-white);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: var(--space-sm);
+  }
+  .tagline {
+    color: var(--text-on-dark-muted);
+    margin: 0 0 var(--space-md);
+    max-width: 32ch;
+  }
+  .meta {
+    color: var(--text-on-dark-muted);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .col-title {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 var(--space-md);
+  }
+  .col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .col a {
+    font-size: 0.9375rem;
+  }
+
+  .bottom {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-default);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-md);
+    font-size: 0.875rem;
+    color: var(--text-on-dark-muted);
+  }
+  .bottom p {
+    margin: 0;
+  }
+  .promise {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--text-on-dark);
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .brand {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    .brand {
+      grid-column: span 1;
+    }
+  }
+</style>

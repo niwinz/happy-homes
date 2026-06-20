@@ -1,0 +1,13 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Content, { frontmatter } from "../../prototype-content/contacto.md";
+---
+
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <Section spacing="lg">
+    <article class="prose">
+      <Content />
+    </article>
+  </Section>
+</Base>

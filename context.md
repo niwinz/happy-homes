@@ -47,3 +47,18 @@ Alternativas descartadas:
 ## Pendiente / próximo paso
 
 Instalar Astro y montar el esqueleto de la landing page para happy-homes.
+
+### ✅ Esqueleto montado (Astro)
+
+- `DESIGN.md` en la raíz como fuente de verdad de tokens (color, tipografía, spacing, radius, shadow, breakpoints, motion, z-index, reglas de componentes).
+- Proyecto Astro en `web/` (pnpm workspace, Astro 5, SSG).
+- Tokens CSS en `web/src/styles/tokens.css` (variables de `DESIGN.md` §11) + `base.css` con estilos de elemento alineados a los tokens.
+- Layout base `web/src/layouts/Base.astro` (head con fuentes EB Garamond + Inter, meta/OG, skip-link, header + footer).
+- Primitivos: `Container`, `Section` (tone light/dark), `Eyebrow`, `Heading` (level desacoplado de size), `Button` (variantes primary/outline/ghost/on-dark/accent).
+- `Header` (sticky, nav desktop + menú móvil nativo con `<details>`, CTA) y `Footer` (secciones, idiomas, cobertura, promesa).
+- 5 páginas (`/`, `/servicios`, `/sobre-nosotros`, `/faq`, `/contacto`) que renderizan el markdown de `web/prototype-content/` vía import. Enlaces internos normalizados a rutas.
+- `pnpm --filter happy-homes-web build` pasa: 5 páginas generadas, tokens y contenido verificados en `web/dist/`.
+
+### Próximo paso
+
+Aplicar el skill `landing-page` para construir la home orientada a conversión (hero, social proof, features, FAQ, CTA) usando los primitivos y tokens ya definidos.

@@ -43,4 +43,4 @@ Si tu propiedad está dentro de esta zona, podemos ayudarte.
 
 ---
 
-¿Hablamos? [Contacta con nosotros](contacto.md)
+¿Hablamos? [Contacta con nosotros](/contacto)

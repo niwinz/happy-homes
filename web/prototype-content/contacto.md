@@ -54,4 +54,4 @@ Castellano · Catalán · Francés · Inglés · Alemán
 
 ---
 
-[Volver al inicio](index.md) · [Preguntas frecuentes](faq.md)
+[Volver al inicio](/) · [Preguntas frecuentes](/faq)

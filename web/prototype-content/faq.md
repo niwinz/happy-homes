@@ -83,4 +83,4 @@ Dínoslo. Si podemos hacerlo, lo hacemos nosotros. Si no, te buscamos un tercero
 
 ## ¿Tienes otra duda?
 
-[Contacta con nosotros](contacto.md) y te respondemos en menos de 24h.
+[Contacta con nosotros](/contacto) y te respondemos en menos de 24h.

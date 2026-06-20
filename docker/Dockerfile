@@ -43,7 +43,7 @@ RUN set -ex; \
 
 FROM base AS setup-node
 
-ENV NODE_VERSION=v24.15.0 \
+ENV NODE_VERSION=v24.17.0 \
     PATH=/opt/node/bin:$PATH
 
 RUN set -eux; \

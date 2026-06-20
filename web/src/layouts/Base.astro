@@ -1,0 +1,66 @@
+---
+import "../styles/tokens.css";
+import "../styles/base.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const siteName = "HappyHomes";
+const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
+const desc =
+  description ??
+  "Cuidamos y gestionamos tu segunda residencia en la Costa Brava y el Alt Empordà. Tranquilidad para tu casa, siempre lista.";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: var(--space-sm);
+        top: -3rem;
+        z-index: var(--z-toast);
+        background: var(--color-petrol);
+        color: var(--color-white);
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        transition: top var(--motion-base);
+      }
+      .skip-link:focus {
+        top: var(--space-sm);
+      }
+    </style>
+  </body>
+</html>

@@ -1,4 +1,8 @@
+packages:
+  - web
 allowBuilds:
+  esbuild: true
   opencode-ai: true
+  sharp: true
 storeDire: ".pnpm-store"
 minimumReleaseAge: 0

@@ -1,0 +1,116 @@
+---
+interface Props {
+  variant?: "primary" | "outline" | "ghost" | "on-dark" | "accent";
+  size?: "sm" | "md" | "lg";
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  class: className,
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+const extra = Tag === "button" ? { type } : { href };
+---
+
+<Tag class:list={["btn", `btn--${variant}`, `btn--${size}`, className]} {...extra}>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition:
+      background var(--motion-base),
+      color var(--motion-base),
+      border-color var(--motion-base),
+      box-shadow var(--motion-base),
+      transform var(--motion-fast);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn--sm {
+    padding: 0.5rem 0.875rem;
+  }
+  .btn--md {
+    padding: 0.75rem 1.25rem;
+  }
+  .btn--lg {
+    padding: 0.9375rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  .btn--primary {
+    background: var(--color-petrol);
+    color: var(--color-white);
+  }
+  .btn--primary:hover {
+    background: #0f2a36;
+    color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--color-petrol);
+    border-color: var(--border-strong);
+  }
+  .btn--outline:hover {
+    color: var(--color-petrol);
+    border-color: var(--color-petrol);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-petrol);
+  }
+  .btn--ghost:hover {
+    color: var(--color-petrol);
+    background: rgba(26, 58, 74, 0.06);
+  }
+
+  .btn--on-dark {
+    background: transparent;
+    color: var(--color-white);
+    border-color: rgba(250, 250, 248, 0.32);
+  }
+  .btn--on-dark:hover {
+    color: var(--color-white);
+    border-color: var(--color-white);
+    background: rgba(250, 250, 248, 0.08);
+  }
+
+  .btn--accent {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .btn--accent:hover {
+    color: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+</style>

@@ -91,4 +91,4 @@ Castellano · Catalán · Francés · Inglés · Alemán
 
 ---
 
-[Contacta con nosotros](contacto.md) · [Preguntas frecuentes](faq.md)
+[Contacta con nosotros](/contacto) · [Preguntas frecuentes](/faq)

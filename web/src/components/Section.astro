@@ -1,0 +1,38 @@
+---
+import Container from "./Container.astro";
+
+interface Props {
+  tone?: "light" | "dark";
+  spacing?: "md" | "lg";
+  as?: "section" | "div" | "header" | "footer" | "article";
+  class?: string;
+}
+
+const {
+  tone = "light",
+  spacing = "md",
+  as: Tag = "section",
+  class: className,
+} = Astro.props;
+---
+
+<Tag
+  class:list={["section", `section--${tone}`, `section--sp-${spacing}`, className]}
+>
+  <Container>
+    <slot />
+  </Container>
+</Tag>
+
+<style>
+  .section {
+    padding-block: clamp(4rem, 8vw, 6rem);
+    background: var(--bg-page);
+  }
+  .section--dark {
+    background: var(--bg-dark);
+  }
+  .section--sp-lg {
+    padding-block: clamp(6rem, 10vw, 8rem);
+  }
+</style>
