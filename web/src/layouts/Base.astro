@@ -1,6 +1,7 @@
 ---
 import "../styles/tokens.css";
 import "../styles/base.css";
+import "../styles/reveal.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -45,17 +46,46 @@ const desc =
     </main>
     <Footer />
 
+    <script>
+      const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealEls = document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-group]");
+
+      if (prefersReduced || !("IntersectionObserver" in window)) {
+        revealEls.forEach((el) => {
+          if (el.hasAttribute("data-reveal")) el.setAttribute("data-reveal", "in");
+          if (el.hasAttribute("data-reveal-group")) el.setAttribute("data-reveal-group", "in");
+        });
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target as HTMLElement;
+              if (el.hasAttribute("data-reveal")) el.setAttribute("data-reveal", "in");
+              if (el.hasAttribute("data-reveal-group")) el.setAttribute("data-reveal-group", "in");
+              io.unobserve(el);
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+        );
+        revealEls.forEach((el) => io.observe(el));
+      }
+    </script>
+
     <style>
       .skip-link {
         position: absolute;
         left: var(--space-sm);
-        top: -3rem;
+        top: -4rem;
         z-index: var(--z-toast);
         background: var(--color-petrol);
         color: var(--color-white);
         padding: var(--space-sm) var(--space-md);
+        min-height: 44px;
         border-radius: var(--radius-sm);
         text-decoration: none;
+        display: inline-flex;
+        align-items: center;
         transition: top var(--motion-base);
       }
       .skip-link:focus {

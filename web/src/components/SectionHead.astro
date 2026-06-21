@@ -1,0 +1,51 @@
+---
+import Eyebrow from "./Eyebrow.astro";
+import Heading from "./Heading.astro";
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  level?: 1 | 2 | 3 | 4;
+  size?: "display" | "h1" | "h2" | "h3" | "h4";
+  lead?: string;
+  align?: "start" | "center";
+  class?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  level = 2,
+  size,
+  lead,
+  align = "start",
+  class: className,
+} = Astro.props;
+---
+
+<header class:list={["section-head", `section-head--${align}`, className]} data-reveal>
+  {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+  <Heading level={level} size={size}>{heading}</Heading>
+  {lead && <p class="lead">{lead}</p>}
+</header>
+
+<style>
+  .section-head {
+    max-width: 46rem;
+  }
+  .section-head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .section-head--center .lead {
+    margin-inline: auto;
+  }
+  .lead {
+    margin: var(--space-md) 0 0;
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 65ch;
+  }
+</style>

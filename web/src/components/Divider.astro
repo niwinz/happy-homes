@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<hr class:list={["divider", className]} />
+
+<style>
+  .divider {
+    border: 0;
+    border-top: 1px solid var(--border-default);
+    margin-block: 0;
+  }
+</style>

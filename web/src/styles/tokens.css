@@ -1,6 +1,7 @@
 :root {
   /* Brand */
   --color-petrol: #1a3a4a;
+  --color-petrol-deep: #0f2a36;
   --color-terracotta: #c76b4c;
   --color-cream: #f2ece4;
   --color-white: #fafaf8;
@@ -20,6 +21,9 @@
   --border-strong: rgba(26, 58, 74, 0.24);
   --accent: var(--color-terracotta);
   --accent-hover: #b25c40;
+  --accent-text-on-light: #a04a2e;
+  --accent-text-on-dark: #e89f82;
+  --accent-text: var(--accent-text-on-light);
   --success: var(--color-olive);
   --warning: #c9a24a;
   --error: #b14b3a;
@@ -85,6 +89,7 @@
   --border-default: rgba(250, 250, 248, 0.16);
   --border-strong: rgba(250, 250, 248, 0.32);
   --bg-card: rgba(250, 250, 248, 0.06);
+  --accent-text: var(--accent-text-on-dark);
 }
 
 @media (prefers-reduced-motion: reduce) {

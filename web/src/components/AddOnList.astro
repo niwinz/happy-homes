@@ -1,0 +1,77 @@
+---
+import Container from "./Container.astro";
+import Pill from "./Pill.astro";
+
+interface Props {
+  items: string[];
+  note?: string;
+  eyebrow?: string;
+  heading?: string;
+}
+
+const {
+  items,
+  note = "Contrátalos sobre cualquier plan, desde 10 €/mes cada uno.",
+  eyebrow = "Add-ons",
+  heading = "Modulares. Solo pagas lo que necesitas.",
+} = Astro.props;
+---
+
+<section class="addons">
+  <Container>
+    <div class="addons-inner" data-reveal>
+      <p class="addons-eyebrow">{eyebrow}</p>
+      <h2 class="addons-heading">{heading}</h2>
+      <p class="addons-note">{note}</p>
+      <ul class="addons-list">
+        {items.map((item) => <li><Pill tone="neutral">{item}</Pill></li>)}
+      </ul>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .addons {
+    padding-block: clamp(3rem, 7vw, 5rem);
+    background: var(--bg-page);
+  }
+  .addons-inner {
+    max-width: 56rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .addons-eyebrow {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .addons-heading {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .addons-note {
+    margin: var(--space-sm) auto var(--space-xl);
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    max-width: 42ch;
+  }
+  .addons-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+  .addons-list li {
+    margin: 0;
+  }
+</style>

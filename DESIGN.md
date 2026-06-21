@@ -23,7 +23,10 @@
 | Token | Hex | Role |
 |-------|-----|------|
 | `--color-petrol` | `#1A3A4A` | Structure, primary text, primary buttons, dark sections |
-| `--color-terracotta` | `#C76B4C` | Accents, icons, links, eyebrow text, focus ring |
+| `--color-petrol-deep` | `#0F2A36` | Hover/active on petrol elements (buttons, primary CTA) |
+| `--color-terracotta` | `#C76B4C` | Brand accent — borders, icons, focus ring, large text (≥18px) only |
+| `--color-terracotta-deep` | `#A04A2E` | Text accent on light backgrounds (eyebrow, nav-active, 5.7:1 on white) |
+| `--color-terracotta-light` | `#E89F82` | Text accent on dark backgrounds (footer col-titles, 5.6:1 on petrol) |
 | `--color-cream` | `#F2ECE4` | Section backgrounds, cards |
 | `--color-white` | `#FAFAF8` | Page background, text on dark |
 | `--color-olive` | `#6B8F71` | Success, nature details |
@@ -45,29 +48,36 @@ Apply these in components; never raw brand hexes.
 | `--text-on-dark-muted` | `#C4D0D5` | Secondary text on petróleo |
 | `--border-default` | `rgba(26,58,74,0.12)` | Hairline dividers, card edges |
 | `--border-strong` | `rgba(26,58,74,0.24)` | Emphasised borders, inputs:focus-adjacent |
-| `--accent` | `var(--color-terracotta)` | Links, eyebrow, icon strokes |
+| `--accent` | `var(--color-terracotta)` | Borders, icons, focus ring, large text (≥18px) |
 | `--accent-hover` | `#B25C40` | Hover/active on terracota elements |
+| `--accent-text-on-light` | `#A04A2E` | Text accent on light — eyebrow, nav-active (5.7:1 on white) |
+| `--accent-text-on-dark` | `#E89F82` | Text accent on dark — footer/dark col-titles (5.6:1 on petrol) |
+| `--accent-text` | `var(--accent-text-on-light)` (flips in `.section--dark`) | Use this for ALL small accent text. Auto-adapts light/dark. |
 | `--success` | `var(--color-olive)` | Positive states |
 | `--warning` | `#C9A24A` | Caution (muted ochre, on-family) |
 | `--error` | `#B14B3A` | Errors (deeper terracota-red, on-family) |
 
 ### Semantic tokens — dark section variant
 
-Use when a section sits on `--bg-dark` (petróleo). Flip text + borders, keep terracota accent.
+Apply `.section--dark` (or add it to the root of any dark-background component) to flip text + borders + accent-text. The dark background, text, and accent text all flip together.
 
-| Token | Value |
-|-------|-------|
-| `--bg-page` → `--bg-dark` | `var(--color-petrol)` |
-| `--text-primary` → `--text-on-dark` | `var(--color-white)` |
-| `--text-muted` → `--text-on-dark-muted` | `#C4D0D5` |
-| `--border-default` | `rgba(250,250,248,0.16)` |
-| `--border-strong` | `rgba(250,250,248,0.32)` |
-| `--accent` | `var(--color-terracotta)` (unchanged) |
-| `--bg-card` | `rgba(250,250,248,0.06)` |
+| Token | Light value | Dark value (in `.section--dark`) |
+|-------|-------------|----------------------------------|
+| `--bg-page` | `var(--color-white)` | `var(--bg-dark)` = `var(--color-petrol)` |
+| `--text-primary` | `var(--color-petrol)` | `var(--text-on-dark)` = `var(--color-white)` |
+| `--text-muted` | `#4F5B62` | `var(--text-on-dark-muted)` = `#C4D0D5` |
+| `--border-default` | `rgba(26,58,74,0.12)` | `rgba(250,250,248,0.16)` |
+| `--border-strong` | `rgba(26,58,74,0.24)` | `rgba(250,250,248,0.32)` |
+| `--accent-text` | `var(--accent-text-on-light)` | `var(--accent-text-on-dark)` |
+| `--bg-card` | `var(--color-white)` | `rgba(250,250,248,0.06)` |
+
+**Components that must carry `section--dark`:** `Footer`, `VideoProof`, `CtaBand`, and any `<Section tone="dark">`. The flip is global, applied via the class.
 
 ### Contrast caveats (do not break)
 
-- **Terracota `#C76B4C` + white text ≈ 3.9:1 → fails AA.** Never as a primary button fill with white text. Use terracota as **text on crudo** (passes AA at ≥18px / ≥14px bold) or as **outline button** with petróleo label.
+- **Terracotta `#C76B4C` + white text ≈ 3.6:1 → fails AA (needs 4.5:1).** Never use for small text. Use it for borders, icons, focus rings, and large display text (≥18px / ≥14px bold — 3:1 large-text rule applies).
+- **For small accent text, use `--accent-text` (auto-flips).** It resolves to `--accent-text-on-light` (`#a04a2e`, 5.7:1 on white) in light sections and `--accent-text-on-dark` (`#e89f82`, 5.6:1 on petrol) in dark sections.
+- **No single terracotta shade passes 4.5:1 on both light and dark.** That's why there are two shades and a flipping semantic token.
 - **Gris piedra `#8A8A8A` on blanco ≈ 3.3:1 → fails AA.** Body text must use `--text-muted` (`#4F5B62`). Piedra only for ≥18px text or decorative borders.
 - **Azul Petróleo `#1A3A4A` + white ≈ 13:1 → AAA.** This is the primary CTA combination.
 
@@ -274,7 +284,10 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
 :root {
   /* Brand */
   --color-petrol: #1A3A4A;
+  --color-petrol-deep: #0F2A36;
   --color-terracotta: #C76B4C;
+  --color-terracotta-deep: #A04A2E;
+  --color-terracotta-light: #E89F82;
   --color-cream: #F2ECE4;
   --color-white: #FAFAF8;
   --color-olive: #6B8F71;
@@ -293,6 +306,9 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
   --border-strong: rgba(26,58,74,0.24);
   --accent: var(--color-terracotta);
   --accent-hover: #B25C40;
+  --accent-text-on-light: var(--color-terracotta-deep);
+  --accent-text-on-dark: var(--color-terracotta-light);
+  --accent-text: var(--accent-text-on-light);
   --success: var(--color-olive);
   --warning: #C9A24A;
   --error: #B14B3A;
@@ -346,6 +362,7 @@ Dark sections override locally:
   --border-default: rgba(250,250,248,0.16);
   --border-strong: rgba(250,250,248,0.32);
   --bg-card: rgba(250,250,248,0.06);
+  --accent-text: var(--accent-text-on-dark);
 }
 ```
 
@@ -353,11 +370,31 @@ Dark sections override locally:
 
 ## 12. Verification checklist (run before merging UI)
 
+**Tokens & contrast**
 - [ ] No raw hex in components — only `var(--*)`.
-- [ ] No Terracota fill with white text. No Gris piedra body text.
+- [ ] No Terracotta fill with white text. No stone body text.
+- [ ] Small accent text uses `--accent-text` (auto-flips light/dark). Never raw `--color-terracotta` for text under 18px.
+- [ ] Dark-background components (Footer, VideoProof, CtaBand) carry `class="… section--dark"`.
+- [ ] Color contrast ≥ 4.5:1 for body text, ≥ 3:1 for large text and non-text UI.
+
+**Typography & structure**
 - [ ] Every heading uses `--font-heading`; every body uses `--font-body`.
-- [ ] Every interactive element has a `:focus-visible` ring using `--ring-focus`.
+- [ ] Heading levels don't skip (h1 → h2 → h3). Don't jump from h2 to h4.
 - [ ] Every page section is `<Section><Container>…</Container></Section>`.
-- [ ] `prefers-reduced-motion` honored.
-- [ ] Images/illustrations have `alt` or `aria-hidden` as appropriate.
-- [ ] Color contrast ≥ AA for all text (≥ AAA for primary CTA).
+
+**Interaction & a11y**
+- [ ] Every interactive element has a visible `:focus-visible` ring using `--ring-focus`.
+- [ ] Touch targets ≥ 44×44px at 375px (buttons, nav links, wordmark, burger, footer links).
+- [ ] Form inputs have `<label>`, `aria-required` on required fields, inline errors via `aria-describedby`.
+- [ ] Icon buttons have `aria-label`. Decorative SVGs have `aria-hidden`.
+- [ ] `<aside>` is a top-level landmark (direct child of `<main>` or a sectioning element), or use `<div>` for non-tangential sidebars.
+- [ ] `prefers-reduced-motion` honored (revel off, spinner off, smooth scroll auto).
+
+**Responsive & zoom**
+- [ ] No horizontal scroll at 375px–1920px at default zoom.
+- [ ] At 200% zoom, no content is cut off or unreachable (overflow allowed only when content is still readable and reachable by scroll). Flex/grid children have `min-width: 0`; long words use `overflow-wrap: anywhere`.
+- [ ] Layout tested at 375 / 768 / 1440.
+
+**Performance**
+- [ ] No new runtime dependencies. Icons inline SVG, no icon library.
+- [ ] `astro build` passes; bundle CSS < 50kb gzipped per page.

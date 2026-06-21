@@ -1,0 +1,120 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+import Card from "./Card.astro";
+import Icon from "./Icon.astro";
+
+interface Feature {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  features: Feature[];
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  tone?: "light" | "cream";
+  columns?: 2 | 3;
+}
+
+const {
+  features,
+  eyebrow,
+  heading,
+  lead,
+  tone = "light",
+  columns = 3,
+} = Astro.props;
+---
+
+<section class:list={["features", `features--${tone}`]}>
+  <Container>
+    {(eyebrow || heading || lead) && (
+      <SectionHead eyebrow={eyebrow} heading={heading ?? ""} lead={lead} />
+    )}
+    <div class:list={["feature-grid", `feature-grid--${columns}`]} data-reveal-group>
+      {
+        features.map((f) => (
+          <Card as="article" pad="lg" bordered class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <Icon name={f.icon} size={22} />
+            </span>
+            <h3 class="feature-title">{f.title}</h3>
+            <p class="feature-text">{f.text}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .features {
+    padding-block: clamp(4rem, 9vw, 6rem);
+    background: var(--bg-page);
+  }
+  .features--cream {
+    background: var(--bg-section);
+  }
+  .feature-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+  .feature-grid--2 {
+    grid-template-columns: 1fr;
+  }
+  .feature-grid--3 {
+    grid-template-columns: 1fr;
+  }
+  .feature {
+    height: 100%;
+    transition: transform var(--motion-base), box-shadow var(--motion-base);
+  }
+  .feature:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-sm);
+    background: rgba(199, 107, 76, 0.1);
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+  .feature-title {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .feature-text {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .feature-grid--2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 768px) {
+    .feature-grid--3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .feature-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

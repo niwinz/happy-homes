@@ -1,0 +1,137 @@
+---
+import Container from "./Container.astro";
+import Eyebrow from "./Eyebrow.astro";
+import Heading from "./Heading.astro";
+import Button from "./Button.astro";
+import Illustration from "./Illustration.astro";
+import Pill from "./Pill.astro";
+
+interface Props {
+  variant?: "home" | "inner";
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  illustration?: "facade" | "keys" | "landscape" | "house";
+  tag?: string;
+}
+
+const {
+  variant = "inner",
+  eyebrow,
+  title,
+  lead,
+  primaryCta,
+  secondaryCta,
+  illustration = "facade",
+  tag,
+} = Astro.props;
+---
+
+<section class:list={["hero", `hero--${variant}`]}>
+  <Container>
+    <div class="hero-grid">
+      <div class="hero-content" data-reveal>
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+        <Heading level={1} size={variant === "home" ? "display" : "h1"}>{title}</Heading>
+        {lead && <p class="hero-lead">{lead}</p>}
+        {
+          (primaryCta || secondaryCta) && (
+            <div class="hero-ctas">
+              {primaryCta && (
+                <Button href={primaryCta.href} variant="primary" size="lg">
+                  {primaryCta.label}
+                </Button>
+              )}
+              {secondaryCta && (
+                <Button href={secondaryCta.href} variant="outline" size="lg">
+                  {secondaryCta.label}
+                </Button>
+              )}
+            </div>
+          )
+        }
+        {tag && <div class="hero-tag"><Pill tone="accent">{tag}</Pill></div>}
+      </div>
+
+      {
+        variant === "home" && (
+          <div class="hero-art" aria-hidden="true" data-reveal>
+            <div class="hero-art-frame">
+              <Illustration name={illustration} />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(4rem, 10vw, 7rem);
+    background: var(--bg-page);
+  }
+  .hero--home {
+    padding-block: clamp(4.5rem, 12vw, 8rem);
+    background:
+      radial-gradient(
+        ellipse 60% 50% at 90% 0%,
+        rgba(199, 107, 76, 0.06),
+        transparent 60%
+      ),
+      var(--bg-page);
+  }
+  .hero-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+  .hero--home .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-content {
+    max-width: 44rem;
+  }
+  .hero-lead {
+    margin-top: var(--space-lg);
+    font-family: var(--font-body);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 38ch;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+  .hero-tag {
+    margin-top: var(--space-xl);
+  }
+  .hero-art {
+    order: -1;
+  }
+  .hero-art-frame {
+    background: var(--bg-section);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero--home .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-3xl);
+    }
+    .hero-art {
+      order: 0;
+    }
+  }
+</style>

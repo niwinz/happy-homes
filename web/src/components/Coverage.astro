@@ -1,0 +1,87 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  zones: string[];
+  note?: string;
+}
+
+const {
+  zones,
+  note = "¿Estás fuera de esta zona? Escríbenos igualmente. A veces podemos llegar a acuerdos especiales.",
+} = Astro.props;
+---
+
+<div class="coverage" data-reveal>
+  <div class="coverage-icon" aria-hidden="true">
+    <Icon name="mapPin" size={22} />
+  </div>
+  <div class="coverage-body">
+    <p class="coverage-eyebrow">Zona de cobertura</p>
+    <ul class="coverage-zones">
+      {zones.map((z) => <li>{z}</li>)}
+    </ul>
+    <p class="coverage-note">{note}</p>
+  </div>
+</div>
+
+<style>
+  .coverage {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+  }
+  .coverage-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-sm);
+    background: rgba(199, 107, 76, 0.1);
+    color: var(--accent);
+  }
+  .coverage-eyebrow {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .coverage-body {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+  .coverage-zones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-sm);
+    min-width: 0;
+  }
+  .coverage-zones li {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    padding-inline-end: var(--space-sm);
+    border-inline-end: 1px solid var(--border-default);
+    overflow-wrap: anywhere;
+  }
+  .coverage-zones li:last-child {
+    border-inline-end: 0;
+    padding-inline-end: 0;
+  }
+  .coverage-note {
+    margin: var(--space-md) 0 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+</style>

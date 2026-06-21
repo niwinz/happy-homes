@@ -32,7 +32,7 @@ const coverage = [
 ];
 ---
 
-<footer class="site-footer">
+<footer class="site-footer section--dark">
   <Container>
     <div class="grid">
       <div class="brand">
@@ -103,7 +103,9 @@ const coverage = [
     letter-spacing: 0.05em;
     color: var(--color-white);
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     margin-bottom: var(--space-sm);
   }
   .tagline {
@@ -123,8 +125,7 @@ const coverage = [
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 var(--space-md);
+    color: var(--accent-text);
   }
   .col ul {
     list-style: none;
@@ -136,6 +137,9 @@ const coverage = [
   }
   .col a {
     font-size: 0.9375rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .bottom {

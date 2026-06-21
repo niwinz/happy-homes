@@ -1,13 +1,144 @@
 ---
 import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import FeatureList from "../components/FeatureList.astro";
+import Coverage from "../components/Coverage.astro";
+import CtaBand from "../components/CtaBand.astro";
 import Section from "../components/Section.astro";
-import Content, { frontmatter } from "../../prototype-content/sobre-nosotros.md";
+import Quote from "../components/Quote.astro";
+
+const values = [
+  {
+    icon: "heart",
+    title: "Tranquilidad",
+    text: "El núcleo de lo que hacemos. Queremos que no tengas que pensar en tu casa.",
+  },
+  {
+    icon: "shield",
+    title: "Confianza",
+    text: "Accedemos a tu propiedad. La relación se basa en confianza absoluta. Por eso cada visita se graba en vídeo.",
+  },
+  {
+    icon: "key",
+    title: "Discreción",
+    text: "Tus datos, tu propiedad, tu rutina. Nunca hablamos de un cliente a otro.",
+  },
+  {
+    icon: "sparkles",
+    title: "Proactividad",
+    text: "No esperamos a que algo se rompa. Lo detectamos, lo comunicamos y proponemos una solución.",
+  },
+  {
+    icon: "users",
+    title: "Cercanía",
+    text: "Trato directo. Una persona real, no un call center. A la que puedes llamar directamente.",
+  },
+];
+
+const zones = [
+  "Olot",
+  "Costa Brava",
+  "Alt Empordà",
+  "De Llançà a Tossa de Mar",
+  "Figueres",
+  "Besalú",
+  "Banyoles",
+  "Interior del Empordà",
+];
 ---
 
-<Base title={frontmatter.title} description={frontmatter.description}>
-  <Section spacing="lg">
-    <article class="prose">
-      <Content />
-    </article>
+<Base
+  title="Sobre nosotros — HappyHomes"
+  description="HappyHomes nace de nuestra propia experiencia como propietarios. Conoce la historia y el equipo detrás del servicio."
+>
+  <Hero
+    eyebrow="Sobre nosotros"
+    title="Somos propietarios como tú."
+    lead="HappyHomes nace de nuestra propia experiencia. Los dos socios tenemos segunda residencia en el Alt Empordà. No pudimos encontrar este servicio. Así que lo creamos."
+    primaryCta={{ label: "Hablar con nosotros", href: "/contacto" }}
+    illustration="house"
+  />
+
+  <Section>
+    <div class="story" data-reveal>
+      <div class="story-eyebrow">Cómo lo hacemos</div>
+      <div class="story-body">
+        <p>
+          Trabajamos en equipo. Cada casa tiene una persona asignada que la conoce
+          al detalle. Esa persona pasa, revisa, informa y coordina lo que haga falta.
+        </p>
+        <p>
+          Cuando algo necesita un especialista (fontanero, electricista, jardinero),
+          no te soltamos un número de teléfono. Lo coordinamos nosotros, supervisamos
+          el trabajo y te confirmamos que está todo correcto.
+        </p>
+      </div>
+    </div>
   </Section>
+
+  <FeatureList
+    eyebrow="Valores"
+    heading="Cinco principios que no negociamos."
+    lead="No son una decoración de web. Son la forma en que trabajamos cada día."
+    features={values}
+    columns={3}
+    tone="cream"
+  />
+
+  <Section>
+    <Quote>
+      <blockquote slot="text">
+        No quiero tener que preocuparme por la casa entre semana. Con que alguien
+        me diga que está todo bien, ya duermo tranquila.
+      </blockquote>
+      <figcaption slot="attribution">Marta · Propietaria en el Alt Empordà</figcaption>
+    </Quote>
+  </Section>
+
+  <Section>
+    <div class="coverage-wrap" data-reveal>
+      <Coverage zones={zones} />
+    </div>
+  </Section>
+
+  <CtaBand
+    heading="¿Hablamos?"
+    lead="Cuéntanos dónde está tu casa. Te decimos con honestidad si podemos ayudarte."
+    ctaLabel="Contacta con nosotros"
+    ctaHref="/contacto"
+  />
 </Base>
+
+<style>
+  .story {
+    display: grid;
+    gap: var(--space-2xl);
+    max-width: 56rem;
+  }
+  .story-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .story-body p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    max-width: 60ch;
+  }
+  .story-body p + p {
+    margin-top: var(--space-md);
+  }
+  @media (min-width: 768px) {
+    .story {
+      grid-template-columns: 0.4fr 1.6fr;
+      gap: var(--space-2xl);
+    }
+  }
+  .coverage-wrap {
+    max-width: 48rem;
+  }
+</style>

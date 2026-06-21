@@ -37,6 +37,7 @@ const extra = Tag === "button" ? { type } : { href };
     border: 1px solid transparent;
     border-radius: var(--radius-sm);
     cursor: pointer;
+    min-height: 44px;
     transition:
       background var(--motion-base),
       color var(--motion-base),
@@ -69,7 +70,7 @@ const extra = Tag === "button" ? { type } : { href };
     color: var(--color-white);
   }
   .btn--primary:hover {
-    background: #0f2a36;
+    background: var(--color-petrol-deep);
     color: var(--color-white);
     box-shadow: var(--shadow-sm);
   }
@@ -106,7 +107,7 @@ const extra = Tag === "button" ? { type } : { href };
 
   .btn--accent {
     background: transparent;
-    color: var(--accent);
+    color: var(--accent-text);
     border-color: var(--accent);
   }
   .btn--accent:hover {

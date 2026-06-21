@@ -1,0 +1,117 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+import Icon from "./Icon.astro";
+
+interface Step {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<section class="how">
+  <Container>
+    <SectionHead
+      eyebrow="Así funciona"
+      heading="Cuatro pasos. Y ya no tienes que pensar más."
+      lead="Desde la primera llamada hasta el día que llegas a tu casa, solo hay una persona detrás."
+    />
+    <ol class="steps" data-reveal-group>
+      {
+        steps.map((step, i) => (
+          <li class="step">
+            <div class="step-top">
+              <span class="step-icon" aria-hidden="true">
+                <Icon name={step.icon} size={22} />
+              </span>
+              <span class="step-num">{String(i + 1).padStart(2, "0")}</span>
+            </div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-text">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Container>
+</section>
+
+<style>
+  .how {
+    padding-block: clamp(4rem, 9vw, 6rem);
+    background: var(--bg-page);
+  }
+  .steps {
+    list-style: none;
+    margin: var(--space-2xl) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .step {
+    position: relative;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    transition: transform var(--motion-base), box-shadow var(--motion-base);
+  }
+  .step:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+  .step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-sm);
+    background: rgba(199, 107, 76, 0.1);
+    color: var(--accent);
+  }
+  .step-num {
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .step-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .step-text {
+    margin: var(--space-sm) 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+  }
+</style>

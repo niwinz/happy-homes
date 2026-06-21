@@ -1,0 +1,145 @@
+---
+import Icon from "./Icon.astro";
+
+interface Item {
+  q: string;
+  a: string;
+}
+
+interface Group {
+  title: string;
+  items: Item[];
+}
+
+interface Props {
+  groups?: Group[];
+  items?: Item[];
+  limit?: number;
+  id?: string;
+}
+
+const { groups, items, limit, id } = Astro.props;
+
+const flat = (groups ?? []).flatMap((g) => g.items);
+const list = items ?? flat;
+const shown = typeof limit === "number" ? list.slice(0, limit) : list;
+const useGroups = !items && groups;
+---
+
+<div class="faq" id={id}>
+  {
+    useGroups ? (
+      <div class="faq-groups" data-reveal-group>
+        {groups!.map((group) => (
+          <div class="faq-group">
+            <h2 class="faq-group-title">{group.title}</h2>
+            <div class="faq-group-items">
+              {group.items.map((item) => (
+                <details class="faq-item">
+                  <summary>
+                    <span>{item.q}</span>
+                    <span class="faq-chev" aria-hidden="true">
+                      <Icon name="chevronDown" size={18} />
+                    </span>
+                  </summary>
+                  <div class="faq-answer">
+                    <p>{item.a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="faq-list" data-reveal-group>
+        {shown.map((item) => (
+          <details class="faq-item">
+            <summary>
+              <span>{item.q}</span>
+              <span class="faq-chev" aria-hidden="true">
+                <Icon name="chevronDown" size={18} />
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .faq-groups {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+  .faq-group-title {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .faq-group-items {
+    display: grid;
+    gap: var(--space-sm);
+  }
+  .faq-list {
+    display: grid;
+    gap: var(--space-sm);
+    max-width: 48rem;
+  }
+  .faq-item {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    overflow: hidden;
+    transition: border-color var(--motion-base);
+  }
+  .faq-item[open] {
+    border-color: var(--border-strong);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-chev {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--accent);
+    transition: transform var(--motion-base);
+  }
+  .faq-item[open] .faq-chev {
+    transform: rotate(180deg);
+  }
+  .faq-answer {
+    padding: 0 var(--space-lg) var(--space-lg);
+  }
+  .faq-answer p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .faq-groups {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

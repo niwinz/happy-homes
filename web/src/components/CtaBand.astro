@@ -1,0 +1,69 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import Button from "./Button.astro";
+
+interface Props {
+  heading?: string;
+  lead?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  heading = "¿Hablamos de tu casa?",
+  lead = "Cuéntanos dónde está, qué usos tiene y qué necesitas. Te recomendamos el plan que mejor encaje, sin compromiso.",
+  ctaLabel = "Hablar con nosotros",
+  ctaHref = "/contacto",
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+
+<section class="cta-band section--dark">
+  <Container>
+    <div class="cta-inner" data-reveal>
+      <Heading level={2} size="h1">{heading}</Heading>
+      <p class="cta-lead">{lead}</p>
+      <div class="cta-actions">
+        <Button href={ctaHref} variant="primary" size="lg">{ctaLabel}</Button>
+        {
+          secondaryLabel && secondaryHref && (
+            <Button href={secondaryHref} variant="on-dark" size="lg">
+              {secondaryLabel}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .cta-band {
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    padding-block: clamp(4rem, 9vw, 7rem);
+  }
+  .cta-inner {
+    max-width: 44rem;
+  }
+  .cta-inner :global(.heading) {
+    color: var(--text-on-dark);
+  }
+  .cta-lead {
+    margin-top: var(--space-md);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-on-dark-muted);
+    max-width: 40ch;
+  }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+</style>

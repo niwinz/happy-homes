@@ -329,7 +329,8 @@ ENV LANG='C.UTF-8' \
     LC_ALL='C.UTF-8' \
     DEBIAN_FRONTEND="noninteractive" \
     JAVA_HOME="/opt/jdk" \
-    PATH="/opt/jdk/bin:/opt/gh/bin:/opt/utils/bin:/opt/clojure/bin:/opt/node/bin:$PATH"
+    PATH="/opt/jdk/bin:/opt/gh/bin:/opt/utils/bin:/opt/clojure/bin:/opt/node/bin:$PATH" \
+    PLAYWRIGHT_BROWSERS_PATH="/opt/ms-playwright"
 
 COPY --from=setup-jvm /opt/jdk /opt/jdk
 COPY --from=setup-jvm /opt/clojure /opt/clojure
@@ -338,6 +339,9 @@ COPY --from=setup-utils /opt/utils /opt/utils
 COPY --from=setup-utils /opt/gh /opt/gh
 COPY --from=setup-utils /opt/powerlevel10k /opt/powerlevel10k
 COPY --from=setup-caddy /usr/bin/caddy /usr/bin/caddy
+
+# Playwright headless Chromium for browser automation (MCP, a11y audits)
+RUN npx -y playwright@latest install chromium
 
 COPY files/zshrc               /root/.zshrc
 COPY files/bashrc              /root/.bashrc

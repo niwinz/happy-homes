@@ -1,0 +1,63 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+import PlanCard from "./PlanCard.astro";
+
+interface Plan {
+  name: string;
+  price: string;
+  period?: string;
+  blurb: string;
+  features: string[];
+  featured?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
+  badge?: string;
+}
+
+interface Props {
+  plans: Plan[];
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  id?: string;
+}
+
+const {
+  plans,
+  eyebrow = "Planes",
+  heading = "Elige tu plan",
+  lead = "Tres niveles de cobertura. Subes cuando quieras, sin penalización.",
+  id,
+} = Astro.props;
+---
+
+<section class="plans" id={id}>
+  <Container>
+    <SectionHead eyebrow={eyebrow} heading={heading} lead={lead} />
+    <div class="plan-grid" data-reveal-group>
+      {plans.map((plan) => <PlanCard plan={plan} />)}
+    </div>
+  </Container>
+</section>
+
+<style>
+  .plans {
+    padding-block: clamp(4rem, 9vw, 6rem);
+    background: var(--bg-section);
+  }
+  .plan-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+  .plan-grid > :global(*) {
+    min-width: 0;
+  }
+  @media (min-width: 768px) {
+    .plan-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+  }
+</style>

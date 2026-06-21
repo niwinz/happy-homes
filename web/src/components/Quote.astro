@@ -1,0 +1,52 @@
+---
+interface Props {
+  tone?: "light" | "dark";
+  class?: string;
+}
+
+const { tone = "light", class: className } = Astro.props;
+---
+
+<figure class:list={["quote", `quote--${tone}`, className]}>
+  <blockquote class="quote-text">
+    <slot name="text" />
+  </blockquote>
+  {
+    Astro.slots.has("attribution") && (
+      <figcaption class="quote-attr">
+        <slot name="attribution" />
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .quote {
+    margin: 0;
+    padding: var(--space-xl) 0 0;
+    border: 0;
+  }
+  .quote-text {
+    margin: 0;
+    padding-inline-start: var(--space-lg);
+    border-inline-start: 2px solid var(--accent);
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+  .quote-attr {
+    margin-top: var(--space-md);
+    padding-inline-start: var(--space-lg);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  .quote--dark .quote-text {
+    color: var(--text-on-dark);
+  }
+  .quote--dark .quote-attr {
+    color: var(--text-on-dark-muted);
+  }
+</style>

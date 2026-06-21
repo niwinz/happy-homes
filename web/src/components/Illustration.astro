@@ -1,0 +1,41 @@
+---
+interface Props {
+  name: "facade" | "keys" | "landscape" | "house";
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+
+const scenes: Record<Props["name"], string> = {
+  facade: "M3 80h124M9 80V42l56-22 56 22v38M21 80V52l44-18 44 18v28M34 80V60h30v20M70 80V60h30v20M9 80v8M133 80v8M3 88h124",
+  keys: "M40 90c-8-14-8-30 4-42 14-14 36-14 50 0 12 12 12 30 0 42M64 90l-4-22-22-8 16-16 12 22 22 4",
+  landscape: "M0 70h140M0 70l30-20 24 12 26-22 30 24 30-18v24M20 50l8 8M50 46l6 6M82 40l8 8M110 48l6 6",
+  house: "M20 90V50l40-26 40 26v40M30 90V58h24v32M62 90V62h24v28M20 90h80M50 38v-8h6v12",
+};
+
+const d = scenes[name] ?? scenes.facade;
+---
+
+<svg
+  class:list={["illustration", className]}
+  viewBox="0 0 140 100"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role="img"
+  aria-label={name}
+>
+  <path d={d} />
+</svg>
+
+<style>
+  .illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--accent);
+    opacity: 0.85;
+  }
+</style>

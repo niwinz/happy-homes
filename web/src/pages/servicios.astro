@@ -1,13 +1,212 @@
 ---
 import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import PlanGrid from "../components/PlanGrid.astro";
+import AddOnList from "../components/AddOnList.astro";
+import VideoProof from "../components/VideoProof.astro";
+import CtaBand from "../components/CtaBand.astro";
 import Section from "../components/Section.astro";
-import Content, { frontmatter } from "../../prototype-content/servicios.md";
+
+const plans = [
+  {
+    name: "Basic",
+    price: "59–79 €",
+    blurb: "Para quien quiere lo mínimo y no preocuparse.",
+    features: [
+      "1 visita al mes",
+      "Fotos e informe por WhatsApp",
+      "Revisión de puntos críticos (agua, gas, electricidad, cierres)",
+      "Control de okupación",
+      "Comunicación por WhatsApp o email",
+    ],
+    ctaLabel: "Empezar con Basic",
+  },
+  {
+    name: "Standard",
+    price: "99–139 €",
+    blurb: "Para quien quiere más cobertura sin excesos.",
+    featured: true,
+    badge: "Más elegido",
+    features: [
+      "2 visitas al mes",
+      "Todo lo de Basic",
+      "Gestión de llaves (entrega a invitados, proveedores, cleaners)",
+      "Coordinación de incidencias menores",
+      "Preparación pre-llegada (ventilar, climatizar, nevera, luces)",
+    ],
+    ctaLabel: "Empezar con Standard",
+  },
+  {
+    name: "Premium",
+    price: "179–249 €",
+    blurb: "Para quien quiere delegarlo todo.",
+    features: [
+      "Visita semanal",
+      "Todo lo de Standard",
+      "Mantenimiento preventivo programado (jardinería, piscina, calefacción)",
+      "Interlocutor único dedicado",
+      "Informes trimestrales detallados",
+      "Respuesta 24h para urgencias",
+      "Servicio en francés, inglés o alemán",
+    ],
+    ctaLabel: "Empezar con Premium",
+  },
+];
+
+const addons = [
+  "Limpieza pre-llegada / post-salida",
+  "Jardinería",
+  "Piscina",
+  "Recepción de paquetes",
+  "Gestión administrativa",
+  "Coordinación de reformas",
+  "Servicio llavero",
+  "Control de alarma / videovigilancia",
+];
+
+const addonsTable = [
+  ["Limpieza pre-llegada / post-salida", "Dejamos la casa lista para tu llegada o después de tu estancia"],
+  ["Jardinería", "Corte césped, poda, riego programado"],
+  ["Piscina", "Apertura/cierre temporada, cloro semanal, limpieza"],
+  ["Recepción de paquetes", "Recogemos correo, paquetes, y te avisamos"],
+  ["Gestión administrativa", "Recibos, multas, documentación"],
+  ["Coordinación de reformas", "Presupuestar, supervisar, informar"],
+  ["Servicio llavero", "Entrega de llaves a invitados, cleaners, proveedores"],
+  ["Control de alarma / videovigilancia", "Verificación y coordinación con central"],
+];
 ---
 
-<Base title={frontmatter.title} description={frontmatter.description}>
-  <Section spacing="lg">
-    <article class="prose">
-      <Content />
-    </article>
+<Base
+  title="Servicios y planes — HappyHomes"
+  description="Planes de suscripción Basic, Standard y Premium para el cuidado de tu segunda residencia en la Costa Brava y el Alt Empordà."
+>
+  <Hero
+    eyebrow="Servicios"
+    title="Planes que se adaptan a tu casa."
+    lead="Todos los planes incluyen visitas presenciales, informe con fotos y grabación en vídeo de cada visita. Subes cuando quieras, sin penalización."
+    primaryCta={{ label: "Hablar con nosotros", href: "/contacto" }}
+    secondaryCta={{ label: "Ver cómo funciona", href: "/" }}
+  />
+
+  <PlanGrid
+    plans={plans}
+    eyebrow="Suscripción"
+    heading="Tres niveles. Add-ons modulares."
+    lead="Desde supervisión mensual hasta cuidado integral semanal. Solo pagas lo que necesitas."
+  />
+
+  <Section>
+    <div class="addons-table-block">
+      <p class="eyebrow">Add-ons</p>
+      <h2 class="addons-title">Modulares. Desde 10 €/mes cada uno.</h2>
+      <p class="addons-sub">
+        Contrátalos sobre cualquier plan. ¿Necesitas algo que no está aquí?
+        <a href="/contacto">Dínoslo</a>.
+      </p>
+      <div class="addons-table" data-reveal-group>
+        {
+          addonsTable.map(([name, desc]) => (
+            <div class="addon-row">
+              <h3 class="addon-name">{name}</h3>
+              <p class="addon-desc">{desc}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="addons-pills">
+        {addons.map((a) => <span class="addon-pill">{a}</span>)}
+      </div>
+    </div>
   </Section>
+
+  <VideoProof
+    ctaLabel="Hablar con nosotros"
+    ctaHref="/contacto"
+  />
+
+  <CtaBand
+    heading="¿No estás seguro de qué plan necesitas?"
+    lead="Empezamos con Basic y según veas cómo funciona, subes cuando quieras. Sin penalización. Te recomendamos sin compromiso."
+    ctaLabel="Hablar con nosotros"
+    ctaHref="/contacto"
+    secondaryLabel="Ver preguntas frecuentes"
+    secondaryHref="/faq"
+  />
 </Base>
+
+<style>
+  .addons-table-block {
+    max-width: 56rem;
+  }
+  .eyebrow {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .addons-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .addons-sub {
+    margin: var(--space-sm) 0 var(--space-2xl);
+    color: var(--text-muted);
+  }
+  .addons-sub a {
+    color: var(--accent-text);
+  }
+  .addons-table {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--border-default);
+  }
+  .addon-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+  .addon-name {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .addon-desc {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+  }
+  @media (min-width: 768px) {
+    .addon-row {
+      grid-template-columns: 1fr 1.4fr;
+      gap: var(--space-lg);
+    }
+  }
+  .addons-pills {
+    display: none;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+  .addon-pill {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-default);
+    background: rgba(26, 58, 74, 0.04);
+    color: var(--text-primary);
+  }
+  @media (max-width: 767px) {
+    .addons-table { display: none; }
+    .addons-pills { display: flex; }
+  }
+</style>

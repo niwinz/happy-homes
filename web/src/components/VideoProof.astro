@@ -1,0 +1,110 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import Icon from "./Icon.astro";
+import Button from "./Button.astro";
+
+interface Props {
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  ctaLabel = "Hablar con nosotros",
+  ctaHref = "/contacto",
+} = Astro.props;
+---
+
+<section class="video-proof section--dark">
+  <Container>
+    <div class="vp-grid">
+      <div class="vp-icon" data-reveal aria-hidden="true">
+        <span class="vp-icon-ring">
+          <Icon name="video" size={28} />
+        </span>
+      </div>
+      <div class="vp-content" data-reveal>
+        <Heading level={2} size="h2">Cada visita, grabada en vídeo.</Heading>
+        <p class="vp-text">
+          De principio a fin. Sabrás exactamente qué se ha hecho, cuánto ha durado
+          y en qué estado queda todo. Sin dudas, sin confianza ciega.
+        </p>
+        <ul class="vp-list">
+          <li><Icon name="check" size={18} /> Quién ha entrado y a qué hora</li>
+          <li><Icon name="check" size={18} /> Qué ha revisado y durante cuánto tiempo</li>
+          <li><Icon name="check" size={18} /> En qué estado queda todo al irse</li>
+        </ul>
+        <div class="vp-cta">
+          <Button href={ctaHref} variant="on-dark" size="md">{ctaLabel}</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .video-proof {
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    padding-block: clamp(4rem, 9vw, 6rem);
+  }
+  .vp-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .vp-icon {
+    display: flex;
+  }
+  .vp-icon-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--radius-circle);
+    border: 1px solid var(--border-strong);
+    color: var(--accent);
+    background: rgba(199, 107, 76, 0.08);
+  }
+  .vp-content {
+    max-width: 44rem;
+  }
+  .vp-content :global(.heading) {
+    color: var(--text-on-dark);
+  }
+  .vp-text {
+    margin-top: var(--space-md);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-on-dark-muted);
+    max-width: 42ch;
+  }
+  .vp-list {
+    list-style: none;
+    margin: var(--space-xl) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-sm);
+  }
+  .vp-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-on-dark);
+    font-size: 0.9375rem;
+  }
+  .vp-list :global(.icon) {
+    color: var(--accent);
+  }
+  .vp-cta {
+    margin-top: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .vp-grid {
+      grid-template-columns: 4rem 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+</style>
