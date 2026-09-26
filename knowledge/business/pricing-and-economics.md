@@ -4,6 +4,11 @@
 **Fecha de revisión:** 26 de septiembre de 2026  
 **Estado:** hipótesis comerciales y económicas pendientes de validación con operaciones y clientes. Los precios de terceros son una fotografía de sus páginas públicas en la fecha de revisión.
 
+> **Fuente de producto:** la oferta vigente de trabajo se define únicamente en
+> [`../product/core.md`](../product/core.md). Este documento conserva análisis,
+> escenarios y sensibilidad económica; sus tablas no son por sí solas una
+> tarifa aprobada.
+
 ## 1. Resumen ejecutivo
 
 HappyHomes plantea supervisar segundas residencias mediante una persona local de confianza, visitas periódicas, evidencias fotográficas o en vídeo y aviso y coordinación de incidencias. La experiencia central propuesta comprende **dos visitas al mes**. Una primera propuesta de gama es **Lite (79 €/mes, una visita), Care (119 €/mes, dos visitas) y Complete (precio por revisar, cuatro visitas)**.

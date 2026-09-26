@@ -8,17 +8,17 @@
 
 **HappyHomes nace para resolver un problema común: la segunda residencia que no puedes supervisar en persona.**
 
-Con base en Olot, cubrimos la Costa Brava y el Alt Empordà con un servicio integral de mantenimiento, vigilancia y gestión de segundas residencias para propietarios que no viven en la propiedad de forma permanente.
+Con base en Olot, proponemos un servicio de cuidado presencial y documentado de segundas residencias en la Costa Brava, el Alt Empordà y rutas cercanas cuya cobertura se confirma para cada dirección.
 
-Trabajamos con propietarios de perfiles muy distintos —desde quienes buscan supervisión periódica hasta quienes requieren conservación premium con interlocutor único y mantenimiento preventivo programado— pero con una necesidad compartida: la tranquilidad de saber que su casa está en buenas manos.
+Trabajamos con propietarios de perfiles muy distintos —desde quienes buscan una revisión periódica hasta quienes necesitan más frecuencia y ayuda para coordinar el cuidado de la casa— pero con una necesidad compartida: la tranquilidad de saber que su casa está en buenas manos.
 
-Nuestro modelo de suscripción escalonada (Basic, Standard, Premium) se adapta al nivel de servicio que cada propiedad necesita, con add-ons modulares para cubrir desde jardinería y piscina hasta gestión de llaves y reformas.
+Nuestro modelo de suscripción escalonada ofrece una, dos o cuatro visitas por mes natural, con servicios adicionales presupuestados por separado. Los nombres, precios y prestaciones vigentes se definen en el producto canónico.
 
-¿Necesitas algo que no está en el catálogo? Dínoslo. Si podemos hacerlo, lo hacemos nosotros. Si no, te buscamos un tercero de confianza. El compromiso es que tengas una solución, no que solo tengas nuestros servicios.
+¿Necesitas algo que no está en el catálogo? Dínoslo. Confirmamos si podemos realizarlo o coordinar a un profesional, con alcance, autorización y precio antes de actuar.
 
-Y porque la confianza no se pide, se demuestra: cada visita queda grabada en vídeo de principio a fin, para que veas exactamente qué se ha hecho y en qué estado queda tu casa.
+Y porque la confianza no se pide, se demuestra: después de cada visita recibes un informe con imágenes, los puntos revisados y cualquier observación que requiera tu atención.
 
-Hablamos castellano, catalán, francés e inglés, porque nuestros clientes están en Barcelona, Girona, el sur de Francia, Alemania, Países Bajos, Suiza y más allá.
+El producto inicial se presta en castellano y catalán. Francés e inglés se incorporarán cuando exista capacidad operativa confirmada para atenderlos con la misma calidad.
 
 ---
 
@@ -27,9 +27,9 @@ Hablamos castellano, catalán, francés e inglés, porque nuestros clientes est�
 | Valor | Explicación |
 |-------|-------------|
 | **Tranquilidad** | El núcleo de lo que vendemos. El cliente no tiene que pensar en su casa. |
-| **Confianza** | Accedemos a su propiedad. La relación se basa en confianza absoluta, reforzada con evidencia: cada visita se graba en vídeo. |
+| **Confianza** | Accedemos a su propiedad. La relación se refuerza con una persona de referencia y evidencia: cada visita genera un informe con imágenes. |
 | **Discreción** | Propiedades de alto valor, muchos clientes extranjeros. Nunca se habla de un cliente a otro. |
-| **Proactividad** | No esperamos a que algo se rompa. Lo detectamos, lo comunicamos y proponemos una solución. |
+| **Proactividad** | Revisamos los puntos acordados, comunicamos lo que observamos y proponemos el siguiente paso. |
 | **Cercanía** | Trato directo, sin gestores automáticos ni call centers. Una persona real. |
 
 ## Personalidad y tono de voz
@@ -40,22 +40,27 @@ Hablamos castellano, catalán, francés e inglés, porque nuestros clientes est�
 
 | Canal / Situación | Tono | Ejemplo |
 |-------------------|------|---------|
-| Web / landing | Sereno, aspiracional | "Tu casa en la Costa Brava, siempre lista. Nosotros cuidamos de ella para que tú solo tengas que disfrutar." |
+| Web / landing | Sereno, aspiracional | "Tu casa cuidada también cuando estás lejos. Una persona de confianza pasa, revisa y te lo cuenta." |
 | WhatsApp / SMS con cliente | Directo, cercano, sin adornos | "Hola Marta, hemos pasado por la casa. Todo correcto. Te adjunto las fotos de la revisión. Buen finde." |
 | Email formal | Profesional cálido | "Estimada Anne, adjuntamos el informe trimestral de su propiedad en Cadaqués. Todo en orden. Quedamos a su disposición." |
-| Informe técnico | Preciso y claro | "Revisión semanal — 10/06/2026. Estado: correcto. Incidencia menor en grifo exterior resuelta." |
+| Informe técnico | Preciso y claro | "Visita 10/06/2026. Estado general: correcto. Observación en el grifo exterior; requiere tu decisión." |
 | Redes sociales | Amable, mediterráneo, visual | "Ventanas abiertas, aire fresco, casa lista. Otra visita más en la que todo está perfecto. Así debería ser siempre." |
 | Urgencias / incidencias | Sereno y resolutivo | "Hemos detectado una incidencia en el sistema de riego. Ya estamos coordinando la reparación. Te mantenemos al día." |
 
 ## Propuesta de Valor Única (UVP)
 
-**Un servicio con cara y ojos. No una empresa genérica: una persona real que conoces, que cuida de tu casa, y a la que puedes llamar directamente. Supervisión presencial, interlocutor único, mantenimiento preventivo programado.**
+La definición operativa vigente del producto, incluida la figura del
+Responsable de Casa y las formulaciones públicas permitidas, está en
+[`../product/core.md`](../product/core.md). Este documento define el territorio
+verbal; no debe introducir prestaciones que el producto no contemple.
 
-**Y cada visita grabada en vídeo de principio a fin. Sabrás exactamente qué se ha hecho, cuánto ha durado y en qué estado queda todo. Sin dudas, sin confianza ciega.**
+**Un servicio con cara y ojos. No una plataforma anónima: una persona de referencia que conoce tu casa, te atiende directamente y coordina visitas visuales programadas.**
+
+**Después de cada visita recibes un informe con imágenes: qué se ha revisado, qué se ha observado y qué necesita tu decisión.**
 
 ## Promesa de marca
 
-**Cada visita, grabada y visible. Tu casa, cuidada con evidencia.**
+**Cada visita, documentada y explicada. Tu casa, cuidada con evidencia.**
 
 ## Historia / Origen de la marca
 
@@ -67,7 +72,7 @@ No pudimos encontrar ese servicio. Así que lo creamos.
 
 | Uso | Texto |
 |-----|-------|
-| Principal | **HappyHomes — Tu casa, siempre lista.** |
+| Principal | **HappyHomes — Cuidada también cuando estás lejos.** |
 | Alternativo | *Tranquilidad para tu segunda residencia* |
 | Firma email | *HappyHomes — Cuidamos de tu casa para que disfrutes de ella.* |
 
@@ -75,77 +80,25 @@ La definición detallada de los perfiles de cliente (Persona A y Persona B) est�
 
 ## Diferenciación frente a competidores
 
-TBD — pendiente de validar contra competidores reales.
+La primera revisión detallada de un competidor real está en
+[`../research/serenohome-competitive-analysis.md`](../research/serenohome-competitive-analysis.md).
+Sus conclusiones son insumos de estrategia, no claims aprobados ni permiso para
+copiar su identidad o sus promesas.
 
 | HappyHomes | Competidores típicos |
 |------------|----------------------|
-| Servicio integral (vigilancia + mantenimiento + coordinación) | Manitas / autónomos que solo hacen una cosa |
-| Interlocutor único | Tener que coordinar jardinero + piscinero + fontanero + electricista por separado |
-| Informes periódicos con fotos y vídeo | "Confía en mí, está todo bien" sin evidencia |
-| **Cada visita grabada en vídeo de principio a fin** | Sin evidencia visual del trabajo realizado |
+| Cuidado presencial, evidencia y coordinación acordada | Manitas / autónomos que solo hacen una cosa |
+| Responsable de Casa estable | Tener que explicar el contexto a una persona distinta cada vez |
+| Informe con imágenes después de cada visita | "Confía en mí, está todo bien" sin evidencia |
+| **Una persona de referencia que conoce la casa y explica el informe** | Atención rotatoria o anónima |
 | Suscripción escalonada | Facturas por hora o por visita sin previsibilidad |
-| Multilingüe (cat, cast, fr, en) | Solo catalán/castellano, sin opción para extranjeros |
-| Visitas presenciales semanales/mensuales | Solo bajo demanda, sin prevención |
+| Alcance y extras explicados antes de actuar | Gestiones ambiguas y facturación imprevisible |
+| Una, dos o cuatro visitas por mes natural | Solo atención bajo demanda, sin continuidad |
 
-## Identidad visual — Mediterráneo aspiracional
+## Identidad visual
 
-**Dirección acordada:** Mediterráneo aspiracional. Ilustraciones profesionales como recurso visual principal (sin fotografías reales).
-
-### Paleta de color
-
-| Color | Referencia | Uso |
-|-------|-----------|-----|
-| Azul Petróleo | `#1A3A4A` | Fondos oscuros, headers, footer, **CTA primario** (blanco sobre este fondo = contraste AAA) |
-| Terracota | `#C76B4C` | Acentos, iconos, detalles, CTA secundario en texto grande. *No usar como fondo de botón con texto blanco (falla AA).* |
-| Crudo / Arena | `#F2ECE4` | Fondos de sección, tarjetas, fondos claros |
-| Blanco roto | `#FAFAF8` | Fondo general de web |
-| Verde Olivo | `#6B8F71` | Detalles secundarios, éxito, naturaleza |
-| Gris piedra | `#8A8A8A` | Solo texto grande y bordes. *No usar para texto corriente sobre claro (≈3.3:1, falla AA).* |
-
-**Jerarquía de uso (60-30-10):** 60% Blanco roto / Crudo (fondos), 30% Azul Petróleo (estructura, textos primarios, CTA), 10% Terracota (acentos, detalles). Verde Olivo y Gris piedra solo aparecen de forma puntual.
-
-Estos colores evocan la Costa Brava sin caer en el tópico del azul cielo y amarillo playa. Transmiten solidez, naturaleza y calma.
-
-### Tipografía
-
-- **Titulares:** Serif humanista como dirección principal (cálida, legible, atemporal — coherente con el arquetipo Cuidador). Ej: *EB Garamond*, *Literata*. Si se busca impacto display puntual en el hero, *Playfair Display* (Didot) solo para titulares grandes.
-- **Cuerpo:** Sans-serif limpia y legible. Ej: *Inter*, *Nunito Sans*, *DM Sans*.
-- **Aplicación:** Titulares en terracota o azul petróleo sobre fondo crudo. Cuerpo en azul petróleo (el gris piedra solo para texto grande o secundario, ver paleta).
-
-### Ilustraciones
-
-Las ilustraciones son el pilar visual de la marca. Estilo sugerido:
-
-- **Ilustración lineal + mancha de color (flat illustration).** Trazo fino, paleta de la marca, escenas aspiracionales.
-- **Temas:** Casas mediterráneas vistas desde fuera (fachadas con buganvilla, contraventanas, tejados de teja), interiores luminosos con detalle de planta o llave, paisajes del Empordà, manos entregando una llave.
-- **Proveedores:** Dribbble / Behance para encontrar ilustrador especializado en estilo editorial mediterráneo. Presupuesto orientativo: 300–800 € por ilustración según detalle y derechos de uso.
-- **Uso:** Hero de web, secciones de servicio, fondo de tarjetas de pack, redes sociales, dossier comercial.
-
-### Logotipo (brief para diseñador)
-
-Los conceptos creativos quedan abiertos a propuesta del diseñador, dentro del marco de estilo siguiente.
-
-**Dirección de estilo:**
-- Trazo limpio, sin rellenos, sin sombras.
-- Que funcione en una sola línea (sin apilar) para firma de email.
-- Que NO parezca una inmobiliaria — evitar tejados rojos, chimeneas, ventanas.
-- Que parezca un servicio de confianza con aspiración de calidad.
-- Referencias visuales: marcas como *Muji*, *Aesop*, *The Row* — no por el sector, sino por la limpieza visual.
-
-**Variantes necesarias:**
-- Horizontal (logo + texto "HappyHomes" a la derecha) — uso web, firma email
-- Icono solo (favicon, avatar, WhatsApp)
-- Monocromático (para sello, relieve, bordados)
-
-**Colores:** Azul petróleo como color principal. Versión en terracota o blanco para fondos oscuros.
-
-### Estilo web (dirección)
-
-- Limpio, espacioso, mucho blanco/crudo.
-- Ilustraciones grandes como hero en lugar de foto.
-- Tarjetas de servicio con icono + título + texto corto.
-- Tipografía serif grande para titulares.
-- Sensación de calma, lujo silencioso (quiet luxury), nada estridente.
+La identidad visual, el sistema de diseño web y los requisitos para logos e
+ilustraciones se definen exclusivamente en [`design.md`](design.md).
 
 ---
 
@@ -190,5 +143,5 @@ Reglas lingüísticas para que todo lo que comunique HappyHomes suene a la misma
 | Apertura WhatsApp | "Hola [nombre], soy [persona] de HappyHomes." |
 | Cierre WhatsApp | "Quedamos a tu disposición. Buen día." |
 | Firma email | "[Nombre] · HappyHomes · Cuidamos de tu casa para que disfrutes de ella." |
-| Asunto informe | "Informe semanal · [Dirección] · [Fecha]" |
+| Asunto informe | "Informe de visita · [Nombre de la casa] · [Fecha]" |
 | Presentación verbal | "HappyHomes. Somos quienes cuidamos de tu casa para que tú no tengas que preocuparte." |

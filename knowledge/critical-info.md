@@ -12,12 +12,15 @@ validated. Do not turn a hypothesis into a public promise without approval.
 ```text
 critical-info
 ├── brand/core
-│   └── brand/visual-assets
+│   └── brand/design
+├── product/core
 ├── business/core
 │   ├── business/personas
 │   └── business/pricing-and-economics
 ├── web/core
-│   └── ../DESIGN.md
+│   └── brand/design
+├── research/serenohome-competitive-analysis
+├── plans/serenohome-improvements
 └── workflow/core
     └── workflow/creating-commits
 ```
@@ -28,36 +31,52 @@ task. Follow links from that core only when they are relevant.
 | Change | Required memory |
 |---|---|
 | Brand copy, tone, or claims | `brand/core.md` |
+| Product, plans, service, protocol, communication, data, or claims | `product/core.md` |
 | Audience or positioning | `business/core.md`, then `business/personas.md` |
-| Plans, prices, service scope | `business/core.md`, then `business/pricing-and-economics.md` |
-| UI, components, or accessibility | `web/core.md`, then root `DESIGN.md` |
-| Logo or illustration assets | `brand/core.md`, `brand/visual-assets.md`, and root `DESIGN.md` |
+| Plans, prices, service scope | `product/core.md`; then `business/pricing-and-economics.md` for analysis |
+| UI, components, or accessibility | `web/core.md`, then `brand/design.md` |
+| Logo or illustration assets | `brand/core.md`, then `brand/design.md` |
 | Creating a commit | `workflow/core.md`, then `workflow/creating-commits.md` |
+
+## Competitive research and implementation plans
+
+- [`research/serenohome-competitive-analysis.md`](research/serenohome-competitive-analysis.md)
+  records the observed offer, UX, visual system, trust model, conversion flow,
+  local SEO and legal boundaries of SerenoHome. It separates observations,
+  inferences and recommendations.
+- [`plans/serenohome-improvements.md`](plans/serenohome-improvements.md) turns
+  that research into a phased plan. Its business, legal and operational
+  decisions are prerequisites, not approved public promises.
 
 ## Source precedence
 
 - Manifests, config, and source code define how the current site runs.
-- Root `DESIGN.md` defines UI and accessibility rules, even where older brand
-  material differs.
+- `product/core.md` is the source of truth for the product being designed:
+  service, plans, prices, protocol, communication, evidence, extras, limits,
+  data rules, and approved claims. Its status labels determine what still needs
+  validation before publication.
+- `brand/design.md` defines all visual, UI, asset, and accessibility rules.
 - `business/pricing-and-economics.md` is the latest commercial analysis, but
-  its proposals remain unapproved hypotheses unless marked otherwise.
+  explains scenarios rather than defining the current product.
 - `brand/core.md` defines voice and brand principles.
 - `business/personas.md` contains research assumptions, not validated facts.
-- `brand/visual-assets.md` is an asset-production brief, not the web design
-  system.
 
 If implementation and business memory conflict, report the conflict. Do not
 assume that current website copy is an approved business decision.
 
 ## Unresolved conflicts
 
-- The site uses Basic, Standard, and Premium with ranges of 59–249 euros. The
-  latest analysis proposes testing Lite at 79 euros, Care at 119 euros, and
-  Complete at 219–229 euros. None is confirmed as the final public offer.
+- The product canon provisionally defines Lite at 79 euros, Care at 119 euros,
+  and Complete at 229 euros, plus an annual prepaid option with two months of
+  discount. The site still uses Basic, Standard, and Premium with ranges of
+  59–249 euros. Do not publish the new table until its validation gates pass.
 - The site makes claims about occupation control, 24-hour response, no minimum
   term, key custody, arrival preparation, and coordination. Operations and
-  contract limits have not validated all of them.
-- Coverage boundaries, VAT presentation, visit duration, home-size limits,
-  after-hours availability, and included coordination remain undecided.
-- Brand material lists four service languages in places, while the site also
-  advertises German.
+  contract limits have not validated all of them; `product/core.md` now marks
+  which are qualified, provisional, pending, or prohibited.
+- Coverage remains pending. VAT presentation, a 150 m² standard-home limit,
+  service hours, and included coordination now have provisional definitions in
+  `product/core.md` and still require validation.
+- The product proposal starts with Spanish and Catalan, leaves French and
+  English subject to capacity, and excludes German at launch. Existing brand
+  and site copy still advertise broader language coverage.

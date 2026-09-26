@@ -2,6 +2,10 @@
 
 **Propósito:** Identificar y definir los tipos de cliente objetivo para HappyHomes (servicios de mantenimiento y gestión de segundas residencias en Olot y Costa Brava / Alt Empordà). Este documento es la base para la estructura de productos, packs de suscripción, canales de venta y comunicación.
 
+> **Nota de autoridad:** las personas y su antigua correspondencia con packs son
+> hipótesis de investigación. Los planes, precios y prestaciones vigentes se
+> definen exclusivamente en [`../product/core.md`](../product/core.md).
+
 ---
 
 ## Metodología

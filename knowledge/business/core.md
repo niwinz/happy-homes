@@ -7,6 +7,9 @@ economics. Most figures are working assumptions rather than approved terms.
 
 ## Read next
 
+- Read [`../product/core.md`](../product/core.md) first for the current product
+  definition. It is authoritative for plans, prices, service, protocol,
+  communication, evidence, extras, limits, data rules, and public claims.
 - Read [`personas.md`](personas.md) for the two target-customer hypotheses and
   their stated needs.
 - Read [`pricing-and-economics.md`](pricing-and-economics.md) before changing
@@ -14,11 +17,20 @@ economics. Most figures are working assumptions rather than approved terms.
   coverage claims.
 - Read [`../brand/core.md`](../brand/core.md) when turning business decisions
   into customer-facing copy.
+- Read
+  [`../research/serenohome-competitive-analysis.md`](../research/serenohome-competitive-analysis.md)
+  for the competitor evidence behind current web, trust, offer, and local SEO
+  recommendations. Use
+  [`../plans/serenohome-improvements.md`](../plans/serenohome-improvements.md)
+  only as a proposed sequence; its decisions are not approvals.
 
 ## Guardrails
 
 - Do not present competitor prices, forecast margins, personas, or proposed
   packages as validated facts.
+- Do not copy a scenario from the pricing analysis into the product or web.
+  Product changes must be recorded in `product/core.md` with an explicit
+  decision status and validation gate.
 - Describe visits as visual and preventive. Do not imply a certified technical
   inspection, guaranteed security, insurance cover, or repair service.
 - Do not promise 24-hour response, occupation prevention, key custody, provider
