@@ -4,7 +4,13 @@
     "servers": {
       "playwright": {
         "type": "local",
-        "command": ["npx", "-y", "@playwright/mcp", "--headless"],
+        "command": [
+          "pnpm",
+          "exec",
+          "playwright-mcp",
+          "--headless",
+          "--no-sandbox"
+        ],
         "disabled": false,
         "env": {}
       }
