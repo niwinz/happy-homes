@@ -1,8 +1,14 @@
-# DESIGN.md — HappyHomes
+# HappyHomes — Diseño de marca y sistema visual
 
-> Source of truth for every UI build. Read before writing any component or page.
-> Aesthetic: **Mediterráneo aspiracional / quiet luxury**. Calm, spacious, restrained.
-> Stack: **Astro** (SSG, islands). Tokens below are framework-agnostic; expose them as CSS custom properties in `web/src/styles/tokens.css`.
+Fuente canónica para la identidad visual, la producción de assets y cualquier
+interfaz de HappyHomes. Debe leerse antes de diseñar logos, ilustraciones,
+componentes o páginas.
+
+**Estética:** Mediterráneo aspiracional / quiet luxury. Calmado, espacioso y
+contenido.
+
+**Implementación web:** Astro (SSG, islands). Los tokens se exponen como
+propiedades CSS en `web/src/styles/tokens.css`.
 
 ---
 
@@ -25,8 +31,6 @@
 | `--color-petrol` | `#1A3A4A` | Structure, primary text, primary buttons, dark sections |
 | `--color-petrol-deep` | `#0F2A36` | Hover/active on petrol elements (buttons, primary CTA) |
 | `--color-terracotta` | `#C76B4C` | Brand accent — borders, icons, focus ring, large text (≥18px) only |
-| `--color-terracotta-deep` | `#A04A2E` | Text accent on light backgrounds (eyebrow, nav-active, 5.7:1 on white) |
-| `--color-terracotta-light` | `#E89F82` | Text accent on dark backgrounds (footer col-titles, 5.6:1 on petrol) |
 | `--color-cream` | `#F2ECE4` | Section backgrounds, cards |
 | `--color-white` | `#FAFAF8` | Page background, text on dark |
 | `--color-olive` | `#6B8F71` | Success, nature details |
@@ -97,19 +101,19 @@ Display impact (optional, hero only): `Playfair Display` swapped into `--font-he
 
 **Type scale** (rem, 16px base, mobile-first)
 
-| Token | Size / Line / Weight | Family | Use |
+| Role | Size / Line / Weight | Family | Use |
 |-------|----------------------|--------|-----|
-| `--text-display` | `3.25rem / 1.1 / 600` | heading | Hero `<h1>` (md+: `4rem`) |
-| `--text-h1` | `2.5rem / 1.15 / 600` | heading | Page title |
-| `--text-h2` | `2rem / 1.2 / 600` | heading | Section title |
-| `--text-h3` | `1.5rem / 1.3 / 500` | heading | Card / sub-section title |
-| `--text-h4` | `1.25rem / 1.4 / 500` | heading | Small heading |
-| `--text-lead` | `1.25rem / 1.6 / 400` | body | Hero subtitle / lead paragraph |
-| `--text-body` | `1rem / 1.65 / 400` | body | Default body |
-| `--text-sm` | `0.875rem / 1.6 / 400` | body | Secondary body, form labels |
-| `--text-caption` | `0.75rem / 1.5 / 400` | body | Captions, table cells |
-| `--text-eyebrow` | `0.75rem / 1.4 / 600` | body | Uppercase, `letter-spacing: 0.12em`, terracota — section kickers |
-| `--text-button` | `0.9375rem / 1 / 500` | body | Button label |
+| `display` | `3.25rem / 1.1 / 600` | heading | Hero `<h1>` (md+: `4rem`) |
+| `h1` | `2.5rem / 1.15 / 600` | heading | Page title |
+| `h2` | `2rem / 1.2 / 600` | heading | Section title |
+| `h3` | `1.5rem / 1.3 / 500` | heading | Card / sub-section title |
+| `h4` | `1.25rem / 1.4 / 500` | heading | Small heading |
+| `lead` | `1.25rem / 1.6 / 400` | body | Hero subtitle / lead paragraph |
+| `body` | `1rem / 1.65 / 400` | body | Default body |
+| `small` | `0.875rem / 1.6 / 400` | body | Secondary body, form labels |
+| `caption` | `0.75rem / 1.5 / 400` | body | Captions, table cells |
+| `eyebrow` | `0.75rem / 1.4 / 600` | body | Uppercase, `letter-spacing: 0.12em`, terracota — section kickers |
+| `button` | `0.9375rem / 1 / 500` | body | Button label |
 
 Default body color `--text-primary`. Default `letter-spacing: 0` except eyebrow and logo wordmark (+0.05em). Measure: `max-width: 65ch` on prose blocks.
 
@@ -208,10 +212,63 @@ Max content width `72rem`; wide hero imagery may bleed to `--bp-2xl`.
 
 ---
 
-## 9. Iconography & illustration
+## 9. Identidad gráfica y assets
 
-- **Icons:** 1.5px stroke, `currentColor`, 24px box, rounded line caps. Set: Lucide (matches linear + minimal). Avoid filled glyphs.
-- **Illustrations:** linear + flat color wash, 1.5–2px stroke, brand palette only. Hero illustration occupies the hero block — **no photographs**. Transparent or `--color-white` background. See `knowledge/brand/core.md` §Ilustraciones.
+### Logotipo
+
+La dirección permanece abierta a validación con diseño profesional. El concepto
+preferente para explorar es una **H-tejado**: una H mayúscula cuya barra forma
+un perfil de tejado sutil. Como alternativa puede explorarse un monograma de
+dos `h` entrelazadas.
+
+Reglas obligatorias:
+
+- Trazo limpio, sin sombras ni degradados.
+- Apariencia minimalista, elegante y reconocible desde 16 px.
+- No debe parecer una inmobiliaria; evitar tejados rojos, chimeneas y ventanas.
+- Debe funcionar en horizontal, como icono aislado y en una sola tinta.
+- El wordmark usa una serif de marca y tracking aproximado de `0.05em`.
+
+Variantes requeridas:
+
+1. Horizontal: símbolo y wordmark HappyHomes.
+2. Icono: símbolo aislado para favicon, avatar y WhatsApp.
+3. Monocromática: sello, relieve y bordado.
+4. Negativa: blanco o crudo sobre azul petróleo.
+5. Terracota: terracota sobre fondo crudo.
+
+### Iconografía
+
+- Trazo de 1.5 px, `currentColor`, caja de 24 px y extremos redondeados.
+- El estilo de referencia es Lucide, pero los iconos se implementan como SVG
+  inline en `Icon.astro`; no se añade una librería de iconos.
+- Evitar iconos rellenos y mezclar familias visuales.
+
+### Ilustraciones
+
+- Ilustración lineal con mancha de color plana.
+- Trazo de 1.5–2 px y uso exclusivo de la paleta de marca.
+- Escenas limpias, editoriales, mediterráneas y cotidianas.
+- Sin fotografías, texturas ni fondos complejos.
+- Fondo transparente o `--color-white`.
+- El hero usa una ilustración como ancla visual principal.
+
+Inventario inicial:
+
+1. Fachada mediterránea con buganvilla y contraventanas.
+2. Entrega de llaves entre dos personas.
+3. Interior con planta, informe y llave sobre una mesa.
+4. Paisaje del Empordà con colinas, viñedos y ciprés.
+5. Persona realizando una revisión doméstica.
+6. Llegada a una casa preparada al atardecer.
+
+Formatos:
+
+- SVG escalable como formato maestro.
+- PNG a 2x para entregables rasterizados.
+- Proporción horizontal 3:2 y adaptación vertical 4:5.
+- Favicon optimizado a 16, 32, 64, 192 y 512 px.
+- Un patrón geométrico mediterráneo es opcional, nunca estructural.
 
 ---
 
@@ -227,19 +284,20 @@ Astro components in `web/src/components/`, PascalCase, one component per file.
 | `Section` | `tone: 'light' \| 'dark'`, `spacing: 'md' \| 'lg'` | Wraps a page band; flips dark tokens when `dark` |
 | `Eyebrow` | — | Uppercase terracota kicker above headings |
 | `Heading` | `level: 1..4`, `size?: display\|h1\|h2\|h3\|h4` | Serif; size may decouple from semantic level |
-| `Button` | `variant: 'primary' \| 'outline' \| 'ghost' \| 'on-dark'`, `size: 'sm' \| 'md' \| 'lg'`, `href?`, `type?` | See button rules below |
-| `Link` | `href`, `external?` | Inline accent link, underline offset 3px |
-| `Icon` | `name`, `size?` | Lucide wrapper |
+| `Button` | `variant: 'primary' \| 'outline' \| 'ghost' \| 'on-dark' \| 'accent'`, `size: 'sm' \| 'md' \| 'lg'`, `href?`, `type?` | See button rules below |
+| `Icon` | `name`, `size?` | Inline SVG map following the icon rules above |
 | `Illustration` | `name`, `alt` | Decorative: `aria-hidden` unless informative |
-| `Card` | `tone?: 'light' \| 'dark'`, `pad?: 'md' \| 'lg'`, `bordered?` | `--radius-md`, 1px border OR `--shadow-sm` |
-| `Pill` / `Tag` | `tone?: 'neutral' \| 'accent' \| 'success' \| 'warning' \| 'error'` | `--radius-pill`, `--text-sm` |
-| `Field` | `label`, `hint?`, `error?`, `required?` | See states-interactions skill |
-| `Input` / `Textarea` / `Select` | — | `--radius-sm`, 1px border, 8px padding-y, focus ring |
+| `Card` | `tone?: 'light' \| 'dark'`, `pad?: 'md' \| 'lg'`, `bordered?`, `featured?` | `--radius-md`, 1px border and optional featured ring |
+| `Pill` | `tone?: 'neutral' \| 'accent' \| 'success' \| 'warning' \| 'error'` | `--radius-pill`, caption-sized text |
 | `Divider` | — | 1px `--border-default` |
+| `Quote` | — | Branded testimonial or persona quote |
+| `SectionHead` | heading props | Shared eyebrow, heading and lead composition |
 
 ### Composites (page-level)
 
-`Header`, `Footer`, `HeroSection`, `HowItWorks`, `PlanCard`, `PlanGrid`, `AddOnList`, `FeatureList`, `VideoProof` (the "cada visita grabada" band), `CoverageMap`, `Languages`, `Faq`, `ContactForm`, `Quote` (testimonial / persona quote).
+`Header`, `Footer`, `Hero`, `HowItWorks`, `PlanCard`, `PlanGrid`,
+`AddOnList`, `FeatureList`, `VideoProof`, `Coverage`, `Languages`,
+`FaqAccordion`, `ContactForm` and `CtaBand`.
 
 ### Button rules
 
@@ -255,7 +313,8 @@ Hover: darken text/fill toward `--accent-hover` (terracota) or `#0F2A36` (petró
 
 ### Composition rules
 
-- **Every page section** is `<Section><Container>…</Container></Section>`. Never pad the page directly.
+- **Every page section** uses `<Section>…</Section>`. `Section` already renders
+  its own `Container`; do not nest a second one. Never pad the page directly.
 - Alternate `Section tone="light"` and `tone="dark"` (crudo vs petróleo) only where the brand calls for emphasis (hero band, video-proof band, footer). Most sections are light.
 - Cards live on `--bg-section` (crudo) sections with `--bg-card` (blanco). A card on a blanco section uses `--border-default` instead of shadow.
 - Eyebrow → Heading → lead/body is the default rhythm. Don't skip the eyebrow on section headers.
@@ -286,8 +345,6 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
   --color-petrol: #1A3A4A;
   --color-petrol-deep: #0F2A36;
   --color-terracotta: #C76B4C;
-  --color-terracotta-deep: #A04A2E;
-  --color-terracotta-light: #E89F82;
   --color-cream: #F2ECE4;
   --color-white: #FAFAF8;
   --color-olive: #6B8F71;
@@ -306,8 +363,8 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
   --border-strong: rgba(26,58,74,0.24);
   --accent: var(--color-terracotta);
   --accent-hover: #B25C40;
-  --accent-text-on-light: var(--color-terracotta-deep);
-  --accent-text-on-dark: var(--color-terracotta-light);
+  --accent-text-on-light: #A04A2E;
+  --accent-text-on-dark: #E89F82;
   --accent-text: var(--accent-text-on-light);
   --success: var(--color-olive);
   --warning: #C9A24A;
@@ -319,11 +376,13 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Spacing */
+  --space-0: 0;
   --space-xs: 0.25rem; --space-sm: 0.5rem; --space-md: 1rem;
   --space-lg: 1.5rem; --space-xl: 2rem; --space-2xl: 3rem;
   --space-3xl: 4rem; --space-4xl: 6rem; --space-5xl: 8rem;
 
   /* Radius */
+  --radius-none: 0;
   --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px;
   --radius-pill: 999px; --radius-circle: 50%;
 
@@ -345,6 +404,9 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
   /* Z-index */
   --z-base: 0; --z-header: 10; --z-dropdown: 20;
   --z-modal: 30; --z-toast: 40;
+
+  /* Layout */
+  --container-max: 72rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -380,7 +442,7 @@ Dark sections override locally:
 **Typography & structure**
 - [ ] Every heading uses `--font-heading`; every body uses `--font-body`.
 - [ ] Heading levels don't skip (h1 → h2 → h3). Don't jump from h2 to h4.
-- [ ] Every page section is `<Section><Container>…</Container></Section>`.
+- [ ] Every page band uses `<Section>…</Section>` without a nested `Container`.
 
 **Interaction & a11y**
 - [ ] Every interactive element has a visible `:focus-visible` ring using `--ring-focus`.

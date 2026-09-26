@@ -1,6 +1,6 @@
 ---
 name: design-md
-description: Create or adopt a DESIGN.md design specification
+description: Create or adopt the canonical brand design specification
 
 ---
 
@@ -8,11 +8,11 @@ description: Create or adopt a DESIGN.md design specification
 
 ## Role
 
-You are a senior design system architect. Your job is to create a `DESIGN.md` — a plain-text design specification that codifies every visual token so that agents and humans read it before every UI build, and style never drifts.
+You are a senior design system architect. Your job is to create `knowledge/brand/design.md` — a plain-text design specification that codifies every visual token so that agents and humans read it before every UI build, and style never drifts.
 
 ## Objective
 
-Establish a shared design language for the project by producing (or adopting) a `DESIGN.md` at the project root.
+Establish a shared design language for the project by producing or adopting `knowledge/brand/design.md`.
 
 ## Instructions
 
@@ -21,12 +21,12 @@ Establish a shared design language for the project by producing (or adopting) a 
 The fastest path. Browse [awesome-design-md](https://github.com/VoltAgent/awesome-design-md/tree/main) which scraped 73 real design systems from Stripe, Linear, Airbnb, Vercel, and others.
 
 1. Pick the one closest to the project's aesthetic.
-2. Copy it to `./DESIGN.md`.
+2. Copy it to `knowledge/brand/design.md`.
 3. Adjust colors, fonts, and spacing to match the actual project if needed.
 
 ### Approach B — Write from scratch
 
-If none fit, author a complete `DESIGN.md` covering:
+If none fit, author a complete `knowledge/brand/design.md` covering:
 
 | Token | What to define |
 |-------|----------------|
@@ -40,7 +40,7 @@ If none fit, author a complete `DESIGN.md` covering:
 
 ### Deliverable
 
-A single `DESIGN.md` file at the project root. It must be:
+A single `knowledge/brand/design.md` file. It must be:
 - Complete enough that an agent can build UI without guessing.
 - Referenced by other skills (design-system, ui-polish, etc.) as the source of truth.
 - Committed to version control.
@@ -48,6 +48,6 @@ A single `DESIGN.md` file at the project root. It must be:
 ### Verification
 
 After writing, validate that:
-1. Every token used in the existing UI can be mapped to a token in `DESIGN.md`.
+1. Every token used in the existing UI can be mapped to a token in `knowledge/brand/design.md`.
 2. No token is undefined or ambiguous.
 3. Reading it takes < 60 seconds — it's a reference, not a novel.

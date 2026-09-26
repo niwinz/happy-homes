@@ -7,7 +7,7 @@ Do this before planning, coding, or touching an application file:
 1. Read `knowledge/critical-info.md`; it is the graph root for project memory.
 2. Identify every knowledge area affected by the task.
 3. Read each affected area's `core.md` and follow its relevant links.
-4. For UI work, also read root `DESIGN.md`; it takes precedence over older visual guidance.
+4. For UI or visual-asset work, also read `knowledge/brand/design.md`; it is the canonical visual specification.
 5. If memory prose conflicts with manifests, config, scripts, or current source wiring, trust executable sources for current behavior and flag business conflicts rather than guessing intent.
 
 Do not proceed until you have read the relevant memories. This requirement also applies to small code changes.
@@ -32,7 +32,7 @@ Before creating any commit, read `knowledge/workflow/creating-commits.md`. It is
 
 ## UI constraints
 
-- Root `DESIGN.md` is the detailed source of truth for tokens, component composition, contrast, responsiveness, and accessibility.
+- `knowledge/brand/design.md` is the source of truth for brand visuals, tokens, component composition, contrast, responsiveness, and accessibility.
 - Put shared semantic values in `web/src/styles/tokens.css`; dark sections/components must carry `section--dark` so semantic text, border, card, and accent tokens flip together.
 - Icons and illustrations are inline SVG maps in `Icon.astro` and `Illustration.astro`, not an icon package. The illustration paths are simple stand-ins rather than final brand artwork.
 

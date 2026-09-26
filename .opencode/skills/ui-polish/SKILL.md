@@ -16,7 +16,7 @@ Visually rebuild one page to a premium-quality standard. Touch only visuals — 
 
 ## Prerequisites
 
-A `DESIGN.md` file must exist at the project root (use the `design-md` skill first if it doesn't).
+`knowledge/brand/design.md` must exist (use the `design-md` skill first if it doesn't).
 
 ## Instructions
 
@@ -24,9 +24,9 @@ A `DESIGN.md` file must exist at the project root (use the `design-md` skill fir
 
 Before writing any code, define:
 
-- **Palette:** 3–5 colors max (primary, neutral, accent, surface, danger). Pull from `DESIGN.md`.
+- **Palette:** 3–5 colors max (primary, neutral, accent, surface, danger). Pull from `knowledge/brand/design.md`.
 - **Type scale:** 3 sizes max for this page (large heading, body, small label).
-- **Spacing:** Consistent gap rhythm based on `DESIGN.md` spacing tokens.
+- **Spacing:** Consistent gap rhythm based on `knowledge/brand/design.md` spacing tokens.
 - **Radius & shadow:** One border-radius, one shadow level for cards/surfaces.
 - **Whitespace:** Increase padding and margins. Let content breathe.
 

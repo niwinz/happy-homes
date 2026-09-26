@@ -41,8 +41,8 @@ Layout in order:
 ### Step 3 — Design principles
 
 - **Mobile-first:** Build for 375px first, then expand to tablet/desktop.
-- **One typeface max** (two if you need a distinct display face). Pull from `DESIGN.md`.
-- **Color:** One accent color for CTAs and highlights. Rest is neutral. Pull from `DESIGN.md`.
+- **One typeface max** (two if you need a distinct display face). Pull from `knowledge/brand/design.md`.
+- **Color:** One accent color for CTAs and highlights. Rest is neutral. Pull from `knowledge/brand/design.md`.
 - **Whitespace:** Generous. Content should feel light, not dense.
 - **CTAs:** High contrast, clear text ("Get started", "Try free"), no generic "Submit".
 
