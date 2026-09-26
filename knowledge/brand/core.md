@@ -2,23 +2,23 @@
 
 ## Descripción corta profesional
 
-> **HappyHomes** — Tranquilidad para tu segunda residencia. Cuidamos y gestionamos tu propiedad en la Costa Brava y el Alt Empordà como si fuera nuestra, para que disfrutes de ella sin preocupaciones.
+**HappyHomes** — Tranquilidad para tu segunda residencia. Cuidamos y gestionamos tu propiedad en la Costa Brava y el Alt Empordà como si fuera nuestra, para que disfrutes de ella sin preocupaciones.
 
 ## Descripción larga para web
 
-> **HappyHomes nace para resolver un problema común: la segunda residencia que no puedes supervisar en persona.**
->
-> Con base en Olot, cubrimos la Costa Brava y el Alt Empordà con un servicio integral de mantenimiento, vigilancia y gestión de segundas residencias para propietarios que no viven en la propiedad de forma permanente.
->
-> Trabajamos con propietarios de perfiles muy distintos —desde quienes buscan supervisión periódica hasta quienes requieren conservación premium con interlocutor único y mantenimiento preventivo programado— pero con una necesidad compartida: la tranquilidad de saber que su casa está en buenas manos.
->
-> Nuestro modelo de suscripción escalonada (Basic, Standard, Premium) se adapta al nivel de servicio que cada propiedad necesita, con add-ons modulares para cubrir desde jardinería y piscina hasta gestión de llaves y reformas.
->
-> ¿Necesitas algo que no está en el catálogo? Dínoslo. Si podemos hacerlo, lo hacemos nosotros. Si no, te buscamos un tercero de confianza. El compromiso es que tengas una solución, no que solo tengas nuestros servicios.
->
-> Y porque la confianza no se pide, se demuestra: cada visita queda grabada en vídeo de principio a fin, para que veas exactamente qué se ha hecho y en qué estado queda tu casa.
->
-> Hablamos castellano, catalán, francés e inglés, porque nuestros clientes están en Barcelona, Girona, el sur de Francia, Alemania, Países Bajos, Suiza y más allá.
+**HappyHomes nace para resolver un problema común: la segunda residencia que no puedes supervisar en persona.**
+
+Con base en Olot, cubrimos la Costa Brava y el Alt Empordà con un servicio integral de mantenimiento, vigilancia y gestión de segundas residencias para propietarios que no viven en la propiedad de forma permanente.
+
+Trabajamos con propietarios de perfiles muy distintos —desde quienes buscan supervisión periódica hasta quienes requieren conservación premium con interlocutor único y mantenimiento preventivo programado— pero con una necesidad compartida: la tranquilidad de saber que su casa está en buenas manos.
+
+Nuestro modelo de suscripción escalonada (Basic, Standard, Premium) se adapta al nivel de servicio que cada propiedad necesita, con add-ons modulares para cubrir desde jardinería y piscina hasta gestión de llaves y reformas.
+
+¿Necesitas algo que no está en el catálogo? Dínoslo. Si podemos hacerlo, lo hacemos nosotros. Si no, te buscamos un tercero de confianza. El compromiso es que tengas una solución, no que solo tengas nuestros servicios.
+
+Y porque la confianza no se pide, se demuestra: cada visita queda grabada en vídeo de principio a fin, para que veas exactamente qué se ha hecho y en qué estado queda tu casa.
+
+Hablamos castellano, catalán, francés e inglés, porque nuestros clientes están en Barcelona, Girona, el sur de Francia, Alemania, Países Bajos, Suiza y más allá.
 
 ---
 
@@ -49,13 +49,13 @@
 
 ## Propuesta de Valor Única (UVP)
 
-> **Un servicio con cara y ojos. No una empresa genérica: una persona real que conoces, que cuida de tu casa, y a la que puedes llamar directamente. Supervisión presencial, interlocutor único, mantenimiento preventivo programado.**
->
-> **Y cada visita grabada en vídeo de principio a fin. Sabrás exactamente qué se ha hecho, cuánto ha durado y en qué estado queda todo. Sin dudas, sin confianza ciega.**
+**Un servicio con cara y ojos. No una empresa genérica: una persona real que conoces, que cuida de tu casa, y a la que puedes llamar directamente. Supervisión presencial, interlocutor único, mantenimiento preventivo programado.**
+
+**Y cada visita grabada en vídeo de principio a fin. Sabrás exactamente qué se ha hecho, cuánto ha durado y en qué estado queda todo. Sin dudas, sin confianza ciega.**
 
 ## Promesa de marca
 
-> **Cada visita, grabada y visible. Tu casa, cuidada con evidencia.**
+**Cada visita, grabada y visible. Tu casa, cuidada con evidencia.**
 
 ## Historia / Origen de la marca
 
@@ -71,11 +71,11 @@ No pudimos encontrar ese servicio. Así que lo creamos.
 | Alternativo | *Tranquilidad para tu segunda residencia* |
 | Firma email | *HappyHomes — Cuidamos de tu casa para que disfrutes de ella.* |
 
-> La definición detallada de los perfiles de cliente (Persona A y Persona B) está en [`../business/personas.md`](../business/personas.md).
+La definición detallada de los perfiles de cliente (Persona A y Persona B) está en [`../business/personas.md`](../business/personas.md).
 
 ## Diferenciación frente a competidores
 
-> TBD — pendiente de validar contra competidores reales.
+TBD — pendiente de validar contra competidores reales.
 
 | HappyHomes | Competidores típicos |
 |------------|----------------------|
