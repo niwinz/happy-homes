@@ -16,11 +16,12 @@ Before creating any commit, read `knowledge/workflow/creating-commits.md`. It is
 
 ## Tooling and commands
 
-- Use Node `v24.15.0` (`.nvmrc`) and the root-pinned `pnpm@11.8.0`; install from the repository root with `pnpm install`.
-- The only workspace package is the static Astro site in `web/`. Run it from the root with `pnpm --filter happy-homes-web dev`; `astro.config.mjs` exposes it on `0.0.0.0:4169`.
-- The current verification gate is `pnpm --filter happy-homes-web build`. There are no configured test, lint, formatter, or CI workflows.
-- Do not rely on `pnpm --filter happy-homes-web check` yet: Astro prompts to install undeclared `@astrojs/check` and `typescript`, so it is not a non-interactive check.
-- The build currently completes all five routes but emits a CSS syntax warning: `web/src/components/Header.astro` has `display`/`flex-direction`/`gap` declarations outside `.nav-mobile-menu` after its closing brace. Do not mistake this baseline warning for a clean build.
+- Use Node `v24.21.0` (`.nvmrc`) and `pnpm@12.5.1`, both provided by the base image. The project intentionally has no `packageManager` pin and does not use Corepack.
+- Install from the repository root with `pnpm install`. The workspace store is configured as `.pnpm-store` in `pnpm-workspace.yaml`.
+- The only workspace package is the static Astro `7.3.5` site in `web/`.
+- Run the development server from the root with `pnpm --filter happy-homes-web dev`; `astro.config.mjs` exposes it on `0.0.0.0:11001`, matching the first port reserved in `.manage.env`.
+- The verification gate is `pnpm --filter happy-homes-web build`. It currently builds all five routes cleanly. There are no configured test, lint, formatter, or CI workflows.
+- Do not rely on `pnpm --filter happy-homes-web check` yet: `@astrojs/check` and `typescript` are not declared, so Astro prompts for an interactive install.
 
 ## Site wiring
 

@@ -4,6 +4,6 @@ export default defineConfig({
   site: "https://happyhomes.example",
   server: {
     host: "0.0.0.0",
-    port: 4169,
+    port: 11001,
   },
 });
