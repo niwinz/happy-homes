@@ -71,7 +71,7 @@ No pudimos encontrar ese servicio. Así que lo creamos.
 | Alternativo | *Tranquilidad para tu segunda residencia* |
 | Firma email | *HappyHomes — Cuidamos de tu casa para que disfrutes de ella.* |
 
-> La definición detallada de los perfiles de cliente (Persona A y Persona B) está en [`personas.md`](personas.md).
+> La definición detallada de los perfiles de cliente (Persona A y Persona B) está en [`../business/personas.md`](../business/personas.md).
 
 ## Diferenciación frente a competidores
 

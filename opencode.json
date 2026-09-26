@@ -1,11 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "playwright": {
-      "type": "local",
-      "command": ["npx", "-y", "@playwright/mcp", "--headless"],
-      "enabled": true,
-      "env": {}
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": ["npx", "-y", "@playwright/mcp", "--headless"],
+        "disabled": false,
+        "env": {}
+      }
     }
   }
 }

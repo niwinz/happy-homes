@@ -211,7 +211,7 @@ Max content width `72rem`; wide hero imagery may bleed to `--bp-2xl`.
 ## 9. Iconography & illustration
 
 - **Icons:** 1.5px stroke, `currentColor`, 24px box, rounded line caps. Set: Lucide (matches linear + minimal). Avoid filled glyphs.
-- **Illustrations:** linear + flat color wash, 1.5–2px stroke, brand palette only. Hero illustration occupies the hero block — **no photographs**. Transparent or `--color-white` background. See `knowledge/brand.md` §Ilustraciones.
+- **Illustrations:** linear + flat color wash, 1.5–2px stroke, brand palette only. Hero illustration occupies the hero block — **no photographs**. Transparent or `--color-white` background. See `knowledge/brand/core.md` §Ilustraciones.
 
 ---
 
