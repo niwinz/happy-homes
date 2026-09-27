@@ -251,7 +251,8 @@ Variantes requeridas:
 - Escenas limpias, editoriales, mediterráneas y cotidianas.
 - Sin fotografías, texturas ni fondos complejos.
 - Fondo transparente o `--color-white`.
-- El hero usa una ilustración como ancla visual principal.
+- La ilustración es el ancla visual principal del sistema. La home admite como
+  excepción el fondo audiovisual definido en «Vídeo ambiental del hero».
 
 Inventario inicial:
 
@@ -269,6 +270,30 @@ Formatos:
 - Proporción horizontal 3:2 y adaptación vertical 4:5.
 - Favicon optimizado a 16, 32, 64, 192 y 512 px.
 - Un patrón geométrico mediterráneo es opcional, nunca estructural.
+
+### Vídeo ambiental del hero
+
+La home puede sustituir su ilustración por dos paisajes costeros auténticos como
+fondo del hero, siempre que sus fuentes, licencia, generación y derivados estén
+documentados en `assets/hero-media.md`.
+
+Reglas obligatorias:
+
+- El medio es decorativo y nunca representa una vivienda atendida ni confirma
+  cobertura en una dirección concreta.
+- Los clips son silenciosos, calmados y de movimiento contenido; no incluyen
+  personas, texto, logotipos, vehículos ni artificios cinematográficos.
+- Un póster optimizado completa la composición sin JavaScript, en ahorro de
+  datos, con conexión lenta, error de reproducción o movimiento reducido.
+- Solo se descarga la variante móvil o de escritorio necesaria. El segundo clip
+  se solicita de forma progresiva después de comenzar el primero.
+- El usuario dispone de pausa/reproducción visible, con nombre accesible, foco y
+  objetivo táctil mínimo de 44 × 44 px. La pausa se conserva durante la sesión.
+- El texto petróleo se separa del paisaje mediante un velo crudo uniforme, sin
+  degradados, basado en `--hero-media-overlay`. Debe mantener contraste AA sobre
+  los fotogramas más oscuros.
+- La fotografía no se extiende al resto del sitio como lenguaje visual general;
+  las rutas interiores conservan ilustraciones y superficies de marca.
 
 ---
 
@@ -325,7 +350,8 @@ Hover: darken text/fill toward `--accent-hover` (terracota) or `#0F2A36` (petró
 
 - **Do** use serif for all headings, sans for everything else.
 - **Do** use 1px hairline borders over shadows for card edges.
-- **Do** keep hero illustration as the visual anchor; no stock photos.
+- **Do** keep illustrations as the default visual anchor; the documented home
+  hero video is the only approved stock-derived exception.
 - **Don't** use Terracota as a button fill with white text (fails AA).
 - **Don't** use Gris piedra for body text or borders under 18px.
 - **Don't** introduce gradients, glassmorphism, or a third typeface.
@@ -369,6 +395,15 @@ Drop into `web/src/styles/tokens.css`, import once in the Astro layout root.
   --success: var(--color-olive);
   --warning: #C9A24A;
   --error: #B14B3A;
+  --hero-media-background: var(--color-cream);
+  --hero-media-overlay: rgba(242,236,228,0.82);
+  --hero-media-control-bg: rgba(15,42,54,0.92);
+  --hero-media-control-bg-hover: var(--color-petrol-deep);
+  --hero-media-control-text: var(--color-white);
+  --hero-media-control-border: rgba(250,250,248,0.72);
+  --hero-media-secondary-bg: var(--color-white);
+  --hero-media-secondary-bg-hover: var(--color-cream);
+  --hero-media-secondary-border: var(--color-petrol);
 
   /* Type */
   --font-heading: 'EB Garamond', 'Literata', Georgia, serif;

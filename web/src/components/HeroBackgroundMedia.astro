@@ -1,0 +1,367 @@
+---
+interface Clip {
+  desktopSrc: string;
+  mobileSrc: string;
+}
+
+interface Props {
+  desktopPosterAvif: string;
+  desktopPosterJpg: string;
+  mobilePosterAvif: string;
+  mobilePosterJpg: string;
+  clips: [Clip, Clip];
+}
+
+const {
+  desktopPosterAvif,
+  desktopPosterJpg,
+  mobilePosterAvif,
+  mobilePosterJpg,
+  clips,
+} = Astro.props;
+---
+
+<div class="hero-background-media" data-hero-background-media>
+  <picture class="hero-background-poster" aria-hidden="true">
+    <source media="(max-width: 767px)" type="image/avif" srcset={mobilePosterAvif} />
+    <source media="(max-width: 767px)" type="image/jpeg" srcset={mobilePosterJpg} />
+    <source type="image/avif" srcset={desktopPosterAvif} />
+    <img
+      src={desktopPosterJpg}
+      width="1280"
+      height="720"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
+
+  <div class="hero-background-videos" aria-hidden="true">
+    {
+      clips.map((clip, index) => (
+        <video
+          class:list={["hero-background-video", { "is-active": index === 0 }]}
+          data-clip-index={index}
+          data-desktop-src={clip.desktopSrc}
+          data-mobile-src={clip.mobileSrc}
+          muted
+          playsinline
+          preload="none"
+          tabindex="-1"
+        />
+      ))
+    }
+  </div>
+
+  <div class="hero-background-overlay" aria-hidden="true"></div>
+
+  <button
+    class="hero-background-control"
+    type="button"
+    aria-label="Pausar vídeos ambientales"
+    hidden
+  >
+    <svg class="hero-background-icon hero-background-icon--pause" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 6v12M15 6v12" />
+    </svg>
+    <svg class="hero-background-icon hero-background-icon--play" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m9 6 9 6-9 6Z" />
+    </svg>
+    <span data-control-label>Pausar</span>
+  </button>
+</div>
+
+<script>
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileViewport = matchMedia("(max-width: 767px)");
+  const pauseKey = "happyhomes:hero-background-paused";
+
+  document.querySelectorAll<HTMLElement>("[data-hero-background-media]").forEach((media) => {
+    const videos = Array.from(media.querySelectorAll<HTMLVideoElement>("video"));
+    const control = media.querySelector<HTMLButtonElement>("button");
+    const controlLabel = media.querySelector<HTMLElement>("[data-control-label]");
+    if (videos.length !== 2 || !control || !controlLabel) return;
+
+    let activeIndex = 0;
+    let transitioning = false;
+    let secondClipRequested = false;
+    let userPaused = false;
+
+    try {
+      userPaused = sessionStorage.getItem(pauseKey) === "true";
+    } catch {
+      // Session persistence is optional.
+    }
+
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+
+    const motionAllowed = () =>
+      !reducedMotion.matches &&
+      !connection?.saveData &&
+      !["slow-2g", "2g"].includes(connection?.effectiveType ?? "");
+
+    const sourceFor = (video: HTMLVideoElement) =>
+      mobileViewport.matches
+        ? video.dataset.mobileSrc || video.dataset.desktopSrc
+        : video.dataset.desktopSrc;
+
+    const loadClip = (index: number) => {
+      const video = videos[index];
+      if (!video || video.src || !motionAllowed()) return;
+      const source = sourceFor(video);
+      if (!source) return;
+      video.src = source;
+      video.load();
+    };
+
+    const updateControl = (playing: boolean) => {
+      media.classList.toggle("is-playing", playing);
+      controlLabel.textContent = playing ? "Pausar" : "Reproducir";
+      control.setAttribute(
+        "aria-label",
+        playing ? "Pausar vídeos ambientales" : "Reproducir vídeos ambientales"
+      );
+    };
+
+    const playActive = async () => {
+      const active = videos[activeIndex];
+      try {
+        await active.play();
+        media.classList.add("is-video-visible");
+        control.hidden = false;
+        updateControl(true);
+      } catch {
+        control.hidden = false;
+        updateControl(false);
+      }
+    };
+
+    const resetToPoster = () => {
+      videos.forEach((video) => {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+        video.classList.remove("is-active");
+      });
+      videos[0].classList.add("is-active");
+      activeIndex = 0;
+      transitioning = false;
+      secondClipRequested = false;
+      media.classList.remove("is-video-visible", "is-playing");
+      control.hidden = true;
+    };
+
+    const transitionToNext = async () => {
+      if (transitioning || userPaused || !motionAllowed()) return;
+      const current = videos[activeIndex];
+      const nextIndex = activeIndex === 0 ? 1 : 0;
+      const next = videos[nextIndex];
+      loadClip(nextIndex);
+      if (next.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) return;
+
+      transitioning = true;
+      next.currentTime = 0;
+      try {
+        await next.play();
+      } catch {
+        transitioning = false;
+        return;
+      }
+
+      next.classList.add("is-active");
+      current.classList.remove("is-active");
+      activeIndex = nextIndex;
+      window.setTimeout(() => {
+        current.pause();
+        current.currentTime = 0;
+        transitioning = false;
+      }, 900);
+    };
+
+    videos.forEach((video, index) => {
+      video.addEventListener("timeupdate", () => {
+        if (index !== activeIndex || transitioning) return;
+        if (!secondClipRequested && video.currentTime >= 4) {
+          secondClipRequested = true;
+          loadClip(index === 0 ? 1 : 0);
+        }
+        if (video.duration && video.currentTime >= video.duration - 1.1) {
+          void transitionToNext();
+        }
+      });
+
+      video.addEventListener("ended", () => {
+        if (index !== activeIndex || transitioning || userPaused) return;
+        video.currentTime = 0;
+        void playActive();
+      });
+    });
+
+    videos[0].addEventListener("canplay", () => {
+      control.hidden = false;
+      if (userPaused) {
+        updateControl(false);
+        return;
+      }
+      void playActive();
+    });
+
+    videos[0].addEventListener("error", resetToPoster);
+
+    control.addEventListener("click", () => {
+      const active = videos[activeIndex];
+      if (active.paused) {
+        userPaused = false;
+        try {
+          sessionStorage.removeItem(pauseKey);
+        } catch {
+          // Keep playback available when storage is blocked.
+        }
+        void playActive();
+        return;
+      }
+
+      videos.forEach((video) => video.pause());
+      userPaused = true;
+      try {
+        sessionStorage.setItem(pauseKey, "true");
+      } catch {
+        // The current pause remains effective without persistence.
+      }
+      updateControl(false);
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        videos.forEach((video) => video.pause());
+        updateControl(false);
+      } else if (!userPaused && motionAllowed()) {
+        void playActive();
+      }
+    });
+
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) resetToPoster();
+      else loadClip(0);
+    });
+
+    loadClip(0);
+  });
+</script>
+
+<style>
+  .hero-background-media,
+  .hero-background-poster,
+  .hero-background-poster img,
+  .hero-background-videos,
+  .hero-background-video,
+  .hero-background-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-background-media {
+    z-index: 0;
+    overflow: hidden;
+    background: var(--hero-media-background);
+  }
+
+  .hero-background-poster img,
+  .hero-background-video {
+    object-fit: cover;
+  }
+
+  .hero-background-poster {
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 700ms ease-out;
+  }
+
+  .hero-background-videos {
+    z-index: 1;
+  }
+
+  .hero-background-video {
+    opacity: 0;
+    transition: opacity 900ms ease-in-out;
+  }
+
+  .hero-background-video.is-active {
+    opacity: 1;
+  }
+
+  .hero-background-media:not(.is-video-visible) .hero-background-video {
+    opacity: 0;
+  }
+
+  .hero-background-media.is-video-visible .hero-background-poster {
+    opacity: 0;
+  }
+
+  .hero-background-overlay {
+    z-index: 2;
+    background: var(--hero-media-overlay);
+  }
+
+  .hero-background-control {
+    position: absolute;
+    right: var(--space-lg);
+    bottom: var(--space-lg);
+    z-index: 3;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--hero-media-control-border);
+    border-radius: var(--radius-md);
+    background: var(--hero-media-control-bg);
+    color: var(--hero-media-control-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font: 600 0.75rem/1 var(--font-body);
+    cursor: pointer;
+    transition:
+      background-color var(--motion-fast),
+      box-shadow var(--motion-fast);
+  }
+
+  .hero-background-control[hidden] {
+    display: none;
+  }
+
+  .hero-background-control:hover {
+    background: var(--hero-media-control-bg-hover);
+  }
+
+  .hero-background-icon {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .hero-background-icon--play,
+  .hero-background-media:not(.is-playing) .hero-background-icon--pause {
+    display: none;
+  }
+
+  .hero-background-media:not(.is-playing) .hero-background-icon--play {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-background-poster,
+    .hero-background-video {
+      transition: none;
+    }
+  }
+</style>

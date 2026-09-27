@@ -27,6 +27,15 @@
   --success: var(--color-olive);
   --warning: #c9a24a;
   --error: #b14b3a;
+  --hero-media-background: var(--color-cream);
+  --hero-media-overlay: rgba(242, 236, 228, 0.82);
+  --hero-media-control-bg: rgba(15, 42, 54, 0.92);
+  --hero-media-control-bg-hover: var(--color-petrol-deep);
+  --hero-media-control-text: var(--color-white);
+  --hero-media-control-border: rgba(250, 250, 248, 0.72);
+  --hero-media-secondary-bg: var(--color-white);
+  --hero-media-secondary-bg-hover: var(--color-cream);
+  --hero-media-secondary-border: var(--color-petrol);
 
   /* Type */
   --font-heading: "EB Garamond", "Literata", Georgia, serif;

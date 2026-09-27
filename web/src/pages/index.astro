@@ -153,7 +153,22 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     lead="Nosotros cuidamos de ella para que tú solo tengas que disfrutar. Visitas presenciales e informe con vídeo autorizado o fotografías fechadas."
     primaryCta={{ label: "Hablar con nosotros", href: "/contacto" }}
     secondaryCta={{ label: "Ver planes", href: "#planes" }}
-    illustration="facade"
+    backgroundMedia={{
+      desktopPosterAvif: "/media/hero/hero-coast-cadaques-v1-desktop.avif",
+      desktopPosterJpg: "/media/hero/hero-coast-cadaques-v1-desktop.jpg",
+      mobilePosterAvif: "/media/hero/hero-coast-cadaques-v1-mobile.avif",
+      mobilePosterJpg: "/media/hero/hero-coast-cadaques-v1-mobile.jpg",
+      clips: [
+        {
+          desktopSrc: "/media/hero/hero-coast-cadaques-v1-desktop.mp4",
+          mobileSrc: "/media/hero/hero-coast-cadaques-v1-mobile.mp4",
+        },
+        {
+          desktopSrc: "/media/hero/hero-coast-tossa-v1-desktop.mp4",
+          mobileSrc: "/media/hero/hero-coast-tossa-v1-mobile.mp4",
+        },
+      ],
+    }}
     tag="Vídeo continuo, con tu consentimiento"
   />
 

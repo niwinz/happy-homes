@@ -3,8 +3,20 @@ import Container from "./Container.astro";
 import Eyebrow from "./Eyebrow.astro";
 import Heading from "./Heading.astro";
 import Button from "./Button.astro";
+import HeroBackgroundMedia from "./HeroBackgroundMedia.astro";
 import Illustration from "./Illustration.astro";
 import Pill from "./Pill.astro";
+
+interface BackgroundMediaConfig {
+  desktopPosterAvif: string;
+  desktopPosterJpg: string;
+  mobilePosterAvif: string;
+  mobilePosterJpg: string;
+  clips: [
+    { desktopSrc: string; mobileSrc: string },
+    { desktopSrc: string; mobileSrc: string },
+  ];
+}
 
 interface Props {
   variant?: "home" | "inner";
@@ -14,6 +26,7 @@ interface Props {
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   illustration?: "facade" | "keys" | "landscape" | "house";
+  backgroundMedia?: BackgroundMediaConfig;
   tag?: string;
 }
 
@@ -25,11 +38,18 @@ const {
   primaryCta,
   secondaryCta,
   illustration = "facade",
+  backgroundMedia,
   tag,
 } = Astro.props;
 ---
 
-<section class:list={["hero", `hero--${variant}`]}>
+<section
+  class:list={[
+    "hero",
+    `hero--${variant}`,
+    { "hero--background": variant === "home" && backgroundMedia },
+  ]}
+>
   <Container>
     <div class="hero-grid">
       <div class="hero-content" data-reveal>
@@ -45,7 +65,11 @@ const {
                 </Button>
               )}
               {secondaryCta && (
-                <Button href={secondaryCta.href} variant="outline" size="lg">
+                <Button
+                  href={secondaryCta.href}
+                  variant="outline"
+                  size="lg"
+                >
                   {secondaryCta.label}
                 </Button>
               )}
@@ -56,7 +80,7 @@ const {
       </div>
 
       {
-        variant === "home" && (
+        variant === "home" && !backgroundMedia && (
           <div class="hero-art" aria-hidden="true" data-reveal>
             <div class="hero-art-frame">
               <Illustration name={illustration} />
@@ -66,10 +90,12 @@ const {
       }
     </div>
   </Container>
+  {variant === "home" && backgroundMedia && <HeroBackgroundMedia {...backgroundMedia} />}
 </section>
 
 <style>
   .hero {
+    position: relative;
     padding-block: clamp(4rem, 10vw, 7rem);
     background: var(--bg-page);
   }
@@ -83,6 +109,19 @@ const {
       ),
       var(--bg-page);
   }
+  .hero--background {
+    --text-muted: var(--text-primary);
+    --accent-text: var(--color-petrol-deep);
+    min-height: min(50rem, calc(100svh - 4rem));
+    padding-block: clamp(5rem, 12vw, 9rem);
+    background: var(--hero-media-background);
+    display: flex;
+    align-items: center;
+  }
+  .hero--background :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
   .hero-grid {
     display: grid;
     gap: var(--space-2xl);
@@ -90,6 +129,9 @@ const {
   }
   .hero--home .hero-grid {
     grid-template-columns: 1fr;
+  }
+  .hero--background .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
   .hero-content {
     max-width: 44rem;
@@ -101,6 +143,19 @@ const {
     line-height: 1.6;
     color: var(--text-muted);
     max-width: 38ch;
+  }
+  .hero--background .hero-content {
+    max-width: 42rem;
+  }
+  .hero--background .hero-lead {
+    color: var(--text-primary);
+  }
+  .hero--background :global(.btn--outline) {
+    background: var(--hero-media-secondary-bg);
+    border-color: var(--hero-media-secondary-border);
+  }
+  .hero--background :global(.btn--outline:hover) {
+    background: var(--hero-media-secondary-bg-hover);
   }
   .hero-ctas {
     display: flex;
@@ -124,7 +179,6 @@ const {
     align-items: center;
     justify-content: center;
   }
-
   @media (min-width: 768px) {
     .hero--home .hero-grid {
       grid-template-columns: 1.1fr 0.9fr;
@@ -132,6 +186,9 @@ const {
     }
     .hero-art {
       order: 0;
+    }
+    .hero--background .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>
