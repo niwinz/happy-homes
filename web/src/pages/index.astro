@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
-import VideoProof from "../components/VideoProof.astro";
+import VisitReportDemo from "../components/VisitReportDemo.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import PlanGrid from "../components/PlanGrid.astro";
 import AddOnList from "../components/AddOnList.astro";
@@ -11,6 +11,7 @@ import Languages from "../components/Languages.astro";
 import FaqAccordion from "../components/FaqAccordion.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Section from "../components/Section.astro";
+import SectionHead from "../components/SectionHead.astro";
 import Button from "../components/Button.astro";
 
 const steps = [
@@ -43,7 +44,7 @@ const plans = [
     blurb: "Para quien quiere lo mínimo y no preocuparse.",
     features: [
       "1 visita al mes",
-      "Fotos e informe por WhatsApp",
+      "Informe con vídeo autorizado o fotografías fechadas",
       "Revisión de puntos críticos (agua, gas, electricidad, cierres)",
       "Control de okupación",
     ],
@@ -103,8 +104,8 @@ const features = [
   },
   {
     icon: "shield",
-    title: "Sin permanencia, sin sorpresas",
-    text: "Domiciliación mensual, sin contrato obligatorio. Subes o bajas de plan cuando quieras, sin penalización. La primera visita de toma de contacto es gratuita si contratas el servicio.",
+    title: "Condiciones claras desde el principio",
+    text: "No cobramos cuota de alta. Antes de activar el servicio te confirmamos el alcance, el precio y las condiciones aplicables a tu plan.",
   },
 ];
 
@@ -115,11 +116,11 @@ const faqItems = [
   },
   {
     q: "¿Cómo sé que puedo confiar?",
-    a: "Todas las visitas se graban en vídeo de principio a fin. Recibirás el informe con fotos y, si lo deseas, el vídeo. Además, te asignamos una persona fija, no un equipo rotatorio. La conoces desde el primer día.",
+    a: "Con tu consentimiento, la visita se documenta en vídeo continuo y sin audio. Si prefieres no grabar, recibirás fotografías fechadas. Además, tienes una persona de referencia estable; cualquier sustitución se identifica y queda registrada.",
   },
   {
     q: "¿Cómo se paga?",
-    a: "Domiciliación bancaria mensual. Sin permanencia. Puedes cancelar cuando quieras. Sin gastos de entrada: la primera visita de toma de contacto y recogida de llaves es gratuita si contratas el servicio.",
+    a: "No cobramos cuota de alta. Antes de activar el servicio te confirmamos el precio, la forma de pago y las condiciones aplicables a tu plan.",
   },
   {
     q: "¿Trabajáis con extranjeros?",
@@ -149,14 +150,32 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     variant="home"
     eyebrow="Costa Brava · Alt Empordà"
     title="Tu casa en la Costa Brava, siempre lista."
-    lead="Nosotros cuidamos de ella para que tú solo tengas que disfrutar. Visitas presenciales, informe con fotos y cada visita grabada en vídeo."
+    lead="Nosotros cuidamos de ella para que tú solo tengas que disfrutar. Visitas presenciales e informe con vídeo autorizado o fotografías fechadas."
     primaryCta={{ label: "Hablar con nosotros", href: "/contacto" }}
     secondaryCta={{ label: "Ver planes", href: "#planes" }}
     illustration="facade"
-    tag="Cada visita, grabada y visible"
+    tag="Vídeo continuo, con tu consentimiento"
   />
 
-  <VideoProof />
+  <Section>
+    <div class="report-preview">
+      <div class="report-preview-copy">
+        <SectionHead
+          eyebrow="El resultado de cada visita"
+          heading="No tienes que imaginar cómo está tu casa."
+          lead="Este ejemplo te enseña qué revisamos, cómo comunicamos una observación y qué decisión necesitamos de ti."
+        />
+        <div class="report-preview-actions">
+          <Button href="/el-informe" variant="primary" size="md">
+            Ver los dos informes
+          </Button>
+        </div>
+      </div>
+      <div class="report-preview-demo" data-reveal>
+        <VisitReportDemo evidenceMode="video" compact />
+      </div>
+    </div>
+  </Section>
 
   <HowItWorks steps={steps} />
 
@@ -205,6 +224,36 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
 </Base>
 
 <style>
+  .report-preview {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .report-preview-copy {
+    min-width: 0;
+  }
+
+  .report-preview-actions {
+    margin-top: var(--space-xl);
+  }
+
+  .report-preview-demo {
+    min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .report-preview {
+      grid-template-columns: minmax(16rem, 0.65fr) minmax(0, 1.35fr);
+      gap: var(--space-3xl);
+    }
+
+    .report-preview-copy {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
   .duo {
     display: grid;
     gap: var(--space-lg);

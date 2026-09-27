@@ -1,0 +1,600 @@
+---
+import Icon from "./Icon.astro";
+import ReportStatus from "./ReportStatus.astro";
+
+type EvidenceMode = "photos" | "video";
+type Status = "correct" | "observe" | "decision" | "authorized" | "not-reviewed";
+
+interface Props {
+  evidenceMode?: EvidenceMode;
+  compact?: boolean;
+}
+
+const { evidenceMode = "video", compact = false } = Astro.props;
+
+const areas: Array<{ name: string; detail: string; status: Status }> = [
+  {
+    name: "Acceso y cierres",
+    detail: "Puerta, cerradura y ventanas accesibles sin cambios visibles.",
+    status: "correct",
+  },
+  {
+    name: "Ambiente interior",
+    detail: "Se observa una marca nueva junto a la ventana de la habitación pequeña.",
+    status: "observe",
+  },
+  {
+    name: "Agua y baños",
+    detail: "Sin fugas ni goteos visibles en los puntos acordados.",
+    status: "correct",
+  },
+  {
+    name: "Cocina y frío",
+    detail: "Lectura visible dentro del rango acordado. Sin incidencias aparentes.",
+    status: "correct",
+  },
+  {
+    name: "Climatización",
+    detail: "No se activó el equipo porque esta comprobación no estaba autorizada.",
+    status: "not-reviewed",
+  },
+  {
+    name: "Ventilación",
+    detail: "Ventilación breve realizada según el protocolo de la casa.",
+    status: "authorized",
+  },
+];
+
+const photos = [
+  { title: "Acceso principal", time: "10:06" },
+  { title: "Cocina", time: "10:18" },
+  { title: "Baño principal", time: "10:27" },
+  { title: "Ventana · habitación", time: "10:34" },
+];
+
+const visibleAreas = compact ? areas.slice(0, 3) : areas;
+---
+
+<article
+  class:list={[
+    "visit-report",
+    `visit-report--${evidenceMode}`,
+    { "visit-report--compact": compact },
+  ]}
+  aria-label={`Ejemplo de informe con ${evidenceMode === "video" ? "vídeo" : "fotografías"}`}
+>
+  <div class="demo-notice">
+    <Icon name="clipboard" size={16} />
+    <span><strong>Ejemplo de informe.</strong> Todos los datos y observaciones son ficticios.</span>
+  </div>
+
+  <header class="report-header">
+    <div>
+      <p class="report-kicker">HappyHomes · Informe de visita</p>
+      <h3>Casa Tramuntana <span>HH-024</span></h3>
+    </div>
+    <ReportStatus status="observe" />
+  </header>
+
+  <dl class="report-meta">
+    <div>
+      <dt>Visita</dt>
+      <dd>08 · 24 sep 2026</dd>
+    </div>
+    <div>
+      <dt>Responsable</dt>
+      <dd>Marta R.</dd>
+    </div>
+    <div>
+      <dt>Entrada — salida</dt>
+      <dd>10:04 — 10:47</dd>
+    </div>
+    <div>
+      <dt>Duración</dt>
+      <dd>43 minutos</dd>
+    </div>
+  </dl>
+
+  <div class="report-layout">
+    <section class="report-block report-block--checks" aria-labelledby={`checks-${evidenceMode}-${compact ? "short" : "full"}`}>
+      <div class="block-heading">
+        <div>
+          <p class="block-kicker">Protocolo acordado</p>
+          <h4 id={`checks-${evidenceMode}-${compact ? "short" : "full"}`}>Qué hemos revisado</h4>
+        </div>
+        <span>{compact ? "3 de 6 puntos" : "6 puntos"}</span>
+      </div>
+
+      <ul class="check-list">
+        {visibleAreas.map((area) => (
+          <li>
+            <div class="check-copy">
+              <h5>{area.name}</h5>
+              <p>{area.detail}</p>
+            </div>
+            <ReportStatus status={area.status} />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="report-block report-block--evidence" aria-labelledby={`evidence-${evidenceMode}-${compact ? "short" : "full"}`}>
+      <div class="block-heading">
+        <div>
+          <p class="block-kicker">Evidencia de la visita</p>
+          <h4 id={`evidence-${evidenceMode}-${compact ? "short" : "full"}`}>
+            {evidenceMode === "video" ? "Vídeo continuo" : "Fotografías fechadas"}
+          </h4>
+        </div>
+        <span>{evidenceMode === "video" ? "Sin audio" : "4 imágenes"}</span>
+      </div>
+
+      {evidenceMode === "video" ? (
+        <div class="video-evidence">
+          <div
+            class="video-placeholder"
+            role="img"
+            aria-label="Espacio reservado para el futuro vídeo vertical de demostración"
+          >
+            <div class="video-placeholder__content">
+              <Icon name="video" size={30} />
+              <strong>Vídeo pendiente</strong>
+              <span>La grabación real se añadirá aquí</span>
+            </div>
+            <span class="video-placeholder__time">43:00</span>
+          </div>
+          <dl class="evidence-meta">
+            <div>
+              <dt>Formato</dt>
+              <dd>Vertical · 9:16</dd>
+            </div>
+            <div>
+              <dt>Grabación</dt>
+              <dd>Continua · sin audio</dd>
+            </div>
+            <div>
+              <dt>Disponible hasta</dt>
+              <dd>9 oct 2026</dd>
+            </div>
+          </dl>
+        </div>
+      ) : (
+        <div class="photo-grid">
+          {photos.map((photo) => (
+            <figure>
+              <div
+                class="photo-placeholder"
+                role="img"
+                aria-label={`Espacio reservado para fotografía de ${photo.title.toLowerCase()}`}
+              >
+                <Icon name="camera" size={24} />
+                <span>Imagen de demostración</span>
+              </div>
+              <figcaption>
+                <strong>{photo.title}</strong>
+                <span>24 sep · {photo.time}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+
+  {!compact && (
+    <div class="report-followup">
+      <section class="observation" aria-labelledby={`observation-${evidenceMode}`}>
+        <p class="block-kicker">Observación</p>
+        <h4 id={`observation-${evidenceMode}`}>Marca nueva junto a una ventana</h4>
+        <p>
+          Se observa una marca que no aparecía en el informe anterior. No realizamos
+          un diagnóstico técnico. Recomendamos seguir su evolución y solicitar una
+          revisión profesional si aumenta.
+        </p>
+      </section>
+      <section class="decision" aria-labelledby={`decision-${evidenceMode}`}>
+        <ReportStatus status="decision" />
+        <h4 id={`decision-${evidenceMode}`}>Necesitamos tu decisión</h4>
+        <p>¿Quieres que solicitemos presupuesto a un profesional?</p>
+        <dl>
+          <div>
+            <dt>Coste estimado</dt>
+            <dd>Pendiente de presupuesto</dd>
+          </div>
+          <div>
+            <dt>Próxima visita</dt>
+            <dd>8 oct 2026</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+  )}
+</article>
+
+<style>
+  .visit-report {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-md);
+  }
+
+  .demo-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border-default);
+    background: var(--bg-section);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .demo-notice :global(.icon) {
+    margin-top: 0.1rem;
+    color: var(--accent-text);
+  }
+
+  .report-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .report-kicker,
+  .block-kicker {
+    margin: 0 0 var(--space-xs);
+    color: var(--accent-text);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .report-header h3 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .report-header h3 span {
+    display: inline-block;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  .report-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .report-meta div {
+    min-width: 0;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .report-meta div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .report-meta dt,
+  .evidence-meta dt,
+  .decision dt {
+    color: var(--text-muted);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .report-meta dd,
+  .evidence-meta dd,
+  .decision dd {
+    margin: var(--space-xs) 0 0;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .report-layout {
+    display: grid;
+  }
+
+  .report-block {
+    min-width: 0;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .block-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .block-heading h4 {
+    font-size: 1.25rem;
+  }
+
+  .block-heading > span {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .check-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .check-list li {
+    display: grid;
+    gap: var(--space-md);
+    margin: 0;
+    padding-block: var(--space-md);
+    border-top: 1px solid var(--border-default);
+  }
+
+  .check-copy {
+    min-width: 0;
+  }
+
+  .check-copy h5 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .check-copy p {
+    margin: var(--space-xs) 0 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.55;
+  }
+
+  .video-evidence {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-lg);
+  }
+
+  .video-placeholder {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(100%, 17rem);
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--color-petrol-deep);
+    color: var(--text-on-dark);
+  }
+
+  .video-placeholder::before,
+  .video-placeholder::after {
+    position: absolute;
+    content: "";
+    border: 1px solid var(--border-strong);
+  }
+
+  .video-placeholder::before {
+    inset: 12% 14% 54%;
+    border-radius: var(--radius-md);
+  }
+
+  .video-placeholder::after {
+    inset: 54% 22% 12%;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .video-placeholder__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-sm);
+    max-width: 13rem;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-dark);
+    text-align: center;
+  }
+
+  .video-placeholder__content :global(.icon) {
+    color: var(--accent-text-on-dark);
+  }
+
+  .video-placeholder__content strong {
+    font-size: 0.875rem;
+  }
+
+  .video-placeholder__content span {
+    color: var(--text-on-dark-muted);
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .video-placeholder__time {
+    position: absolute;
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    z-index: 1;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .evidence-meta {
+    display: grid;
+    width: 100%;
+    margin: 0;
+  }
+
+  .evidence-meta div {
+    padding-block: var(--space-sm);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .photo-grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .photo-grid figure {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+  }
+
+  .photo-placeholder {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-sm);
+    aspect-ratio: 4 / 3;
+    padding: var(--space-md);
+    background: var(--bg-section);
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .photo-placeholder :global(.icon) {
+    color: var(--accent-text);
+  }
+
+  .photo-placeholder span {
+    font-size: 0.6875rem;
+  }
+
+  .photo-grid figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    color: var(--text-muted);
+    font-size: 0.6875rem;
+    line-height: 1.5;
+  }
+
+  .photo-grid figcaption strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .report-followup {
+    display: grid;
+  }
+
+  .observation,
+  .decision {
+    min-width: 0;
+    padding: var(--space-lg);
+  }
+
+  .observation {
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .observation h4,
+  .decision h4 {
+    margin-top: var(--space-sm);
+    font-size: 1.25rem;
+  }
+
+  .observation p:last-child,
+  .decision p {
+    margin: var(--space-sm) 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .decision {
+    background: var(--bg-section);
+  }
+
+  .decision dl {
+    display: grid;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0 0;
+  }
+
+  .visit-report--compact .report-block--checks {
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  @media (min-width: 640px) {
+    .report-header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .report-meta {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .report-meta div {
+      border-right: 1px solid var(--border-default);
+      border-bottom: 0;
+    }
+
+    .report-meta div:last-child {
+      border-right: 0;
+    }
+
+    .check-list li {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+    }
+
+    .photo-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .report-layout {
+      grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+    }
+
+    .report-block--checks {
+      border-right: 1px solid var(--border-default);
+    }
+
+    .report-followup {
+      grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+    }
+
+    .observation {
+      border-right: 1px solid var(--border-default);
+      border-bottom: 0;
+    }
+
+    .visit-report--compact .report-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.7fr);
+    }
+  }
+</style>

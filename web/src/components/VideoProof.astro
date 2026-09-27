@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  ctaLabel = "Hablar con nosotros",
-  ctaHref = "/contacto",
+  ctaLabel = "Ver un informe de ejemplo",
+  ctaHref = "/el-informe",
 } = Astro.props;
 ---
 
@@ -24,15 +24,15 @@ const {
         </span>
       </div>
       <div class="vp-content" data-reveal>
-        <Heading level={2} size="h2">Cada visita, grabada en vídeo.</Heading>
+        <Heading level={2} size="h2">Una visita que puedes volver a ver.</Heading>
         <p class="vp-text">
-          De principio a fin. Sabrás exactamente qué se ha hecho, cuánto ha durado
-          y en qué estado queda todo. Sin dudas, sin confianza ciega.
+          Con tu consentimiento, documentamos la visita en vídeo continuo y sin
+          audio. Lo recibes con el informe y puedes consultarlo durante 15 días.
         </p>
         <ul class="vp-list">
-          <li><Icon name="check" size={18} /> Quién ha entrado y a qué hora</li>
-          <li><Icon name="check" size={18} /> Qué ha revisado y durante cuánto tiempo</li>
-          <li><Icon name="check" size={18} /> En qué estado queda todo al irse</li>
+          <li><Icon name="check" size={18} /> Grabación completa, vertical y sin audio</li>
+          <li><Icon name="check" size={18} /> Acceso desde el informe de la visita</li>
+          <li><Icon name="check" size={18} /> Fotografías fechadas si prefieres no grabar</li>
         </ul>
         <div class="vp-cta">
           <Button href={ctaHref} variant="on-dark" size="md">{ctaLabel}</Button>
@@ -65,7 +65,7 @@ const {
     border-radius: var(--radius-circle);
     border: 1px solid var(--border-strong);
     color: var(--accent);
-    background: rgba(199, 107, 76, 0.08);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
   }
   .vp-content {
     max-width: 44rem;

@@ -74,6 +74,11 @@ assume that current website copy is an approved business decision.
   term, key custody, arrival preparation, and coordination. Operations and
   contract limits have not validated all of them; `product/core.md` now marks
   which are qualified, provisional, pending, or prohibited.
+- The product direction now uses continuous video without audio as the primary
+  visit evidence when the owner has signed explicit consent, with dated photos
+  as the alternative. Contract, protected storage, access, deletion no later
+  than 15 days after report delivery, and recording contingencies still gate
+  the final public promise.
 - Coverage remains pending. VAT presentation, a 150 m² standard-home limit,
   service hours, and included coordination now have provisional definitions in
   `product/core.md` and still require validation.

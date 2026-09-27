@@ -1,0 +1,67 @@
+---
+type Status = "correct" | "observe" | "decision" | "authorized" | "not-reviewed";
+
+interface Props {
+  status: Status;
+}
+
+const { status } = Astro.props;
+
+const labels: Record<Status, string> = {
+  correct: "Correcto",
+  observe: "A observar",
+  decision: "Requiere decisión",
+  authorized: "Actuación autorizada",
+  "not-reviewed": "No revisado",
+};
+---
+
+<span class:list={["report-status", `report-status--${status}`]}>
+  <span class="report-status__mark" aria-hidden="true"></span>
+  {labels[status]}
+</span>
+
+<style>
+  .report-status {
+    --status-color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: fit-content;
+    min-height: 1.75rem;
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid color-mix(in srgb, var(--status-color) 30%, transparent);
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--status-color) 10%, var(--bg-card));
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .report-status__mark {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: 0 0 0.5rem;
+    border-radius: var(--radius-circle);
+    background: var(--status-color);
+  }
+
+  .report-status--correct {
+    --status-color: var(--success);
+  }
+
+  .report-status--observe {
+    --status-color: var(--warning);
+  }
+
+  .report-status--decision {
+    --status-color: var(--error);
+  }
+
+  .report-status--authorized {
+    --status-color: var(--accent-text);
+  }
+</style>

@@ -1,7 +1,7 @@
 # HappyHomes — definición canónica del producto
 
-- **Versión:** 0.1
-- **Fecha:** 26 de septiembre de 2026
+- **Versión:** 0.2
+- **Fecha:** 27 de septiembre de 2026
 - **Estado general:** primera propuesta coherente; requiere aprobación de negocio, operaciones y legal antes del lanzamiento comercial
 - **Propietario:** dirección de HappyHomes
 
@@ -303,10 +303,9 @@ La activación incluye:
 - límite de gasto de emergencia, que puede ser cero;
 - primera programación de visitas.
 
-**Precio de alta provisional:**
-
-- plan mensual: 49 € IVA incluido;
-- plan anual pagado por adelantado: alta incluida.
+**Decisión comercial definida:** HappyHomes no cobra cuota de alta. El trabajo
+inicial forma parte del coste del servicio y debe incluirse al validar la
+rentabilidad de los planes.
 
 La alta no incluye limpieza, reparación, inventario exhaustivo ni informe
 técnico del estado de la vivienda.
@@ -363,6 +362,7 @@ en la cuota salvo indicación expresa.
 **Estado: definido**
 
 - Precio final para consumidor, con IVA incluido.
+- Sin cuota de alta.
 - La diferencia principal entre planes es la frecuencia y la coordinación
   incluida, no una reducción de calidad del protocolo.
 - Los trabajos, materiales y facturas de terceros se cobran aparte.
@@ -424,7 +424,6 @@ visita.
 Condiciones de trabajo:
 
 - pago completo al activar;
-- alta de 49 € incluida;
 - servicio durante 12 meses;
 - sin renovación automática en la primera versión: HappyHomes solicita
   confirmación antes de renovar;
@@ -566,7 +565,7 @@ Cada informe contiene:
 - entrada, salida y duración registrada;
 - estado general;
 - resultado de cada categoría del protocolo;
-- fotografías necesarias y legibles;
+- vídeo o fotografías según el consentimiento acordado;
 - incidencias, actuaciones y elementos a observar;
 - recomendación o decisión solicitada;
 - siguiente visita prevista, cuando proceda.
@@ -587,18 +586,21 @@ Cada informe contiene:
 
 **Estado: provisional**
 
-Propuesta para la primera versión:
+Dirección de producto aprobada para la primera versión:
 
-- fotografías fechadas como evidencia estándar;
-- vídeo breve únicamente cuando ayude a explicar una incidencia o cuando el
-  propietario lo solicite y el acuerdo de privacidad lo permita;
-- no grabar de forma continua toda la visita por defecto;
-- no captar documentos, pantallas, fotografías familiares, personas u objetos
-  sensibles salvo necesidad y autorización.
+- vídeo continuo y sin audio como evidencia principal de la visita;
+- grabación únicamente cuando el propietario haya dado consentimiento expreso
+  en el acuerdo firmado;
+- fotografías fechadas como alternativa cuando no se autorice la grabación;
+- fotografías puntuales adicionales cuando expliquen una observación con más
+  claridad que el vídeo;
+- grabación y almacenamiento incluidos en la tarifa, no vendidos como extra;
+- el protocolo interno evita captar personas y detiene o excluye cualquier toma
+  que no cumpla esta regla.
 
-Esta decisión sustituiría la promesa actual de “cada visita grabada en vídeo de
-principio a fin”. La grabación continua solo podrá recuperarse como producto si
-se validan utilidad, consentimiento, almacenamiento, acceso, retención y coste.
+La elección del vídeo como formato principal está definida. Su publicación
+definitiva sigue condicionada a validar el acuerdo, el almacenamiento protegido,
+el acceso, la eliminación y el procedimiento ante un fallo de grabación.
 
 ### 9.4 Entrega
 
@@ -606,6 +608,7 @@ se validan utilidad, consentimiento, almacenamiento, acceso, retención y coste.
 
 - resumen personal por WhatsApp;
 - informe PDF o enlace seguro por email el mismo día;
+- acceso al vídeo desde el informe cuando exista consentimiento;
 - incidencia crítica comunicada antes del informe;
 - historial conservado por HappyHomes durante la relación y el periodo de
   retención aplicable.
@@ -717,7 +720,7 @@ abrir una vivienda en un mismo lugar inseguro.
 | Facturación | Cobro y obligaciones contables. |
 | Acceso y llaves | Prestar y auditar entradas autorizadas. |
 | Preferencias y autorizaciones | Ejecutar tareas y límites acordados. |
-| Informes, fotos y vídeos puntuales | Documentar el servicio. |
+| Informes, fotografías y vídeos de visita autorizados | Documentar el servicio. |
 | Conversaciones relevantes | Conservar decisiones, presupuestos y permisos. |
 
 ### 12.3 Reglas de canal
@@ -743,7 +746,7 @@ abrir una vivienda en un mismo lugar inseguro.
 | Consulta no convertida | 12 meses desde el último contacto. |
 | Contrato y facturación | Duración legal aplicable; hipótesis de trabajo: 6 años. |
 | Informes y fotografías | Durante el servicio y 12 meses después de la baja. |
-| Vídeo puntual sin incidencia | 90 días, salvo solicitud de conservación. |
+| Vídeo de visita | Máximo 15 días desde la entrega del informe; el acuerdo puede fijar un plazo inferior. |
 | Evidencia de una incidencia | Mientras sea necesaria para gestionar o defender la actuación. |
 | Registro de llaves y accesos | Durante el servicio y 12 meses después. |
 | Conversaciones rutinarias | Depuración tras la baja una vez archivadas las decisiones necesarias. |
@@ -810,6 +813,8 @@ necesario. Aceptar y rechazar deben resultar igual de sencillos.
 
 - “Una persona de referencia para ti y para tu casa.”
 - “Visitas programadas e informe con imágenes después de cada una.”
+- “Con tu consentimiento, documentamos la visita en vídeo continuo y sin audio.”
+- “Si prefieres no grabar, documentamos la visita con fotografías fechadas.”
 - “Te contamos qué hemos revisado, qué hemos encontrado y qué necesita tu
   decisión.”
 - “Planes de una, dos o cuatro visitas al mes.”
@@ -827,7 +832,7 @@ necesario. Aceptar y rechazar deben resultar igual de sencillos.
 | “Cada semana.” | “Cuatro visitas por mes natural.” |
 | “Cubrimos toda la Costa Brava.” | “Confirma disponibilidad para tu dirección.” |
 | “Nos encargamos de todo.” | “Te ayudamos a coordinar lo que se haya acordado.” |
-| “Cada visita grabada.” | “Recibes un informe con imágenes; el vídeo puntual se usa cuando aporta contexto y está autorizado.” |
+| “Cada visita grabada siempre.” | “Con tu consentimiento, la visita se documenta en vídeo continuo y sin audio; si prefieres no grabar, usamos fotografías fechadas.” |
 
 ### 14.3 Claims prohibidos
 
@@ -847,9 +852,11 @@ necesario. Aceptar y rechazar deben resultar igual de sencillos.
 
 #### ¿Qué ocurre después de cada visita?
 
-Tu Responsable de Casa te envía un resumen y un informe con imágenes el mismo
-día. El informe indica qué se ha revisado, qué se ha observado y si necesitamos
-una decisión por tu parte.
+Tu Responsable de Casa te envía un resumen y un informe el mismo día. Con tu
+consentimiento, la visita queda documentada en vídeo continuo y sin audio; si
+prefieres no grabar, el informe contiene fotografías fechadas. En ambos casos
+indica qué se ha revisado, qué se ha observado y si necesitamos una decisión por
+tu parte.
 
 #### ¿La cuota incluye reparaciones?
 
@@ -917,10 +924,10 @@ finales deben aprobarse antes de publicar la oferta.
 | P2 | Pendiente | Aprobar municipios, días de ruta y suplemento. | Página de zonas y contratación. |
 | P3 | Provisional | Validar Lite 79 €, Care 119 € y Complete 229 €. | Publicación de planes. |
 | P4 | Provisional | Validar 12 meses por precio de 10 y su margen. | Oferta anual. |
-| P5 | Pendiente | Revisión legal de alta, cancelación, desistimiento y renovación. | Cobro mensual/anual. |
+| P5 | Pendiente | Revisión legal de activación, cancelación, desistimiento y renovación. | Cobro mensual/anual. |
 | P6 | Pendiente | Protocolo físico, seguro y responsable de llaves. | Custodia incluida. |
 | P7 | Provisional | Probar checklist en pisos, casas y viviendas grandes. | Protocolo público. |
-| P8 | Provisional | Elegir fotos/vídeo y validar consentimiento/retención. | Promesa de evidencia. |
+| P8 | Provisional | Vídeo continuo sin audio decidido como formato principal con consentimiento firmado; validar acuerdo, almacenamiento, acceso, eliminación a los 15 días desde el informe y contingencia de grabación. | Promesa de evidencia. |
 | P9 | Pendiente | Confirmar personal y respaldo para Responsable de Casa. | Capacidad y sustituciones. |
 | P10 | Provisional | Confirmar horario y SLA de comunicación. | Contacto y FAQ. |
 | P11 | Pendiente | Confirmar castellano, catalán, francés e inglés operativos. | Idiomas publicados. |

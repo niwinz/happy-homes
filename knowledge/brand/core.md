@@ -16,7 +16,10 @@ Nuestro modelo de suscripción escalonada ofrece una, dos o cuatro visitas por m
 
 ¿Necesitas algo que no está en el catálogo? Dínoslo. Confirmamos si podemos realizarlo o coordinar a un profesional, con alcance, autorización y precio antes de actuar.
 
-Y porque la confianza no se pide, se demuestra: después de cada visita recibes un informe con imágenes, los puntos revisados y cualquier observación que requiera tu atención.
+Y porque la confianza no se pide, se demuestra: después de cada visita recibes
+un informe con los puntos revisados y cualquier observación que requiera tu
+atención. Con tu consentimiento, la visita se documenta en vídeo continuo y sin
+audio; si prefieres no grabar, se documenta con fotografías fechadas.
 
 El producto inicial se presta en castellano y catalán. Francés e inglés se incorporarán cuando exista capacidad operativa confirmada para atenderlos con la misma calidad.
 
@@ -27,7 +30,7 @@ El producto inicial se presta en castellano y catalán. Francés e inglés se in
 | Valor | Explicación |
 |-------|-------------|
 | **Tranquilidad** | El núcleo de lo que vendemos. El cliente no tiene que pensar en su casa. |
-| **Confianza** | Accedemos a su propiedad. La relación se refuerza con una persona de referencia y evidencia: cada visita genera un informe con imágenes. |
+| **Confianza** | Accedemos a su propiedad. La relación se refuerza con una persona de referencia y evidencia: cada visita genera un informe documentado en vídeo autorizado o fotografías fechadas. |
 | **Discreción** | Propiedades de alto valor, muchos clientes extranjeros. Nunca se habla de un cliente a otro. |
 | **Proactividad** | Revisamos los puntos acordados, comunicamos lo que observamos y proponemos el siguiente paso. |
 | **Cercanía** | Trato directo, sin gestores automáticos ni call centers. Una persona real. |
@@ -56,7 +59,9 @@ verbal; no debe introducir prestaciones que el producto no contemple.
 
 **Un servicio con cara y ojos. No una plataforma anónima: una persona de referencia que conoce tu casa, te atiende directamente y coordina visitas visuales programadas.**
 
-**Después de cada visita recibes un informe con imágenes: qué se ha revisado, qué se ha observado y qué necesita tu decisión.**
+**Después de cada visita recibes un informe: qué se ha revisado, qué se ha
+observado y qué necesita tu decisión. Con tu consentimiento, la visita queda
+documentada en vídeo continuo y sin audio.**
 
 ## Promesa de marca
 

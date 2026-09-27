@@ -11,7 +11,12 @@
 
 ## 1. Resumen ejecutivo
 
-HappyHomes plantea supervisar segundas residencias mediante una persona local de confianza, visitas periódicas, evidencias fotográficas o en vídeo y aviso y coordinación de incidencias. La experiencia central propuesta comprende **dos visitas al mes**. Una primera propuesta de gama es **Lite (79 €/mes, una visita), Care (119 €/mes, dos visitas) y Complete (precio por revisar, cuatro visitas)**.
+HappyHomes plantea cuidar segundas residencias mediante una persona local de
+confianza, visitas periódicas, vídeo continuo sin audio cuando exista
+consentimiento —o fotografías fechadas como alternativa— y aviso y coordinación
+de incidencias. La experiencia central propuesta comprende **dos visitas al
+mes**. Una primera propuesta de gama es **Lite (79 €/mes, una visita), Care
+(119 €/mes, dos visitas) y Complete (precio por revisar, cuatro visitas)**.
 
 - **119 €/mes para dos visitas es una hipótesis comercial razonable**, presente también en dos ofertas públicas comparables. No demuestra por sí mismo disposición a pagar ni rentabilidad en todas las zonas. En la muestra revisada, dos visitas se anuncian desde **90 €/mes + IVA** hasta **285 €/mes**, con servicios y condiciones muy distintos [M1–M7].
 - **El tiempo de la persona que visita la vivienda es un coste**, aunque al principio lo aporten los fundadores. Con un coste económico supuesto de 27 € por visita, 5 € de otros gastos variables por cliente y 500 € de costes fijos mensuales, Care a 119 € **con IVA incluido** deja aproximadamente **39,35 € de contribución mensual** y cubre esos costes fijos a partir de **13 clientes Care**. Estas cifras no son un beneficio neto contable ni incluyen todas las cargas posibles.
@@ -88,6 +93,12 @@ Con las hipótesis de aquel modelo: `beneficio mensual simplificado = viviendas 
 4. Definir si los 10 € de captación son **recurrentes por cliente y mes** o un coste único de adquisición. Un pago único se analiza como CAC y recuperación de la inversión; no se descuenta cada mes salvo que contractualmente proceda.
 5. Evitar duplicidades: si los 27 €/visita ya incluyen coche y tiempo, no añadirlos de nuevo; si el seguro está en los 500 € fijos, no imputarlo otra vez por visita sin una justificación de coste incremental. Los 5 € variables adicionales del escenario siguiente representan costes **por cliente** de cobro, comunicación y consumibles no incluidos en los 500 €; ajustar el dato con facturas reales.
 6. Confirmar costes y capacidad al crecer: las rutas, supervisión de personal, atención fuera de horario, impuestos, vacaciones, sustituciones, impagos y gastos de administración pueden exigir más estructura que 500 €/mes. Tampoco se ha modelado inversión inicial.
+7. HappyHomes no cobra cuota de alta. Medir el tiempo de ficha, protocolo,
+   configuración de acceso y visita inicial, y amortizarlo dentro de la economía
+   de la suscripción en lugar de tratarlo como trabajo gratuito o sin coste.
+8. La grabación y el almacenamiento del vídeo forman parte del servicio y no se
+   facturan como extra. Sus costes de captura, subida, custodia y eliminación
+   deben incluirse en el coste real antes de aprobar los precios.
 
 ## 5. Economía unitaria de la suscripción
 
@@ -146,7 +157,7 @@ La afirmación anterior de «80–85 € de margen y 6–7 clientes» descansaba
 |---|---:|---:|---:|
 | Precio de prueba | **79 €/mes** | **119 €/mes** | **219–229 €/mes** |
 | Visitas visuales programadas | 1/mes | 2/mes | 4/mes, definidas como cuatro visitas, no promesa ambigua de una cada semana natural |
-| Informe con fotos fechadas y observaciones | Sí | Sí | Sí |
+| Informe con vídeo autorizado o fotos fechadas y observaciones | Sí | Sí | Sí |
 | Revisión visual de accesos, humedades aparentes y estado general | Sí | Sí | Sí |
 | Ventilación y comprobaciones básicas si procede y se autoriza | Sí | Sí | Sí |
 | Custodia de llaves | Por definir tras coste y protocolo | Por definir tras coste y protocolo | Por definir tras coste y protocolo |

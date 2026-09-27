@@ -91,10 +91,12 @@ Si una decisión sigue abierta, la web debe mostrar una formulación honesta —
 3. Marcarlo “Ejemplo de informe” mientras no sea un caso real autorizado.
 4. Crear una página que explique cada sección, privacidad y entrega.
 5. Aplicar la decisión de evidencias registrada en P8:
-   - vídeo completo validado;
-   - clips solo ante incidencia;
-   - fotos fechadas como estándar;
-   - combinación por plan.
+   - vídeo continuo y sin audio como formato principal con consentimiento
+     expreso en el acuerdo firmado;
+   - retención máxima de 15 días desde la entrega del informe;
+   - fotografías fechadas cuando no se autorice vídeo;
+   - dos versiones del informe de ejemplo, una para cada modalidad;
+   - placeholder vertical 9:16 hasta disponer de un vídeo propio real.
 
 ### Archivos previstos
 
@@ -105,7 +107,8 @@ Si una decisión sigue abierta, la web debe mostrar una formulación honesta —
 - `web/src/pages/index.astro`
 - `web/src/pages/servicios.astro`
 - `web/src/styles/tokens.css`, solo si falta un token semántico aprobado
-- Assets propios en `web/public/` con permiso y tratamiento definido
+- Assets propios o licenciados en `web/public/` con permiso y tratamiento
+  definido; no reutilizar fotografías de competidores sin autorización.
 
 ### Criterios de aceptación
 
