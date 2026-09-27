@@ -4,6 +4,8 @@ import Heading from "./Heading.astro";
 import Button from "./Button.astro";
 
 interface Props {
+  tone?: "dark" | "cream";
+  align?: "start" | "center";
   heading?: string;
   lead?: string;
   ctaLabel?: string;
@@ -13,6 +15,8 @@ interface Props {
 }
 
 const {
+  tone = "dark",
+  align = "start",
   heading = "¿Hablamos de tu casa?",
   lead = "Cuéntanos dónde está, qué usos tiene y qué necesitas. Te recomendamos el plan que mejor encaje, sin compromiso.",
   ctaLabel = "Hablar con nosotros",
@@ -22,7 +26,14 @@ const {
 } = Astro.props;
 ---
 
-<section class="cta-band section--dark">
+<section
+  class:list={[
+    "cta-band",
+    `cta-band--${tone}`,
+    `cta-band--${align}`,
+    { "section--dark": tone === "dark" },
+  ]}
+>
   <Container>
     <div class="cta-inner" data-reveal>
       <Heading level={2} size="h1">{heading}</Heading>
@@ -31,7 +42,11 @@ const {
         <Button href={ctaHref} variant="primary" size="lg">{ctaLabel}</Button>
         {
           secondaryLabel && secondaryHref && (
-            <Button href={secondaryHref} variant="on-dark" size="lg">
+            <Button
+              href={secondaryHref}
+              variant={tone === "dark" ? "on-dark" : "outline"}
+              size="lg"
+            >
               {secondaryLabel}
             </Button>
           )
@@ -43,21 +58,32 @@ const {
 
 <style>
   .cta-band {
-    background: var(--bg-dark);
-    color: var(--text-on-dark);
     padding-block: clamp(4rem, 9vw, 7rem);
+  }
+  .cta-band--dark {
+    background: var(--bg-dark);
+  }
+  .cta-band--cream {
+    background:
+      radial-gradient(
+        ellipse 45% 85% at 50% 100%,
+        color-mix(in srgb, var(--accent) 7%, transparent),
+        transparent 72%
+      ),
+      var(--bg-section);
+    border-block: 1px solid var(--border-default);
   }
   .cta-inner {
     max-width: 44rem;
   }
   .cta-inner :global(.heading) {
-    color: var(--text-on-dark);
+    color: var(--text-primary);
   }
   .cta-lead {
     margin-top: var(--space-md);
     font-size: 1.125rem;
     line-height: 1.6;
-    color: var(--text-on-dark-muted);
+    color: var(--text-muted);
     max-width: 40ch;
   }
   .cta-actions {
@@ -65,5 +91,15 @@ const {
     flex-wrap: wrap;
     gap: var(--space-md);
     margin-top: var(--space-xl);
+  }
+  .cta-band--center .cta-inner {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .cta-band--center .cta-lead {
+    margin-inline: auto;
+  }
+  .cta-band--center .cta-actions {
+    justify-content: center;
   }
 </style>
