@@ -22,9 +22,9 @@ The files are created beside `contract.json` as `agreement-draft.docx` and
 The eventual signed original is stored manually as `agreement-signed.pdf`. The
 generator never creates or overwrites that file.
 
-The complete create → draft → review → approval → signature → archive procedure
-and the consolidated pending-work index are documented in
-`knowledge/business/clients/README.md`.
+The contract lifecycle, invariants, and consolidated pending-work index are in
+`knowledge/business/clients/AGENTS.md`. Routine intake is handled by the
+project skill `hh-new-contract`.
 
 `--draft` is mandatory while legal approval remains pending. Never store access
 codes, passwords, credentials, or key locations in `contract.json`.

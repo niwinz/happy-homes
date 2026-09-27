@@ -47,6 +47,11 @@ changes `agreement-signed.pdf`.
 
 ## Operating procedure
 
+For routine intake, prefer the project skill `hh-new-contract`: it extracts
+structured values from user-provided context, presents them for explicit
+confirmation, writes `contract.json`, and invokes this CLI. The manual steps
+below remain the auditable fallback and the contract the skill must follow.
+
 1. Copy `knowledge/business/clients/_template/contract.json` to
    `clients/<contract_id>/contract.json` and make `contractId` match the folder.
 2. Fill known values only. Leave unknown values absent or empty; they become
@@ -61,10 +66,10 @@ changes `agreement-signed.pdf`.
    `agreement-signed.pdf`. Never modify it; corrections require an addendum or a
    new `contractId`.
 
-The single pending-work index is
-`knowledge/business/clients/README.md`, under “Registro de pendientes de esta
-tarea”. Keep that index current when a blocker is discovered or closed; do not
-leave pending work documented only in code comments or conversation history.
+The single pending-work index is `knowledge/business/clients/AGENTS.md`, under
+“Pendientes”. Keep that index current when a blocker is discovered or closed;
+do not leave pending work documented only in code comments or conversation
+history.
 
 ## Invariants
 

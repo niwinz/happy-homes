@@ -24,7 +24,7 @@ economics. Most figures are working assumptions rather than approved terms.
   [`../plans/serenohome-improvements.md`](../plans/serenohome-improvements.md)
   only as a proposed sequence; its decisions are not approvals.
 - Read [`legal-identity.json`](legal-identity.json) for the canonical contracting
-  identity and [`clients/README.md`](clients/README.md) for versioned client and
+  identity and [`clients/AGENTS.md`](clients/AGENTS.md) for versioned client and
   agreement records. These records instantiate the product; they do not override
   `product/core.md`.
 
