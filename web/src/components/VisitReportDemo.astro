@@ -8,9 +8,18 @@ type Status = "correct" | "observe" | "decision" | "authorized" | "not-reviewed"
 interface Props {
   evidenceMode?: EvidenceMode;
   compact?: boolean;
+  documentMode?: boolean;
 }
 
-const { evidenceMode = "video", compact = false } = Astro.props;
+const {
+  evidenceMode = "video",
+  compact = false,
+  documentMode = false,
+} = Astro.props;
+
+const ReportHeading = documentMode ? "h1" : "h3";
+const BlockHeading = documentMode ? "h2" : "h4";
+const ItemHeading = documentMode ? "h3" : "h5";
 
 const areas: Array<{ name: string; detail: string; status: Status }> = [
   {
@@ -71,7 +80,9 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
   <header class="report-header">
     <div>
       <p class="report-kicker">HappyHomes · Informe de visita</p>
-      <h3>Casa Tramuntana <span>HH-024</span></h3>
+      <ReportHeading class="report-title">
+        Casa Tramuntana <span>HH-024</span>
+      </ReportHeading>
     </div>
     <ReportStatus status="observe" />
   </header>
@@ -100,7 +111,12 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
       <div class="block-heading">
         <div>
           <p class="block-kicker">Protocolo acordado</p>
-          <h4 id={`checks-${evidenceMode}-${compact ? "short" : "full"}`}>Qué hemos revisado</h4>
+          <BlockHeading
+            class="block-title"
+            id={`checks-${evidenceMode}-${compact ? "short" : "full"}`}
+          >
+            Qué hemos revisado
+          </BlockHeading>
         </div>
         <span>{compact ? "3 de 6 puntos" : "6 puntos"}</span>
       </div>
@@ -109,7 +125,7 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
         {visibleAreas.map((area) => (
           <li>
             <div class="check-copy">
-              <h5>{area.name}</h5>
+              <ItemHeading class="check-title">{area.name}</ItemHeading>
               <p>{area.detail}</p>
             </div>
             <ReportStatus status={area.status} />
@@ -122,9 +138,12 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
       <div class="block-heading">
         <div>
           <p class="block-kicker">Evidencia de la visita</p>
-          <h4 id={`evidence-${evidenceMode}-${compact ? "short" : "full"}`}>
+          <BlockHeading
+            class="block-title"
+            id={`evidence-${evidenceMode}-${compact ? "short" : "full"}`}
+          >
             {evidenceMode === "video" ? "Vídeo continuo" : "Fotografías fechadas"}
-          </h4>
+          </BlockHeading>
         </div>
         <span>{evidenceMode === "video" ? "Sin audio" : "4 imágenes"}</span>
       </div>
@@ -185,7 +204,9 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
     <div class="report-followup">
       <section class="observation" aria-labelledby={`observation-${evidenceMode}`}>
         <p class="block-kicker">Observación</p>
-        <h4 id={`observation-${evidenceMode}`}>Marca nueva junto a una ventana</h4>
+        <BlockHeading class="followup-title" id={`observation-${evidenceMode}`}>
+          Marca nueva junto a una ventana
+        </BlockHeading>
         <p>
           Se observa una marca que no aparecía en el informe anterior. No realizamos
           un diagnóstico técnico. Recomendamos seguir su evolución y solicitar una
@@ -194,7 +215,9 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
       </section>
       <section class="decision" aria-labelledby={`decision-${evidenceMode}`}>
         <ReportStatus status="decision" />
-        <h4 id={`decision-${evidenceMode}`}>Necesitamos tu decisión</h4>
+        <BlockHeading class="followup-title" id={`decision-${evidenceMode}`}>
+          Necesitamos tu decisión
+        </BlockHeading>
         <p>¿Quieres que solicitemos presupuesto a un profesional?</p>
         <dl>
           <div>
@@ -258,11 +281,11 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
     text-transform: uppercase;
   }
 
-  .report-header h3 {
+  .report-title {
     font-size: clamp(1.5rem, 5vw, 2rem);
   }
 
-  .report-header h3 span {
+  .report-title span {
     display: inline-block;
     color: var(--text-muted);
     font-family: var(--font-mono);
@@ -327,7 +350,7 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
     margin-bottom: var(--space-lg);
   }
 
-  .block-heading h4 {
+  .block-title {
     font-size: 1.25rem;
   }
 
@@ -357,7 +380,7 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
     min-width: 0;
   }
 
-  .check-copy h5 {
+  .check-title {
     margin: 0;
     font-family: var(--font-body);
     font-size: 0.875rem;
@@ -518,8 +541,7 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
     border-bottom: 1px solid var(--border-default);
   }
 
-  .observation h4,
-  .decision h4 {
+  .followup-title {
     margin-top: var(--space-sm);
     font-size: 1.25rem;
   }

@@ -1,0 +1,145 @@
+---
+import "../styles/tokens.css";
+import "../styles/base.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#report">Saltar al informe</a>
+    <main id="report" class="report-document">
+      <header class="report-brand" aria-label="HappyHomes">
+        <span class="wordmark">HappyHomes</span>
+        <span class="document-type">Informe de visita</span>
+      </header>
+      <slot />
+      <p class="template-note">
+        Plantilla de desarrollo · Todos los datos y observaciones son ficticios.
+      </p>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(body) {
+    min-width: 20rem;
+    background: var(--bg-section);
+  }
+
+  .skip-link {
+    position: fixed;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    z-index: var(--z-toast);
+    min-height: 44px;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    background: var(--color-petrol);
+    color: var(--color-white);
+    text-decoration: none;
+    transform: translateY(calc(-100% - var(--space-lg)));
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+
+  .report-document {
+    width: min(calc(100% - var(--space-lg) * 2), var(--container-max));
+    margin-inline: auto;
+    padding-block: var(--space-lg) var(--space-3xl);
+  }
+
+  .report-brand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-sm) var(--space-lg);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .wordmark {
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .document-type {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .template-note {
+    margin: var(--space-lg) 0 0;
+    max-width: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .report-document {
+      padding-block: var(--space-xl) var(--space-4xl);
+    }
+  }
+
+  @media print {
+    @page {
+      margin: 12mm;
+      size: A4 portrait;
+    }
+
+    :global(body) {
+      min-width: 0;
+      background: var(--color-white);
+    }
+
+    .skip-link,
+    .template-note {
+      display: none;
+    }
+
+    .report-document {
+      width: 100%;
+      padding: 0;
+    }
+
+    .report-brand {
+      margin-bottom: var(--space-md);
+    }
+
+    :global(.visit-report) {
+      box-shadow: none;
+    }
+  }
+</style>
