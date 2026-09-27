@@ -1,5 +1,6 @@
 ---
 import Container from "./Container.astro";
+import { coverageAreas, serviceLanguages } from "../data/product";
 
 const year = new Date().getFullYear();
 
@@ -8,9 +9,9 @@ const cols = [
     title: "Servicios",
     links: [
       { label: "Planes", href: "/servicios" },
+      { label: "Cómo funciona", href: "/como-funciona" },
       { label: "El informe", href: "/el-informe" },
-      { label: "Add-ons", href: "/servicios#addons" },
-      { label: "Cobertura", href: "/#cobertura" },
+      { label: "Servicios adicionales", href: "/servicios#extras" },
     ],
   },
   {
@@ -23,14 +24,6 @@ const cols = [
   },
 ];
 
-const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
-const coverage = [
-  "Olot",
-  "Costa Brava",
-  "Alt Empordà",
-  "De Llançà a Tossa de Mar",
-  "Interior del Empordà",
-];
 ---
 
 <footer class="site-footer section--dark">
@@ -44,7 +37,7 @@ const coverage = [
           Cuidamos de tu casa para que disfrutes de ella.
         </p>
         <p class="meta">
-          {coverage.join(" · ")}
+          {coverageAreas.join(" · ")} · disponibilidad según dirección
         </p>
       </div>
 
@@ -65,7 +58,7 @@ const coverage = [
 
       <div class="col">
         <h2 class="col-title">Hablamos tu idioma</h2>
-        <p class="meta">{languages.join(" · ")}</p>
+        <p class="meta">{serviceLanguages.join(" · ")}</p>
       </div>
     </div>
 

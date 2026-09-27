@@ -1,0 +1,217 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+import Button from "./Button.astro";
+
+interface ExtraService {
+  name: string;
+  price: string;
+  unit: string;
+  description: string;
+  excludes: string;
+}
+
+interface Props {
+  oneOff: ExtraService[];
+  recurring: ExtraService[];
+  compact?: boolean;
+}
+
+const { oneOff, recurring, compact = false } = Astro.props;
+const visibleOneOff = compact ? oneOff.slice(0, 4) : oneOff;
+---
+
+<section class="extras">
+  <Container>
+    <div id="extras" class="extras-anchor">
+      <SectionHead
+        eyebrow="Servicios adicionales"
+        heading="Cuando necesitas algo más que la visita programada."
+        lead="Cada extra indica cómo se cobra y qué queda fuera. Confirmamos tarea, disponibilidad y precio antes de actuar."
+      />
+
+      <div class="extras-group">
+        <div class="extras-group-head">
+          <p class="extras-kicker">Puntuales o por tiempo</p>
+          <h2>Un precio por cada encargo.</h2>
+        </div>
+        <div class="extras-grid" data-reveal-group>
+          {visibleOneOff.map((extra) => (
+            <article class="extra-card">
+              <div class="extra-head">
+                <h3>{extra.name}</h3>
+                <div class="extra-price">
+                  <strong>{extra.price}</strong>
+                  <span>{extra.unit}</span>
+                </div>
+              </div>
+              <p>{extra.description}</p>
+              <p class="extra-excludes">{extra.excludes}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="extras-group extras-group--recurring">
+        <div class="extras-group-head">
+          <p class="extras-kicker">Recurrentes</p>
+          <h2>Una frecuencia y un alcance acordados.</h2>
+        </div>
+        <div class="extras-grid extras-grid--recurring" data-reveal-group>
+          {recurring.map((extra) => (
+            <article class="extra-card">
+              <div class="extra-head">
+                <h3>{extra.name}</h3>
+                <div class="extra-price">
+                  <strong>{extra.price}</strong>
+                  <span>{extra.unit}</span>
+                </div>
+              </div>
+              <p>{extra.description}</p>
+              <p class="extra-excludes">{extra.excludes}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="extras-footer">
+        <p>
+          Los materiales y las facturas de profesionales externos se indican por
+          separado. Coordinar no significa ejecutar ni garantizar su trabajo.
+        </p>
+        <Button
+          href={compact ? "/servicios#extras" : "/contacto?interest=extra"}
+          variant={compact ? "outline" : "primary"}
+          size="md"
+        >
+          {compact ? "Ver todos los extras" : "Consultar un servicio adicional"}
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .extras {
+    padding-block: clamp(4rem, 8vw, 6rem);
+    background: var(--bg-page);
+  }
+  .extras-anchor {
+    scroll-margin-top: 5rem;
+  }
+  .extras-group {
+    margin-top: var(--space-2xl);
+  }
+  .extras-group--recurring {
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--border-default);
+  }
+  .extras-group-head {
+    margin-bottom: var(--space-lg);
+  }
+  .extras-kicker {
+    margin: 0 0 var(--space-xs);
+    color: var(--accent-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .extras-group-head h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .extras-grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+  .extra-card {
+    min-width: 0;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+  }
+  .extra-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .extra-head h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .extra-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-xs) var(--space-sm);
+  }
+  .extra-price strong {
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .extra-price span {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+  .extra-card > p {
+    margin: var(--space-md) 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .extra-card .extra-excludes {
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-default);
+    font-size: 0.8125rem;
+  }
+  .extras-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    background: var(--bg-section);
+  }
+  .extras-footer p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 64ch;
+  }
+  @media (min-width: 640px) {
+    .extras-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 768px) {
+    .extra-head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .extra-price {
+      flex: 0 0 9rem;
+      justify-content: flex-end;
+      text-align: end;
+    }
+    .extras-footer {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  @media (min-width: 1024px) {
+    .extras-grid--recurring {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

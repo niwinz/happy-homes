@@ -23,23 +23,43 @@ const ItemHeading = documentMode ? "h3" : "h5";
 
 const areas: Array<{ name: string; detail: string; status: Status }> = [
   {
-    name: "Acceso y cierres",
-    detail: "Puerta, cerradura y ventanas accesibles sin cambios visibles.",
+    name: "Acceso",
+    detail: "Puerta y cerradura sin cambios visibles.",
     status: "correct",
   },
   {
-    name: "Ambiente interior",
+    name: "Registro",
+    detail: "Entrada y salida registradas para esta visita.",
+    status: "correct",
+  },
+  {
+    name: "Ambiente",
     detail: "Se observa una marca nueva junto a la ventana de la habitación pequeña.",
     status: "observe",
   },
   {
-    name: "Agua y baños",
+    name: "Agua",
     detail: "Sin fugas ni goteos visibles en los puntos acordados.",
     status: "correct",
   },
   {
-    name: "Cocina y frío",
+    name: "Electricidad",
+    detail: "Cuadro y aparatos acordados sin cambios visibles.",
+    status: "correct",
+  },
+  {
+    name: "Cocina",
     detail: "Lectura visible dentro del rango acordado. Sin incidencias aparentes.",
+    status: "correct",
+  },
+  {
+    name: "Baños",
+    detail: "Sin fugas ni cambios aparentes en los puntos accesibles.",
+    status: "correct",
+  },
+  {
+    name: "Cerramientos",
+    detail: "Ventanas y cierres del checklist comprobados.",
     status: "correct",
   },
   {
@@ -48,9 +68,19 @@ const areas: Array<{ name: string; detail: string; status: Status }> = [
     status: "not-reviewed",
   },
   {
-    name: "Ventilación",
-    detail: "Ventilación breve realizada según el protocolo de la casa.",
+    name: "Interior general",
+    detail: "Ventilación breve realizada según la autorización de la casa.",
     status: "authorized",
+  },
+  {
+    name: "Exterior accesible",
+    detail: "Terraza observada desde la zona segura, sin cambios aparentes.",
+    status: "correct",
+  },
+  {
+    name: "Salida",
+    detail: "Luces, ventanas, agua y acceso restituidos al perfil acordado.",
+    status: "correct",
   },
 ];
 
@@ -107,7 +137,10 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
   </dl>
 
   <div class="report-layout">
-    <section class="report-block report-block--checks" aria-labelledby={`checks-${evidenceMode}-${compact ? "short" : "full"}`}>
+    <section
+      class="report-block report-block--checks"
+      aria-label={`Qué hemos revisado — informe con ${evidenceMode === "video" ? "vídeo" : "fotografías"}`}
+    >
       <div class="block-heading">
         <div>
           <p class="block-kicker">Protocolo acordado</p>
@@ -118,7 +151,7 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
             Qué hemos revisado
           </BlockHeading>
         </div>
-        <span>{compact ? "3 de 6 puntos" : "6 puntos"}</span>
+        <span>{compact ? `3 de ${areas.length} áreas` : `${areas.length} áreas`}</span>
       </div>
 
       <ul class="check-list">
@@ -172,7 +205,7 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
               <dd>Continua · sin audio</dd>
             </div>
             <div>
-              <dt>Disponible hasta</dt>
+              <dt>Eliminación máxima</dt>
               <dd>9 oct 2026</dd>
             </div>
           </dl>
@@ -202,7 +235,10 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
 
   {!compact && (
     <div class="report-followup">
-      <section class="observation" aria-labelledby={`observation-${evidenceMode}`}>
+      <section
+        class="observation"
+        aria-label={`Observación — informe con ${evidenceMode === "video" ? "vídeo" : "fotografías"}`}
+      >
         <p class="block-kicker">Observación</p>
         <BlockHeading class="followup-title" id={`observation-${evidenceMode}`}>
           Marca nueva junto a una ventana
@@ -213,7 +249,10 @@ const visibleAreas = compact ? areas.slice(0, 3) : areas;
           revisión profesional si aumenta.
         </p>
       </section>
-      <section class="decision" aria-labelledby={`decision-${evidenceMode}`}>
+      <section
+        class="decision"
+        aria-label={`Decisión — informe con ${evidenceMode === "video" ? "vídeo" : "fotografías"}`}
+      >
         <ReportStatus status="decision" />
         <BlockHeading class="followup-title" id={`decision-${evidenceMode}`}>
           Necesitamos tu decisión

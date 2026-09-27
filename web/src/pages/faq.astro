@@ -4,111 +4,31 @@ import Hero from "../components/Hero.astro";
 import FaqAccordion from "../components/FaqAccordion.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Section from "../components/Section.astro";
-
-const groups = [
-  {
-    title: "Sobre el servicio",
-    items: [
-      {
-        q: "¿Qué zonas cubrís?",
-        a: "Olot, Costa Brava y todo el Alt Empordà. Desde Llançà hasta Tossa de Mar, y hacia el interior hasta Figueres, Besalú y Banyoles. Si tu propiedad está en esta zona, podemos ayudarte.",
-      },
-      {
-        q: "¿Cómo empiezo?",
-        a: "Nos contactas, hablamos sin compromiso, y si el servicio encaja, quedamos para conocer tu casa, recibir las llaves y activar tu plan. No hay permanencia mínima.",
-      },
-      {
-        q: "¿Y si no estoy seguro de qué plan necesito?",
-        a: "Empezamos con Basic y según veas cómo funciona, subes de plan cuando quieras. Sin penalización.",
-      },
-      {
-        q: "¿Podéis empezar con una visita única para conocer la casa?",
-        a: "Sí. Podemos hacer una visita de diagnóstico para conocernos, ver el estado de la propiedad y recomendarte el plan que mejor encaje.",
-      },
-    ],
-  },
-  {
-    title: "Confianza y seguridad",
-    items: [
-      {
-        q: "¿Cómo sé que puedo confiar?",
-        a: "Con tu consentimiento, la visita se documenta en vídeo continuo y sin audio. Si prefieres no grabar, recibirás fotografías fechadas. Además, tienes una persona de referencia estable; cualquier sustitución se identifica y queda registrada.",
-      },
-      {
-        q: "¿Qué pasa si algo se rompe entre visitas?",
-        a: "Si es urgente, puedes contactarnos directamente. Si no lo es, lo detectamos en la siguiente visita programada y lo coordinamos antes de que vaya a más.",
-      },
-      {
-        q: "¿Tenéis seguro?",
-        a: "Sí, disponemos de seguro de responsabilidad civil.",
-      },
-    ],
-  },
-  {
-    title: "Pagos",
-    items: [
-      {
-        q: "¿Cómo se paga?",
-        a: "Domiciliación bancaria mensual. Sin permanencia. Puedes cancelar cuando quieras.",
-      },
-      {
-        q: "¿Hay cuota de alta?",
-        a: "No cobramos cuota de alta. Antes de activar el servicio te confirmamos el precio y las condiciones aplicables a tu plan.",
-      },
-    ],
-  },
-  {
-    title: "Las llaves",
-    items: [
-      {
-        q: "¿Cómo os doy las llaves?",
-        a: "Quedamos en persona, en tu casa o donde prefieras. También podemos recogerlas en una oficina o con un contacto de confianza si no estás en la zona.",
-      },
-      {
-        q: "¿Qué pasa con mis llaves si cancelo el servicio?",
-        a: "Te las devolvemos en persona o por mensajería urgente. Nos aseguramos de que lleguen a tus manos.",
-      },
-    ],
-  },
-  {
-    title: "Casos particulares",
-    items: [
-      {
-        q: "¿Trabajáis con extranjeros?",
-        a: "Sí. Hablamos castellano, catalán, francés, inglés y alemán. Gestionamos propiedades de propietarios en Francia, Alemania, Países Bajos, Suiza y otros países.",
-      },
-      {
-        q: "¿Podéis gestionar una reforma completa?",
-        a: "Sí. Podemos presupuestar, coordinar a los gremios, supervisar el trabajo e informarte del progreso. Es un add-on específico.",
-      },
-      {
-        q: "¿Y si necesito algo que no está en vuestros servicios?",
-        a: "Dínoslo. Si podemos hacerlo, lo hacemos nosotros. Si no, te buscamos un tercero de confianza. El compromiso es que tengas solución.",
-      },
-    ],
-  },
-];
+import { faqGroups } from "../data/product";
 ---
 
 <Base
   title="Preguntas frecuentes — HappyHomes"
-  description="Resolvemos tus dudas sobre el servicio de cuidado de segundas residencias: zonas, confianza, pagos, llaves y casos particulares."
+  description="Resolvemos dudas sobre planes, visitas, protocolo, informes, vídeo, llaves, incidencias y servicios adicionales."
 >
   <Hero
-    eyebrow="FAQ"
-    title="Preguntas frecuentes."
-    lead="Lo que casi todos preguntan antes de contratar. ¿No encuentras tu duda? Escríbenos y te respondemos en menos de 24h."
-    primaryCta={{ label: "Contacta con nosotros", href: "/contacto" }}
+    eyebrow="Preguntas frecuentes"
+    title="Lo importante, explicado antes de entrar en tu casa."
+    lead="Planes, alcance, evidencia, llaves e incidencias. Si algo depende de tu vivienda, te lo confirmamos antes de activar el servicio."
+    primaryCta={{ label: "Comprobar disponibilidad", href: "/contacto" }}
+    secondaryCta={{ label: "Cómo funciona", href: "/como-funciona" }}
   />
 
   <Section>
-    <FaqAccordion groups={groups} />
+    <FaqAccordion groups={faqGroups} />
   </Section>
 
   <CtaBand
-    heading="¿Tienes otra duda?"
-    lead="Escríbenos y te respondemos en menos de 24h. Sin compromiso, sin gebraú. Hablamos castellano, catalán, francés, inglés y alemán."
-    ctaLabel="Contacta con nosotros"
+    heading="¿Tu caso necesita una respuesta más concreta?"
+    lead="Cuéntanos el municipio, el tipo de casa y qué necesitas. Revisamos cobertura y encaje contigo."
+    ctaLabel="Comprobar disponibilidad"
     ctaHref="/contacto"
+    secondaryLabel="Ver planes y extras"
+    secondaryHref="/servicios"
   />
 </Base>

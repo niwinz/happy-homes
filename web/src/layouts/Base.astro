@@ -15,7 +15,7 @@ const siteName = "HappyHomes";
 const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
 const desc =
   description ??
-  "Cuidamos y gestionamos tu segunda residencia en la Costa Brava y el Alt Empordà. Tranquilidad para tu casa, siempre lista.";
+  "Cuidado presencial y documentado de segundas residencias en la Costa Brava, el Alt Empordà y el área de Olot.";
 ---
 
 <!doctype html>
@@ -24,6 +24,12 @@ const desc =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1A3A4A" />
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
     <meta name="generator" content={Astro.generator} />

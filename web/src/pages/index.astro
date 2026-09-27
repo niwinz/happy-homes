@@ -4,7 +4,8 @@ import Hero from "../components/Hero.astro";
 import VisitReportDemo from "../components/VisitReportDemo.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import PlanGrid from "../components/PlanGrid.astro";
-import AddOnList from "../components/AddOnList.astro";
+import ExtrasSection from "../components/ExtrasSection.astro";
+import ProtocolOverview from "../components/ProtocolOverview.astro";
 import FeatureList from "../components/FeatureList.astro";
 import Coverage from "../components/Coverage.astro";
 import Languages from "../components/Languages.astro";
@@ -13,145 +14,47 @@ import CtaBand from "../components/CtaBand.astro";
 import Section from "../components/Section.astro";
 import SectionHead from "../components/SectionHead.astro";
 import Button from "../components/Button.astro";
-
-const steps = [
-  {
-    icon: "sparkles",
-    title: "Elegimos tu plan",
-    text: "Desde supervisión mensual hasta cuidado integral semanal. Tú decides cuánta cobertura necesitas.",
-  },
-  {
-    icon: "users",
-    title: "Te asignamos una persona",
-    text: "Alguien real, con nombre y cara, que conocerás desde el primer día. Esa persona cuida de tu casa.",
-  },
-  {
-    icon: "key",
-    title: "Recibimos tu casa",
-    text: "Te damos un juego de llaves. A partir de ahí, pasamos, revisamos, informamos y resolvemos.",
-  },
-  {
-    icon: "heart",
-    title: "Tú solo disfrutas",
-    text: "Llegas cuando quieres y todo está en orden. La cama hecha, la nevera lista, la casa ventilada.",
-  },
-];
-
-const plans = [
-  {
-    name: "Basic",
-    price: "59–79 €",
-    blurb: "Para quien quiere lo mínimo y no preocuparse.",
-    features: [
-      "1 visita al mes",
-      "Informe con vídeo autorizado o fotografías fechadas",
-      "Revisión de puntos críticos (agua, gas, electricidad, cierres)",
-      "Control de okupación",
-    ],
-    ctaLabel: "Empezar con Basic",
-  },
-  {
-    name: "Standard",
-    price: "99–139 €",
-    blurb: "Para quien quiere más cobertura sin excesos.",
-    featured: true,
-    badge: "Más elegido",
-    features: [
-      "2 visitas al mes",
-      "Todo lo de Basic",
-      "Gestión de llaves",
-      "Coordinación de incidencias menores",
-      "Preparación pre-llegada (ventilar, climatizar, nevera)",
-    ],
-    ctaLabel: "Empezar con Standard",
-  },
-  {
-    name: "Premium",
-    price: "179–249 €",
-    blurb: "Para quien quiere delegarlo todo.",
-    features: [
-      "Visita semanal",
-      "Todo lo de Standard",
-      "Mantenimiento preventivo programado",
-      "Interlocutor único dedicado",
-      "Informes trimestrales detallados",
-      "Respuesta 24h para urgencias",
-    ],
-    ctaLabel: "Empezar con Premium",
-  },
-];
-
-const addons = [
-  "Limpieza pre-llegada",
-  "Jardinería",
-  "Piscina",
-  "Recepción de paquetes",
-  "Coordinación de reformas",
-  "Servicio llavero",
-  "Control de alarma",
-];
+import {
+  coverageAreas,
+  coverageNote,
+  homeFaqItems,
+  oneOffExtras,
+  plans,
+  processSteps,
+  protocolAreas,
+  recurringExtras,
+  serviceLanguages,
+} from "../data/product";
 
 const features = [
   {
     icon: "users",
-    title: "Una persona, no una empresa",
-    text: "Te asignamos a alguien de nuestro equipo, con nombre, cara y número directo. Alguien que conoce tu casa, sabe dónde está cada llave y cómo funciona cada detalle. Hablas con la misma persona siempre.",
+    title: "Una referencia estable",
+    text: "Tu Responsable de Casa conoce la ficha y el contexto de tu vivienda. Si necesita apoyo, la sustitución se identifica y registra.",
   },
   {
-    icon: "sparkles",
-    title: "¿Necesitas algo fuera del catálogo?",
-    text: "Dínoslo. Si podemos hacerlo, lo hacemos nosotros. Si no, te buscamos un tercero de confianza. El compromiso es que tengas una solución, no que solo tengas nuestros servicios.",
+    icon: "clipboard",
+    title: "Hechos antes que promesas",
+    text: "El informe separa lo observado, la actuación autorizada y lo que necesita una decisión por tu parte.",
   },
   {
     icon: "shield",
-    title: "Condiciones claras desde el principio",
-    text: "No cobramos cuota de alta. Antes de activar el servicio te confirmamos el alcance, el precio y las condiciones aplicables a tu plan.",
+    title: "Límites claros",
+    text: "La visita es visual y preventiva. Los trabajos técnicos, materiales y profesionales se acuerdan y presupuestan aparte.",
   },
 ];
-
-const faqItems = [
-  {
-    q: "¿Qué zonas cubrís?",
-    a: "Olot, Costa Brava y todo el Alt Empordà. Desde Llançà hasta Tossa de Mar, y hacia el interior hasta Figueres, Besalú y Banyoles. Si tu propiedad está en esta zona, podemos ayudarte.",
-  },
-  {
-    q: "¿Cómo sé que puedo confiar?",
-    a: "Con tu consentimiento, la visita se documenta en vídeo continuo y sin audio. Si prefieres no grabar, recibirás fotografías fechadas. Además, tienes una persona de referencia estable; cualquier sustitución se identifica y queda registrada.",
-  },
-  {
-    q: "¿Cómo se paga?",
-    a: "No cobramos cuota de alta. Antes de activar el servicio te confirmamos el precio, la forma de pago y las condiciones aplicables a tu plan.",
-  },
-  {
-    q: "¿Trabajáis con extranjeros?",
-    a: "Sí. Hablamos castellano, catalán, francés, inglés y alemán. Gestionamos propiedades de propietarios en Francia, Alemania, Países Bajos, Suiza y otros países.",
-  },
-];
-
-const zones = [
-  "Olot",
-  "Costa Brava",
-  "Alt Empordà",
-  "De Llançà a Tossa de Mar",
-  "Figueres",
-  "Besalú",
-  "Banyoles",
-  "Interior del Empordà",
-];
-
-const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
 ---
 
 <Base
-  title="HappyHomes — Tu casa, siempre lista"
-  description="Servicio de mantenimiento y gestión de segundas residencias en la Costa Brava y el Alt Empordà. Cuidamos de tu casa para que tú solo tengas que disfrutar."
+  title="HappyHomes — Tu casa cuidada también cuando estás lejos"
+  description="Cuidado presencial y documentado de segundas residencias en la Costa Brava, el Alt Empordà y el área de Olot."
 >
   <Hero
     variant="home"
-    eyebrow="Costa Brava · Alt Empordà"
-    title="Tu casa en la Costa Brava, siempre lista."
-    lead="Nosotros cuidamos de ella para que tú solo tengas que disfrutar. Visitas presenciales e informe con vídeo autorizado o fotografías fechadas."
-    primaryCta={{ label: "Hablar con nosotros", href: "/contacto" }}
+    eyebrow="Costa Brava · Alt Empordà · Área de Olot"
+    title="Tu casa cuidada también cuando estás lejos."
+    lead="Una persona de referencia pasa, sigue un protocolo acordado y te envía un informe con lo que ha revisado y observado."
+    primaryCta={{ label: "Comprobar disponibilidad", href: "/contacto" }}
     secondaryCta={{ label: "Ver planes", href: "#planes" }}
     backgroundMedia={{
       desktopPosterAvif: "/media/hero/hero-coast-cadaques-v1-desktop.avif",
@@ -169,7 +72,7 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
         },
       ],
     }}
-    tag="Vídeo continuo, con tu consentimiento"
+    tag="Visita documentada con tu consentimiento"
   />
 
   <Section>
@@ -178,11 +81,11 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
         <SectionHead
           eyebrow="El resultado de cada visita"
           heading="No tienes que imaginar cómo está tu casa."
-          lead="Este ejemplo te enseña qué revisamos, cómo comunicamos una observación y qué decisión necesitamos de ti."
+          lead="Este ejemplo enseña qué revisamos, cómo describimos una observación y qué decisión podemos necesitar de ti."
         />
         <div class="report-preview-actions">
           <Button href="/el-informe" variant="primary" size="md">
-            Ver los dos informes
+            Ver los informes de ejemplo
           </Button>
         </div>
       </div>
@@ -192,24 +95,37 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     </div>
   </Section>
 
-  <HowItWorks steps={steps} />
+  <HowItWorks
+    steps={processSteps}
+    heading="De la primera conversación al informe."
+    lead="Confirmamos el encaje, acordamos el protocolo y documentamos cada visita."
+  />
 
-  <PlanGrid id="planes" plans={plans} />
+  <ProtocolOverview areas={protocolAreas} compact />
 
-  <AddOnList items={addons} />
+  <PlanGrid
+    id="planes"
+    plans={plans}
+    eyebrow="Planes"
+    heading="Una, dos o cuatro visitas por mes."
+    lead="Elige la frecuencia. Nosotros mantenemos la misma forma de revisar, informar y comunicar."
+    note="Precios mensuales con IVA incluido y sin cuota de alta. Confirmamos disponibilidad y condiciones para cada dirección."
+  />
+
+  <ExtrasSection oneOff={oneOffExtras} recurring={recurringExtras} compact />
 
   <FeatureList
     eyebrow="Por qué HappyHomes"
-    heading="Un servicio con cara y ojos."
-    lead="No una empresa genérica: una persona real que conoces, que cuida de tu casa, y a la que puedes llamar directamente."
+    heading="Continuidad, evidencia y límites claros."
+    lead="No somos una plataforma anónima ni un servicio de seguridad: somos una referencia local para cuidar y explicar cómo queda tu casa."
     features={features}
     columns={3}
   />
 
   <Section>
     <div class="duo">
-      <Coverage zones={zones} />
-      <Languages languages={languages} />
+      <Coverage zones={coverageAreas} note={coverageNote} />
+      <Languages languages={serviceLanguages} />
     </div>
   </Section>
 
@@ -217,24 +133,24 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     <div class="faq-block">
       <div class="faq-head">
         <p class="eyebrow">Preguntas frecuentes</p>
-        <h2 class="faq-title">Lo que casi todos preguntan primero.</h2>
+        <h2 class="faq-title">Lo que conviene aclarar antes de empezar.</h2>
         <p class="faq-link">
           <Button href="/faq" variant="ghost" size="sm">
             Ver todas las preguntas
           </Button>
         </p>
       </div>
-      <FaqAccordion items={faqItems} />
+      <FaqAccordion items={homeFaqItems} />
     </div>
   </Section>
 
   <CtaBand
-    heading="¿Hablamos de tu casa?"
-    lead="Cuéntanos dónde está, qué usos tiene y qué necesitas. Te recomendamos el plan que mejor encaje, sin compromiso."
-    ctaLabel="Hablar con nosotros"
+    heading="¿Podemos cuidar de tu casa?"
+    lead="Indícanos el municipio, el tipo de vivienda y la frecuencia que te interesa. Te confirmamos disponibilidad y condiciones."
+    ctaLabel="Comprobar disponibilidad"
     ctaHref="/contacto"
-    secondaryLabel="Ver planes"
-    secondaryHref="/servicios"
+    secondaryLabel="Ver cómo funciona"
+    secondaryHref="/como-funciona"
   />
 </Base>
 
@@ -244,31 +160,23 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     gap: var(--space-2xl);
     align-items: start;
   }
-
-  .report-preview-copy {
-    min-width: 0;
-  }
-
-  .report-preview-actions {
-    margin-top: var(--space-xl);
-  }
-
+  .report-preview-copy,
   .report-preview-demo {
     min-width: 0;
   }
-
+  .report-preview-actions {
+    margin-top: var(--space-xl);
+  }
   @media (min-width: 1024px) {
     .report-preview {
       grid-template-columns: minmax(16rem, 0.65fr) minmax(0, 1.35fr);
       gap: var(--space-3xl);
     }
-
     .report-preview-copy {
       position: sticky;
       top: 6rem;
     }
   }
-
   .duo {
     display: grid;
     gap: var(--space-lg);
@@ -276,10 +184,9 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
   @media (min-width: 768px) {
     .duo {
       grid-template-columns: 1fr 1fr;
-      align-items: start;
+      align-items: stretch;
     }
   }
-
   .faq-block {
     display: grid;
     gap: var(--space-2xl);

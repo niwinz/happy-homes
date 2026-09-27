@@ -2,15 +2,18 @@
 
 ## Runtime structure
 
-- `web/` is the only workspace package and builds a static Astro site.
+- `web/` is the workspace package that builds the static Astro site.
 - Routes live in `web/src/pages/*.astro` and use
   `web/src/layouts/Base.astro`.
-- Runtime page copy and data are inline in route files.
+- Route-specific copy remains in the page files. Shared plans, extras, protocol,
+  coverage, languages and FAQ content live in `web/src/data/product.ts`.
   `web/prototype-content/*.md` is reference material and is not imported.
 - Shared UI lives in `web/src/components/`; shared CSS tokens live in
   `web/src/styles/tokens.css`.
 - Client JavaScript is limited to reveal handling in `Base.astro` and contact
   form behavior in `ContactForm.astro`.
+- Follow [`../workflow/web-verification.md`](../workflow/web-verification.md)
+  before starting servers or running browser, accessibility or Lighthouse gates.
 
 ## Required references
 
@@ -29,7 +32,5 @@
 
 ## Current blockers
 
-- Formspree, the contact phone, and the canonical site URL are placeholders.
+- Formspree and the canonical site URL are placeholders.
 - Inline SVG illustrations are temporary stand-ins.
-- The build succeeds but reports malformed CSS in `Header.astro` after the
-  `.nav-mobile-menu` rule.

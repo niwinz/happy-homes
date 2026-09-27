@@ -1,0 +1,193 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+import Button from "./Button.astro";
+
+interface ProtocolArea {
+  area: string;
+  standard: string;
+  authorized: string;
+  excluded: string;
+}
+
+interface Props {
+  areas: ProtocolArea[];
+  compact?: boolean;
+}
+
+const { areas, compact = false } = Astro.props;
+const visibleAreas = compact ? areas.slice(0, 5) : areas;
+---
+
+<section class="protocol">
+  <Container>
+    <div id="protocolo" class="protocol-anchor">
+      <SectionHead
+        eyebrow="Protocolo de visita"
+        heading="Sabes qué observamos y dónde están los límites."
+        lead="Adaptamos esta matriz a cada casa durante el alta. Es una revisión visual y preventiva, no una inspección técnica."
+      />
+
+      <div class="protocol-legend" aria-label="Tipos de alcance">
+        <span class="legend-item legend-item--standard"><i class="legend-dot" aria-hidden="true"></i> Revisión visual</span>
+        <span class="legend-item legend-item--authorized"><i class="legend-dot" aria-hidden="true"></i> Solo con autorización</span>
+        <span class="legend-item legend-item--excluded"><i class="legend-dot" aria-hidden="true"></i> Fuera del protocolo</span>
+      </div>
+
+      <div class="protocol-list" data-reveal-group>
+        {visibleAreas.map((item) => (
+          <article class="protocol-row">
+            <h3>{item.area}</h3>
+            <div class="protocol-cell protocol-cell--standard">
+              <span class="cell-label">Revisión visual</span>
+              <p>{item.standard}</p>
+            </div>
+            <div class="protocol-cell protocol-cell--authorized">
+              <span class="cell-label">Con autorización</span>
+              <p>{item.authorized}</p>
+            </div>
+            <div class="protocol-cell protocol-cell--excluded">
+              <span class="cell-label">Fuera del protocolo</span>
+              <p>{item.excluded}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {compact && (
+        <div class="protocol-action">
+          <p>La matriz completa contempla {areas.length} áreas, desde el acceso hasta el cierre de la visita.</p>
+          <Button href="/como-funciona#protocolo" variant="outline" size="md">
+            Ver el protocolo completo
+          </Button>
+        </div>
+      )}
+    </div>
+  </Container>
+</section>
+
+<style>
+  .protocol {
+    padding-block: clamp(4rem, 8vw, 6rem);
+    background: var(--bg-section);
+  }
+  .protocol-anchor {
+    scroll-margin-top: 5rem;
+  }
+  .protocol-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-lg);
+    margin-top: var(--space-xl);
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+  }
+  .legend-item {
+    --protocol-color: var(--color-petrol);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.375rem 0.625rem;
+    border: 1px solid color-mix(in srgb, var(--protocol-color) 25%, transparent);
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--protocol-color) 7%, var(--bg-card));
+  }
+  .legend-item--authorized {
+    --protocol-color: var(--accent-text);
+  }
+  .legend-item--excluded {
+    --protocol-color: var(--color-stone);
+  }
+  .legend-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--radius-circle);
+    background: var(--protocol-color);
+  }
+  .protocol-list {
+    margin-top: var(--space-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+  }
+  .protocol-row {
+    display: grid;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .protocol-row:last-child {
+    border-bottom: 0;
+  }
+  .protocol-row h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  .protocol-cell {
+    --protocol-color: var(--color-petrol);
+    --protocol-label-color: var(--color-petrol);
+    min-width: 0;
+    padding: var(--space-md);
+    border-left: 3px solid var(--protocol-color);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--protocol-color) 6%, var(--bg-card));
+  }
+  .protocol-cell--authorized {
+    --protocol-color: var(--accent-text);
+    --protocol-label-color: var(--accent-text);
+  }
+  .protocol-cell--excluded {
+    --protocol-color: var(--color-stone);
+    --protocol-label-color: var(--text-muted);
+    border-left-style: dashed;
+  }
+  .cell-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    color: var(--protocol-label-color);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cell-label::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: 0 0 0.5rem;
+    border-radius: var(--radius-circle);
+    background: var(--protocol-color);
+  }
+  .protocol-row p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+  .protocol-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+  .protocol-action p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+  @media (min-width: 768px) {
+    .protocol-row {
+      grid-template-columns: minmax(8rem, 0.75fr) repeat(3, minmax(0, 1fr));
+      align-items: start;
+    }
+    .protocol-action {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

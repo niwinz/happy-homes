@@ -1,0 +1,220 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import ProtocolOverview from "../components/ProtocolOverview.astro";
+import Section from "../components/Section.astro";
+import SectionHead from "../components/SectionHead.astro";
+import Icon from "../components/Icon.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { processSteps, protocolAreas } from "../data/product";
+
+const incidentLevels = [
+  {
+    icon: "alert",
+    label: "Crítica",
+    title: "Primero, la seguridad.",
+    text: "Si observamos agua fluyendo, humo o un acceso forzado evidente, contactamos con quien corresponda y te llamamos inmediatamente.",
+  },
+  {
+    icon: "bell",
+    label: "Prioritaria",
+    title: "Te avisamos sin esperar al informe.",
+    text: "Una humedad nueva, un cierre dañado o un fallo aparente se comunica durante la visita o al terminarla.",
+  },
+  {
+    icon: "clipboard",
+    label: "Seguimiento",
+    title: "Queda registrada para comparar.",
+    text: "Los cambios menores se incorporan al informe y al calendario de observación de la siguiente visita.",
+  },
+];
+---
+
+<Base
+  title="Cómo funciona — HappyHomes"
+  description="Desde la confirmación de cobertura hasta el informe: conoce el alta, el protocolo de visita y cómo comunicamos una incidencia."
+>
+  <Hero
+    tone="cream"
+    eyebrow="Cómo funciona"
+    title="Una visita clara empieza mucho antes de abrir la puerta."
+    lead="Primero confirmamos el encaje. Después acordamos qué revisar, qué podemos hacer y qué necesita siempre tu autorización."
+    primaryCta={{ label: "Comprobar disponibilidad", href: "/contacto" }}
+    secondaryCta={{ label: "Ver el protocolo", href: "#protocolo" }}
+  />
+
+  <HowItWorks
+    steps={processSteps}
+    eyebrow="El recorrido"
+    heading="De la consulta al siguiente paso."
+    lead="No pedimos una dirección completa ni datos de acceso antes de confirmar que podemos ayudarte."
+  />
+
+  <ProtocolOverview areas={protocolAreas} />
+
+  <Section>
+    <div class="access-grid">
+      <SectionHead
+        eyebrow="Alta y acceso"
+        heading="Cada casa tiene su propia ficha."
+        lead="Antes de la primera visita dejamos por escrito el alcance y las autorizaciones."
+      />
+      <ul class="access-list" data-reveal>
+        <li><Icon name="check" size={18} /> Tipología, zonas incluidas y elementos excluidos.</li>
+        <li><Icon name="check" size={18} /> Comprobaciones que autorizas y perfil de cierre.</li>
+        <li><Icon name="check" size={18} /> Responsable de Casa y contactos autorizados.</li>
+        <li><Icon name="check" size={18} /> Modalidad de vídeo o fotografías.</li>
+        <li><Icon name="check" size={18} /> Límite de gasto urgente, que puede ser cero.</li>
+        <li><Icon name="check" size={18} /> Medio de acceso y registro de cada entrada y salida.</li>
+      </ul>
+    </div>
+  </Section>
+
+  <Section tone="dark">
+    <div class="incident-wrap">
+      <SectionHead
+        eyebrow="Si observamos una incidencia"
+        heading="La prioridad cambia la comunicación, no convierte una observación en diagnóstico."
+        lead="Documentamos el hecho, aplicamos únicamente una actuación segura y autorizada y te pedimos la decisión que corresponda."
+      />
+      <div class="incident-grid" data-reveal-group>
+        {incidentLevels.map((level) => (
+          <article class="incident-card">
+            <span class="incident-icon" aria-hidden="true"><Icon name={level.icon} size={22} /></span>
+            <p class="incident-label">{level.label}</p>
+            <h3>{level.title}</h3>
+            <p>{level.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="limits" data-reveal>
+      <div>
+        <p class="limits-kicker">Lo que no es HappyHomes</p>
+        <h2>Una revisión visual, no una garantía.</h2>
+      </div>
+      <div class="limits-copy">
+        <p>
+          No somos una empresa de seguridad, un seguro, una inspección técnica ni
+          un servicio de urgencias 24/7. Tampoco incluimos reparaciones o trabajos
+          de profesionales dentro de la cuota.
+        </p>
+        <p>
+          Sí podemos ayudarte a coordinar el siguiente paso cuando lo autorices,
+          dejando claros el alcance, el precio y quién realiza el trabajo.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <CtaBand
+    heading="El primer paso no requiere entregarnos las llaves."
+    lead="Indícanos municipio, tipo y tamaño aproximado de vivienda. Comprobamos cobertura y hablamos de la frecuencia que necesitas."
+    ctaLabel="Comprobar disponibilidad"
+    ctaHref="/contacto"
+    secondaryLabel="Ver los planes"
+    secondaryHref="/servicios"
+  />
+</Base>
+
+<style>
+  .access-grid,
+  .limits {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+  .access-list {
+    display: grid;
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .access-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+  }
+  .access-list :global(.icon) {
+    margin-top: 0.2rem;
+    color: var(--success);
+  }
+  .incident-wrap :global(.section-head) {
+    max-width: 52rem;
+  }
+  .incident-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+  .incident-card {
+    min-width: 0;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+  }
+  .incident-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-sm);
+    color: var(--accent-text);
+    border: 1px solid var(--border-strong);
+  }
+  .incident-label {
+    margin: var(--space-md) 0 var(--space-xs);
+    color: var(--accent-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .incident-card h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .incident-card > p:last-child {
+    margin: var(--space-sm) 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .limits-kicker {
+    margin: 0 0 var(--space-sm);
+    color: var(--accent-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .limits h2 {
+    max-width: 18ch;
+  }
+  .limits-copy p {
+    color: var(--text-muted);
+  }
+  .limits-copy p:last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .access-grid,
+    .limits {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    .incident-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

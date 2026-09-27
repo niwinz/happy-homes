@@ -11,17 +11,25 @@ interface Step {
 
 interface Props {
   steps: Step[];
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
 }
 
-const { steps } = Astro.props;
+const {
+  steps,
+  eyebrow = "Así funciona",
+  heading = "De la primera conversación al informe.",
+  lead = "Acordamos cada paso antes de acceder a tu casa.",
+} = Astro.props;
 ---
 
 <section class="how">
   <Container>
     <SectionHead
-      eyebrow="Así funciona"
-      heading="Cuatro pasos. Y ya no tienes que pensar más."
-      lead="Desde la primera llamada hasta el día que llegas a tu casa, solo hay una persona detrás."
+      eyebrow={eyebrow}
+      heading={heading}
+      lead={lead}
     />
     <ol class="steps" data-reveal-group>
       {

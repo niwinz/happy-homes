@@ -2,21 +2,10 @@
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import ContactForm from "../components/ContactForm.astro";
-import Coverage from "../components/Coverage.astro";
 import Section from "../components/Section.astro";
 import Icon from "../components/Icon.astro";
 import Card from "../components/Card.astro";
-
-const zones = [
-  "Olot",
-  "Costa Brava",
-  "Alt Empordà",
-  "De Llançà a Tossa de Mar",
-  "Figueres",
-  "Besalú",
-  "Banyoles",
-  "Interior del Empordà",
-];
+import { coverageAreas, coverageNote, serviceLanguages } from "../data/product";
 
 const info = [
   {
@@ -24,75 +13,73 @@ const info = [
     label: "Email",
     value: "hola@happyhomes.cat",
     href: "mailto:hola@happyhomes.cat",
-  },
-  {
-    icon: "phone",
-    label: "Teléfono / WhatsApp",
-    value: "+34 XXX XXX XXX",
-    note: "Disponible también para urgencias si ya eres cliente",
+    note: "Para consultas, propuestas y decisiones que necesitan quedar por escrito.",
   },
   {
     icon: "clock",
-    label: "Horario",
-    value: "Lunes a viernes · 9:00 – 19:00",
-    note: "Urgencias 24h para clientes con plan Premium",
+    label: "Horario propuesto",
+    value: "Lunes a viernes · 9:00–18:00",
+    note: "La propuesta es responder el mismo día laborable antes de las 17:00 y el siguiente día laborable después. No ofrecemos atención 24/7.",
   },
   {
     icon: "mapPin",
-    label: "Presencial",
-    value: "Olot · Alt Empordà",
-    note: "Quedamos donde te vaya bien: en tu casa, en un café o por videollamada si estás fuera.",
+    label: "Primera comprobación",
+    value: "Municipio o código postal",
+    note: "No necesitamos tu dirección completa para comprobar el encaje inicial.",
   },
 ];
-
-const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
 ---
 
 <Base
-  title="Contacto — HappyHomes"
-  description="Ponte en contacto con HappyHomes para el cuidado de tu segunda residencia en la Costa Brava y el Alt Empordà."
+  title="Comprobar disponibilidad — HappyHomes"
+  description="Indícanos el municipio, tipo y tamaño aproximado de tu segunda residencia para comprobar cobertura y recomendar una frecuencia."
 >
   <Hero
     eyebrow="Contacto"
-    title="Háblanos de tu casa."
-    lead="Cuéntanos dónde está, qué usos tiene y qué necesitas. Te recomendamos el plan que mejor encaje sin compromiso."
+    title="Empecemos por comprobar si encajamos."
+    lead="Con el municipio, el tipo y el tamaño aproximado de la vivienda podemos revisar cobertura y preparar una primera conversación."
   />
 
   <Section>
     <div class="contact-grid">
       <div class="contact-form-wrap" data-reveal>
-        <h2 class="block-title">Cuéntanos qué necesitas</h2>
+        <h2 class="block-title">Cuéntanos lo básico de tu casa</h2>
+        <p class="block-lead">
+          No envíes todavía la dirección exacta, datos de acceso, llaves ni periodos de ausencia.
+        </p>
         <ContactForm />
       </div>
 
-      <div class="contact-aside" data-reveal>
-        <h2 class="block-title">O si prefieres, directo</h2>
+      <div class="contact-aside" data-reveal aria-labelledby="contact-direct-title">
+        <h2 class="block-title" id="contact-direct-title">Qué ocurre después</h2>
+        <ol class="next-steps">
+          <li><span>1</span> Revisamos la ubicación y el encaje de la vivienda.</li>
+          <li><span>2</span> Hablamos contigo para entender la frecuencia y el alcance.</li>
+          <li><span>3</span> Confirmamos propuesta, condiciones y precio antes de pedir datos de acceso.</li>
+        </ol>
+
         <div class="info-list">
-          {
-            info.map((item) => (
-              <Card as="div" pad="md" bordered class="info-card">
-                <span class="info-icon" aria-hidden="true">
-                  <Icon name={item.icon} size={20} />
-                </span>
-                <div class="info-body">
-                  <p class="info-label">{item.label}</p>
-                  {item.href ? (
-                    <a class="info-value" href={item.href}>{item.value}</a>
-                  ) : (
-                    <p class="info-value">{item.value}</p>
-                  )}
-                  {item.note && <p class="info-note">{item.note}</p>}
-                </div>
-              </Card>
-            ))
-          }
+          {info.map((item) => (
+            <Card as="div" pad="md" bordered class="info-card">
+              <span class="info-icon" aria-hidden="true">
+                <Icon name={item.icon} size={20} />
+              </span>
+              <div class="info-body">
+                <p class="info-label">{item.label}</p>
+                {item.href ? (
+                  <a class="info-value" href={item.href}>{item.value}</a>
+                ) : (
+                  <p class="info-value">{item.value}</p>
+                )}
+                <p class="info-note">{item.note}</p>
+              </div>
+            </Card>
+          ))}
         </div>
 
         <div class="aside-block">
-          <p class="aside-eyebrow">Hablamos tu idioma</p>
-          <ul class="lang-list">
-            {languages.map((l) => <li>{l}</li>)}
-          </ul>
+          <p class="aside-eyebrow">Atención inicial</p>
+          <p class="aside-copy">{serviceLanguages.join(" y ")}.</p>
         </div>
       </div>
     </div>
@@ -100,14 +87,12 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
 
   <Section tone="dark">
     <div class="coverage-dark" data-reveal>
-      <h2 class="coverage-title">Zona de cobertura</h2>
+      <p class="coverage-kicker">Cobertura</p>
+      <h2 class="coverage-title">Confirmamos cada dirección.</h2>
       <ul class="coverage-zones">
-        {zones.map((z) => <li>{z}</li>)}
+        {coverageAreas.map((area) => <li>{area}</li>)}
       </ul>
-      <p class="coverage-note">
-        ¿Estás fuera de esta zona? Escríbenos igualmente. A veces podemos llegar
-        a acuerdos especiales.
-      </p>
+      <p class="coverage-note">{coverageNote}</p>
     </div>
   </Section>
 </Base>
@@ -117,21 +102,45 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     display: grid;
     gap: var(--space-2xl);
   }
-  @media (min-width: 1024px) {
-    .contact-grid {
-      grid-template-columns: 1.3fr 1fr;
-      gap: var(--space-3xl);
-      align-items: start;
-    }
-  }
   .block-title {
-    margin: 0 0 var(--space-lg);
+    margin: 0;
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--text-primary);
   }
-
+  .block-lead {
+    margin: var(--space-sm) 0 var(--space-lg);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+  .next-steps {
+    display: grid;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0 var(--space-xl);
+    padding: 0;
+    list-style: none;
+  }
+  .next-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .next-steps span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 1.5rem;
+    height: 1.5rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-circle);
+    color: var(--accent-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
   .info-list {
     display: grid;
     gap: var(--space-md);
@@ -149,20 +158,22 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     width: 2.5rem;
     height: 2.5rem;
     border-radius: var(--radius-sm);
-    background: rgba(199, 107, 76, 0.1);
+    background: var(--bg-section);
     color: var(--accent-text);
   }
   .info-body {
     flex: 1;
+    min-width: 0;
   }
-  .info-label {
+  .info-label,
+  .aside-eyebrow,
+  .coverage-kicker {
     margin: 0 0 var(--space-xs);
-    font-family: var(--font-body);
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--accent-text);
   }
   .info-value {
     margin: 0;
@@ -171,81 +182,59 @@ const languages = ["Castellano", "Catalán", "Francés", "Inglés", "Alemán"];
     font-weight: 500;
     color: var(--text-primary);
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
   a.info-value:hover {
     color: var(--accent-text);
   }
+  a.info-value {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
   .info-note {
     margin: var(--space-xs) 0 0;
-    font-size: 0.8125rem;
     color: var(--text-muted);
+    font-size: 0.8125rem;
     line-height: 1.5;
   }
-
   .aside-block {
     margin-top: var(--space-xl);
     padding-top: var(--space-lg);
     border-top: 1px solid var(--border-default);
   }
-  .aside-eyebrow {
-    margin: 0 0 var(--space-sm);
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-text);
-  }
-  .lang-list {
-    list-style: none;
+  .aside-copy {
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs) var(--space-sm);
-  }
-  .lang-list li {
-    font-size: 0.9375rem;
     color: var(--text-primary);
-    padding-inline-end: var(--space-sm);
-    border-inline-end: 1px solid var(--border-default);
   }
-  .lang-list li:last-child {
-    border-inline-end: 0;
-    padding-inline-end: 0;
-  }
-
   .coverage-dark {
-    max-width: 48rem;
+    max-width: 52rem;
   }
   .coverage-title {
     margin: 0 0 var(--space-md);
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--text-on-dark);
+    color: var(--text-primary);
+    font-size: 2rem;
   }
   .coverage-zones {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs) var(--space-md);
+    gap: var(--space-sm) var(--space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .coverage-zones li {
-    font-size: 1rem;
-    color: var(--text-on-dark);
-    padding-inline-end: var(--space-md);
-    border-inline-end: 1px solid var(--border-default);
-  }
-  .coverage-zones li:last-child {
-    border-inline-end: 0;
-    padding-inline-end: 0;
+    color: var(--text-primary);
   }
   .coverage-note {
     margin: var(--space-md) 0 0;
-    font-size: 0.9375rem;
-    color: var(--text-on-dark-muted);
+    color: var(--text-muted);
+  }
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.9fr);
+      gap: var(--space-3xl);
+      align-items: start;
+    }
   }
 </style>

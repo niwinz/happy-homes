@@ -20,6 +20,7 @@ interface BackgroundMediaConfig {
 
 interface Props {
   variant?: "home" | "inner";
+  tone?: "light" | "cream";
   eyebrow?: string;
   title: string;
   lead?: string;
@@ -32,6 +33,7 @@ interface Props {
 
 const {
   variant = "inner",
+  tone = "light",
   eyebrow,
   title,
   lead,
@@ -47,6 +49,7 @@ const {
   class:list={[
     "hero",
     `hero--${variant}`,
+    `hero--tone-${tone}`,
     { "hero--background": variant === "home" && backgroundMedia },
   ]}
 >
@@ -108,6 +111,16 @@ const {
         transparent 60%
       ),
       var(--bg-page);
+  }
+  .hero--tone-cream:not(.hero--background) {
+    background:
+      radial-gradient(
+        ellipse 48% 72% at 88% 8%,
+        color-mix(in srgb, var(--accent) 8%, transparent),
+        transparent 70%
+      ),
+      var(--bg-section);
+    border-bottom: 1px solid var(--border-default);
   }
   .hero--background {
     --text-muted: var(--text-primary);

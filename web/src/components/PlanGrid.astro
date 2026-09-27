@@ -7,6 +7,7 @@ interface Plan {
   name: string;
   price: string;
   period?: string;
+  priceNote?: string;
   blurb: string;
   features: string[];
   featured?: boolean;
@@ -21,14 +22,16 @@ interface Props {
   heading?: string;
   lead?: string;
   id?: string;
+  note?: string;
 }
 
 const {
   plans,
   eyebrow = "Planes",
   heading = "Elige tu plan",
-  lead = "Tres niveles de cobertura. Subes cuando quieras, sin penalización.",
+  lead = "El mismo protocolo y el mismo cuidado. Cambian la frecuencia y la coordinación incluida.",
   id,
+  note,
 } = Astro.props;
 ---
 
@@ -38,6 +41,7 @@ const {
     <div class="plan-grid" data-reveal-group>
       {plans.map((plan) => <PlanCard plan={plan} />)}
     </div>
+    {note && <p class="plans-note">{note}</p>}
   </Container>
 </section>
 
@@ -53,6 +57,13 @@ const {
   }
   .plan-grid > :global(*) {
     min-width: 0;
+  }
+  .plans-note {
+    margin: var(--space-xl) 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 72ch;
   }
   @media (min-width: 768px) {
     .plan-grid {

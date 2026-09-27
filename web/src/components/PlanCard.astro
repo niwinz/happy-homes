@@ -8,6 +8,7 @@ interface Plan {
   name: string;
   price: string;
   period?: string;
+  priceNote?: string;
   blurb: string;
   features: string[];
   featured?: boolean;
@@ -25,6 +26,7 @@ const {
     name,
     price,
     period = "/mes",
+    priceNote,
     blurb,
     features,
     featured = false,
@@ -44,6 +46,7 @@ const {
     <span class="plan-amount">{price}</span>
     <span class="plan-period">{period}</span>
   </div>
+  {priceNote && <p class="plan-price-note">{priceNote}</p>}
   <p class="plan-blurb">{blurb}</p>
   <ul class="plan-features">
     {
@@ -105,6 +108,11 @@ const {
   }
   .plan-period {
     font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  .plan-price-note {
+    margin: var(--space-xs) 0 0;
+    font-size: 0.75rem;
     color: var(--text-muted);
   }
   .plan-blurb {

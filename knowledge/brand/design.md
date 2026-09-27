@@ -216,10 +216,15 @@ Max content width `72rem`; wide hero imagery may bleed to `--bp-2xl`.
 
 ### Logotipo
 
-La dirección permanece abierta a validación con diseño profesional. El concepto
-preferente para explorar es una **H-tejado**: una H mayúscula cuya barra forma
-un perfil de tejado sutil. Como alternativa puede explorarse un monograma de
-dos `h` entrelazadas.
+El logotipo final adopta la **H-tejado**: una H mayúscula cuya barra forma un
+perfil de tejado sutil. El maestro vectorial está en `assets/logo.svg`; no se
+debe redibujar, alterar sus proporciones ni sustituirlo por aproximaciones.
+
+En la web, el header usa el símbolo junto al wordmark `HappyHomes` en la serif
+de marca. El favicon y los iconos de dispositivo usan el símbolo aislado. Los
+derivados públicos viven en `web/public/brand/happyhomes-symbol.svg` y en la
+raíz de `web/public/`: favicon SVG, PNG de 16, 32 y 64 px, icono Apple de 180 px
+e iconos de dispositivo de 192 y 512 px declarados en `site.webmanifest`.
 
 Reglas obligatorias:
 

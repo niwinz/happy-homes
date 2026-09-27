@@ -1,109 +1,150 @@
 ---
-import Button from "./Button.astro";
-
 interface Props {
   action?: string;
 }
 
-const {
-  action = "https://formspree.io/f/your-id",
-} = Astro.props;
+const { action = "https://formspree.io/f/your-id" } = Astro.props;
 ---
 
-<form
-  class="contact-form"
-  action={action}
-  method="POST"
-  novalidate
-  data-form
->
+<form class="contact-form" action={action} method="POST" novalidate data-form>
   <div class="field">
-    <label for="cf-name">
-      Nombre <span aria-hidden="true">*</span>
-    </label>
+    <label for="cf-name">Nombre <span aria-hidden="true">*</span></label>
     <input
       id="cf-name"
       name="name"
       type="text"
       autocomplete="name"
       required
+      aria-required="true"
       aria-describedby="cf-name-err"
     />
     <p class="field-error" id="cf-name-err" hidden></p>
   </div>
 
   <div class="field">
-    <label for="cf-email">
-      Email <span aria-hidden="true">*</span>
-    </label>
+    <label for="cf-email">Email <span aria-hidden="true">*</span></label>
     <input
       id="cf-email"
       name="email"
       type="email"
       autocomplete="email"
       required
+      aria-required="true"
       aria-describedby="cf-email-err"
     />
     <p class="field-error" id="cf-email-err" hidden></p>
   </div>
 
   <div class="field">
-    <label for="cf-phone">
-      Teléfono <span class="field-optional">(opcional)</span>
-    </label>
+    <label for="cf-phone">Teléfono <span class="field-optional">(opcional)</span></label>
     <input
       id="cf-phone"
       name="phone"
       type="tel"
       autocomplete="tel"
       inputmode="tel"
-      aria-describedby="cf-phone-err"
     />
-    <p class="field-error" id="cf-phone-err" hidden></p>
   </div>
 
   <div class="field">
-    <label for="cf-zone">
-      Zona de la casa <span class="field-optional">(opcional)</span>
-    </label>
+    <label for="cf-location">Municipio o código postal <span aria-hidden="true">*</span></label>
     <input
-      id="cf-zone"
-      name="zone"
+      id="cf-location"
+      name="location"
       type="text"
-      autocomplete="off"
-      placeholder="Ej. Cadaqués, Llançà, interior del Empordà…"
+      autocomplete="postal-code"
+      placeholder="Ej. Cadaqués o 17488"
+      required
+      aria-required="true"
+      aria-describedby="cf-location-hint cf-location-err"
     />
+    <p class="field-hint" id="cf-location-hint">No necesitamos la dirección completa.</p>
+    <p class="field-error" id="cf-location-err" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-home-type">Tipo de vivienda <span aria-hidden="true">*</span></label>
+    <select
+      id="cf-home-type"
+      name="home_type"
+      required
+      aria-required="true"
+      aria-describedby="cf-home-type-err"
+    >
+      <option value="">Selecciona una opción</option>
+      <option value="apartment">Piso o apartamento</option>
+      <option value="townhouse">Casa adosada</option>
+      <option value="house">Casa unifamiliar</option>
+      <option value="other">Otra tipología</option>
+    </select>
+    <p class="field-error" id="cf-home-type-err" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-size">Tamaño aproximado <span aria-hidden="true">*</span></label>
+    <select
+      id="cf-size"
+      name="approximate_size"
+      required
+      aria-required="true"
+      aria-describedby="cf-size-err"
+    >
+      <option value="">Selecciona una opción</option>
+      <option value="up-to-75">Hasta 75 m²</option>
+      <option value="76-to-150">De 76 a 150 m²</option>
+      <option value="over-150">Más de 150 m²</option>
+      <option value="unknown">No lo sé</option>
+    </select>
+    <p class="field-error" id="cf-size-err" hidden></p>
   </div>
 
   <div class="field field-full">
-    <label for="cf-message">
-      Cuéntanos qué necesitas <span aria-hidden="true">*</span>
-    </label>
+    <label for="cf-interest">¿Qué te interesa? <span aria-hidden="true">*</span></label>
+    <select
+      id="cf-interest"
+      name="interest"
+      required
+      aria-required="true"
+      aria-describedby="cf-interest-err"
+    >
+      <option value="">Selecciona una opción</option>
+      <option value="recommendation">Quiero que me recomendéis</option>
+      <option value="lite">Lite · 1 visita al mes</option>
+      <option value="care">Care · 2 visitas al mes</option>
+      <option value="complete">Complete · 4 visitas al mes</option>
+      <option value="extra">Un servicio adicional</option>
+    </select>
+    <p class="field-error" id="cf-interest-err" hidden></p>
+  </div>
+
+  <div class="field field-full">
+    <label for="cf-message">Algo que debamos saber <span class="field-optional">(opcional)</span></label>
     <textarea
       id="cf-message"
       name="message"
       rows="4"
-      required
-      aria-describedby="cf-message-err"
+      aria-describedby="cf-message-hint"
     ></textarea>
-    <p class="field-error" id="cf-message-err" hidden></p>
+    <p class="field-hint" id="cf-message-hint">
+      No incluyas direcciones exactas, códigos de acceso, llaves ni periodos de ausencia.
+    </p>
   </div>
 
   <div class="field-full form-actions">
     <button type="submit" class="form-submit" data-submit>
-      <span data-submit-label>Enviar mensaje</span>
+      <span data-submit-label>Comprobar disponibilidad</span>
       <span class="form-spinner" data-submit-spinner aria-hidden="true"></span>
     </button>
     <p class="form-status" data-status role="status" aria-live="polite"></p>
   </div>
-
-  <div class="form-success" data-success hidden>
-    <p class="form-success-title">Mensaje enviado.</p>
-    <p class="form-success-text">
-      Gracias. Te respondemos en menos de 24h.
-    </p>
-  </div>
 </form>
+
+<div class="form-success" data-success role="status" tabindex="-1" hidden>
+  <p class="form-success-title">Solicitud recibida.</p>
+  <p class="form-success-text">
+    Revisaremos la ubicación y la información básica de la vivienda antes de proponerte el siguiente paso.
+  </p>
+</div>
 
 <style>
   .contact-form {
@@ -115,6 +156,7 @@ const {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    min-width: 0;
   }
   .field-full {
     grid-column: 1 / -1;
@@ -125,13 +167,25 @@ const {
     font-weight: 500;
     color: var(--text-primary);
   }
-  .field-optional {
+  .field-optional,
+  .field-hint {
     color: var(--text-muted);
     font-weight: 400;
   }
+  .field-hint,
+  .field-error {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  .field-error {
+    color: var(--error);
+  }
   input,
+  select,
   textarea {
     width: 100%;
+    min-height: 44px;
     padding: 0.75rem var(--space-md);
     font-family: var(--font-body);
     font-size: 1rem;
@@ -147,6 +201,7 @@ const {
     opacity: 0.7;
   }
   input:focus,
+  select:focus,
   textarea:focus {
     outline: none;
     border-color: var(--accent);
@@ -154,18 +209,13 @@ const {
   }
   textarea {
     resize: vertical;
-    min-height: 6rem;
-  }
-  .field-error {
-    margin: 0;
-    font-size: 0.8125rem;
-    color: var(--error);
+    min-height: 7rem;
   }
   .field[data-invalid] input,
+  .field[data-invalid] select,
   .field[data-invalid] textarea {
     border-color: var(--error);
   }
-
   .form-actions {
     display: flex;
     flex-direction: column;
@@ -177,6 +227,7 @@ const {
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
+    min-height: 44px;
     padding: 0.875rem 1.75rem;
     font-family: var(--font-body);
     font-size: 1rem;
@@ -202,7 +253,7 @@ const {
     display: none;
     width: 1rem;
     height: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.35);
+    border: 2px solid var(--border-strong);
     border-top-color: var(--color-white);
     border-radius: var(--radius-circle);
     animation: spin 0.8s linear infinite;
@@ -213,11 +264,6 @@ const {
   @keyframes spin {
     to { transform: rotate(360deg); }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .form-spinner { animation: none; }
-    .form-submit:hover { transform: none; }
-  }
-
   .form-status {
     margin: 0;
     font-size: 0.875rem;
@@ -226,13 +272,11 @@ const {
   .form-status[data-state="error"] {
     color: var(--error);
   }
-
   .form-success {
-    grid-column: 1 / -1;
     padding: var(--space-lg);
-    border: 1px solid rgba(107, 143, 113, 0.32);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-md);
-    background: rgba(107, 143, 113, 0.08);
+    background: var(--bg-section);
   }
   .form-success-title {
     margin: 0 0 var(--space-xs);
@@ -243,10 +287,13 @@ const {
   }
   .form-success-text {
     margin: 0;
-    font-size: 0.9375rem;
     color: var(--text-muted);
+    font-size: 0.9375rem;
   }
-
+  @media (prefers-reduced-motion: reduce) {
+    .form-spinner { animation: none; }
+    .form-submit:hover { transform: none; }
+  }
   @media (min-width: 640px) {
     .contact-form {
       grid-template-columns: 1fr 1fr;
@@ -256,94 +303,110 @@ const {
 
 <script>
   const form = document.querySelector<HTMLFormElement>("[data-form]");
+
   if (form) {
     const submit = form.querySelector<HTMLButtonElement>("[data-submit]");
     const label = form.querySelector<HTMLElement>("[data-submit-label]");
     const status = form.querySelector<HTMLElement>("[data-status]");
-    const success = form.querySelector<HTMLElement>("[data-success]");
-
+    const success = document.querySelector<HTMLElement>("[data-success]");
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const setErr = (id: string, msg: string | null) => {
-      const field = form.querySelector<HTMLElement>(`#cf-${id}`)?.closest<HTMLElement>(".field");
-      const err = form.querySelector<HTMLElement>(`#cf-${id}-err`);
-      if (!field || !err) return;
-      if (msg) {
+    const requestedPlan = new URLSearchParams(window.location.search).get("plan");
+    const requestedInterest = new URLSearchParams(window.location.search).get("interest");
+    const interest = form.querySelector<HTMLSelectElement>("#cf-interest");
+    const supportedInterests = new Set(["lite", "care", "complete", "extra"]);
+    const initialInterest = requestedPlan ?? requestedInterest;
+    if (interest && initialInterest && supportedInterests.has(initialInterest)) {
+      interest.value = initialInterest;
+    }
+
+    const setError = (id: string, message: string | null) => {
+      const control = form.querySelector<HTMLElement>(`#cf-${id}`);
+      const field = control?.closest<HTMLElement>(".field");
+      const error = form.querySelector<HTMLElement>(`#cf-${id}-err`);
+      if (!control || !field || !error) return;
+
+      if (message) {
         field.setAttribute("data-invalid", "");
-        err.textContent = msg;
-        err.hidden = false;
+        control.setAttribute("aria-invalid", "true");
+        error.textContent = message;
+        error.hidden = false;
       } else {
         field.removeAttribute("data-invalid");
-        err.textContent = "";
-        err.hidden = true;
+        control.removeAttribute("aria-invalid");
+        error.textContent = "";
+        error.hidden = true;
       }
     };
+
+    const requiredControls = [
+      { id: "name", message: "Dinos tu nombre." },
+      { id: "email", message: "Necesitamos tu email." },
+      { id: "location", message: "Indica el municipio o código postal." },
+      { id: "home-type", message: "Selecciona el tipo de vivienda." },
+      { id: "size", message: "Selecciona un tamaño aproximado." },
+      { id: "interest", message: "Selecciona qué te interesa." },
+    ];
 
     const validate = () => {
-      let ok = true;
-      const name = form.querySelector<HTMLInputElement>("#cf-name")!;
-      const email = form.querySelector<HTMLInputElement>("#cf-email")!;
-      const message = form.querySelector<HTMLTextAreaElement>("#cf-message")!;
+      let valid = true;
+      let firstInvalid: HTMLElement | null = null;
 
-      if (!name.value.trim()) { setErr("name", "Dinos tu nombre."); ok = false; }
-      else setErr("name", null);
-
-      if (!email.value.trim()) { setErr("email", "Necesitamos tu email."); ok = false; }
-      else if (!emailRe.test(email.value.trim())) { setErr("email", "Email no válido."); ok = false; }
-      else setErr("email", null);
-
-      if (!message.value.trim()) { setErr("message", "Cuéntanos algo."); ok = false; }
-      else setErr("message", null);
-
-      return ok;
-    };
-
-    const fields = form.querySelectorAll<HTMLElement>("input, textarea");
-    fields.forEach((f) => {
-      f.addEventListener("blur", () => {
-        const id = f.id.replace("cf-", "");
-        if (id === "name" || id === "email" || id === "message") {
-          const err = form.querySelector<HTMLElement>(`#cf-${id}-err`);
-          if (err && !err.hidden) validate();
-          else if (f.value.trim()) {
-            if (id === "email" && !emailRe.test(f.value.trim())) setErr("email", "Email no válido.");
-            else setErr(id, null);
-          }
+      requiredControls.forEach(({ id, message }) => {
+        const control = form.querySelector<HTMLInputElement | HTMLSelectElement>(`#cf-${id}`);
+        if (!control) return;
+        let error = control.value.trim() ? null : message;
+        if (id === "email" && control.value.trim() && !emailRe.test(control.value.trim())) {
+          error = "Introduce un email válido.";
+        }
+        setError(id, error);
+        if (error) {
+          valid = false;
+          firstInvalid ??= control;
         }
       });
-    });
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      if (!valid) firstInvalid?.focus();
+      return valid;
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
       status?.removeAttribute("data-state");
-      status!.textContent = "";
+      if (status) status.textContent = "";
+
       if (!validate()) {
-        status!.textContent = "Revisa los campos marcados.";
-        status?.setAttribute("data-state", "error");
+        if (status) {
+          status.textContent = "Revisa los campos marcados.";
+          status.setAttribute("data-state", "error");
+        }
         return;
       }
-      submit!.setAttribute("data-loading", "true");
-      submit!.disabled = true;
+
+      submit?.setAttribute("data-loading", "true");
+      if (submit) submit.disabled = true;
       if (label) label.textContent = "Enviando…";
 
       try {
-        const res = await fetch(form.action, {
+        const response = await fetch(form.action, {
           method: "POST",
           body: new FormData(form),
           headers: { Accept: "application/json" },
         });
-        if (res.ok) {
-          form.hidden = true;
-          if (success) success.hidden = false;
-        } else {
-          throw new Error("Bad response");
+        if (!response.ok) throw new Error("Bad response");
+        form.hidden = true;
+        if (success) {
+          success.hidden = false;
+          success.focus();
         }
       } catch {
-        status!.textContent = "Algo ha fallado. Inténtalo de nuevo o escríbenos a hola@happyhomes.cat.";
-        status?.setAttribute("data-state", "error");
-        submit!.removeAttribute("data-loading");
-        submit!.disabled = false;
-        if (label) label.textContent = "Enviar mensaje";
+        if (status) {
+          status.textContent = "No hemos podido enviar la solicitud. Inténtalo de nuevo o escríbenos a hola@happyhomes.cat.";
+          status.setAttribute("data-state", "error");
+        }
+        submit?.removeAttribute("data-loading");
+        if (submit) submit.disabled = false;
+        if (label) label.textContent = "Comprobar disponibilidad";
       }
     });
   }

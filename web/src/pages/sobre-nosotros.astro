@@ -5,7 +5,7 @@ import FeatureList from "../components/FeatureList.astro";
 import Coverage from "../components/Coverage.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Section from "../components/Section.astro";
-import Quote from "../components/Quote.astro";
+import { coverageAreas, coverageNote } from "../data/product";
 
 const values = [
   {
@@ -26,7 +26,7 @@ const values = [
   {
     icon: "sparkles",
     title: "Proactividad",
-    text: "No esperamos a que algo se rompa. Lo detectamos, lo comunicamos y proponemos una solución.",
+    text: "Comunicamos los cambios visibles, explicamos su prioridad y proponemos el siguiente paso.",
   },
   {
     icon: "users",
@@ -35,16 +35,6 @@ const values = [
   },
 ];
 
-const zones = [
-  "Olot",
-  "Costa Brava",
-  "Alt Empordà",
-  "De Llançà a Tossa de Mar",
-  "Figueres",
-  "Besalú",
-  "Banyoles",
-  "Interior del Empordà",
-];
 ---
 
 <Base
@@ -55,7 +45,7 @@ const zones = [
     eyebrow="Sobre nosotros"
     title="Somos propietarios como tú."
     lead="HappyHomes nace de nuestra propia experiencia. Los dos socios tenemos segunda residencia en el Alt Empordà. No pudimos encontrar este servicio. Así que lo creamos."
-    primaryCta={{ label: "Hablar con nosotros", href: "/contacto" }}
+    primaryCta={{ label: "Comprobar disponibilidad", href: "/contacto" }}
     illustration="house"
   />
 
@@ -64,13 +54,13 @@ const zones = [
       <div class="story-eyebrow">Cómo lo hacemos</div>
       <div class="story-body">
         <p>
-          Trabajamos en equipo. Cada casa tiene una persona asignada que la conoce
-          al detalle. Esa persona pasa, revisa, informa y coordina lo que haga falta.
+          Cada casa tiene un Responsable de Casa: una referencia estable que
+          conoce su ficha, sigue las visitas y mantiene la comunicación contigo.
         </p>
         <p>
-          Cuando algo necesita un especialista (fontanero, electricista, jardinero),
-          no te soltamos un número de teléfono. Lo coordinamos nosotros, supervisamos
-          el trabajo y te confirmamos que está todo correcto.
+          Si hace falta una sustitución, te indicamos quién accederá y queda
+          registrada. Cuando se necesita un especialista, podemos coordinarlo con
+          tu autorización y con el alcance y el coste explicados por adelantado.
         </p>
       </div>
     </div>
@@ -86,25 +76,15 @@ const zones = [
   />
 
   <Section>
-    <Quote>
-      <blockquote slot="text">
-        No quiero tener que preocuparme por la casa entre semana. Con que alguien
-        me diga que está todo bien, ya duermo tranquila.
-      </blockquote>
-      <figcaption slot="attribution">Marta · Propietaria en el Alt Empordà</figcaption>
-    </Quote>
-  </Section>
-
-  <Section>
     <div class="coverage-wrap" data-reveal>
-      <Coverage zones={zones} />
+      <Coverage zones={coverageAreas} note={coverageNote} />
     </div>
   </Section>
 
   <CtaBand
-    heading="¿Hablamos?"
-    lead="Cuéntanos dónde está tu casa. Te decimos con honestidad si podemos ayudarte."
-    ctaLabel="Contacta con nosotros"
+    heading="¿Podemos cuidar de tu casa?"
+    lead="Cuéntanos el municipio y el tipo de vivienda. Te confirmamos con honestidad si podemos ayudarte."
+    ctaLabel="Comprobar disponibilidad"
     ctaHref="/contacto"
   />
 </Base>

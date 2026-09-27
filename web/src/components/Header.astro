@@ -3,11 +3,11 @@ import Container from "./Container.astro";
 import Button from "./Button.astro";
 
 const nav = [
-  { href: "/", label: "Inicio" },
   { href: "/servicios", label: "Servicios" },
+  { href: "/como-funciona", label: "Cómo funciona" },
+  { href: "/el-informe", label: "El informe" },
   { href: "/sobre-nosotros", label: "Sobre nosotros" },
   { href: "/faq", label: "FAQ" },
-  { href: "/contacto", label: "Contacto" },
 ];
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -19,7 +19,15 @@ const isActive = (href: string) =>
   <Container>
     <div class="bar">
       <a class="wordmark" href="/" aria-label="HappyHomes — inicio">
-        HappyHomes
+        <img
+          class="wordmark-symbol"
+          src="/brand/happyhomes-symbol.svg"
+          width="844"
+          height="724"
+          alt=""
+          aria-hidden="true"
+        />
+        <span>HappyHomes</span>
       </a>
 
       <nav class="nav-desktop" aria-label="Principal">
@@ -38,7 +46,7 @@ const isActive = (href: string) =>
 
       <div class="cta-desktop">
         <Button href="/contacto" variant="primary" size="sm">
-          Hablar con nosotros
+          Comprobar disponibilidad
         </Button>
       </div>
 
@@ -59,7 +67,7 @@ const isActive = (href: string) =>
             ))
           }
           <Button href="/contacto" variant="primary" size="sm" class="mobile-cta">
-            Hablar con nosotros
+            Comprobar disponibilidad
           </Button>
         </nav>
       </details>
@@ -89,19 +97,28 @@ const isActive = (href: string) =>
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 600;
+    line-height: 1;
     letter-spacing: 0.05em;
     color: var(--color-petrol);
     text-decoration: none;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
+    gap: var(--space-sm);
     min-height: 44px;
+  }
+
+  .wordmark-symbol {
+    display: block;
+    width: auto;
+    height: 2.25rem;
+    flex: none;
   }
 
   .nav-desktop {
     display: none;
     align-items: center;
-    gap: var(--space-xl);
+    gap: clamp(var(--space-sm), 2vw, var(--space-xl));
   }
 
   .cta-desktop {
@@ -180,16 +197,13 @@ const isActive = (href: string) =>
     width: 100%;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1180px) {
     .nav-mobile {
       display: none;
     }
     .nav-desktop {
       display: flex;
     }
-  }
-
-  @media (min-width: 1024px) {
     .cta-desktop {
       display: inline-flex;
     }
