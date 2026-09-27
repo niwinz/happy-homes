@@ -1,0 +1,11 @@
+{
+  "name": "@happy-homes/video-gen",
+  "version": "1.0.0",
+  "description": "Internal OpenRouter video generation CLI",
+  "scripts": {
+    "cli": "node src/cli.js"
+  },
+  "license": "MPL-2.0",
+  "type": "module",
+  "private": true
+}

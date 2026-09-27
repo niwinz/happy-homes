@@ -46,10 +46,15 @@ permissions. Never amend a pushed commit unless the user explicitly asks.
 
 - Use Node `v24.21.0` (`.nvmrc`) and `pnpm@12.5.1`, both provided by the base image. The project intentionally has no `packageManager` pin and does not use Corepack.
 - Install from the repository root with `pnpm install`. The workspace store is configured as `.pnpm-store` in `pnpm-workspace.yaml`.
-- The only workspace package is the static Astro `7.3.5` site in `web/`.
+- Workspace packages are the static Astro `7.3.5` site in `web/` and the
+  dependency-free OpenRouter video CLI in `scripts/video-gen/`.
 - Run the development server from the root with `pnpm --filter happy-homes-web dev`; `astro.config.mjs` exposes it on `0.0.0.0:11001`, matching the first port reserved in `.manage.env`.
 - The verification gate is `pnpm --filter happy-homes-web build`. It currently builds all five routes cleanly. There are no configured test, lint, formatter, or CI workflows.
 - Do not rely on `pnpm --filter happy-homes-web check` yet: `@astrojs/check` and `typescript` are not declared, so Astro prompts for an interactive install.
+- Run the video CLI from the root with
+  `pnpm --filter @happy-homes/video-gen cli -- --help`. Its unit tests run with
+  `node --test scripts/video-gen/test/*.test.js`; never submit a paid generation
+  merely to verify code.
 
 ## Site wiring
 

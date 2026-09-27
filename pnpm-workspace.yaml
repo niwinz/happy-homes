@@ -1,5 +1,6 @@
 packages:
   - web
+  - scripts/video-gen
 allowBuilds:
   esbuild: true
   opencode-ai: true
