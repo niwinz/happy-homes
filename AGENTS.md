@@ -1,18 +1,46 @@
 # AI Agent Guide
 
-## CRITICAL: Read module memories BEFORE writing any code
+## CRITICAL: Read project knowledge BEFORE planning or coding
 
-Do this before planning, coding, or touching an application file:
+`knowledge/critical-info.md` is the graph root and the first required read for
+every task. Then identify every affected area below, read its starting point,
+and follow the relevant links from there. Cross-cutting tasks require every
+affected area; this also applies to small changes.
 
-1. Read `knowledge/critical-info.md`; it is the graph root for project memory.
-2. Identify every knowledge area affected by the task.
-3. Read each affected area's `core.md` and follow its relevant links.
-4. For UI or visual-asset work, also read `knowledge/brand/design.md`; it is the canonical visual specification.
-5. If memory prose conflicts with manifests, config, scripts, or current source wiring, trust executable sources for current behavior and flag business conflicts rather than guessing intent.
+### Essential knowledge starting points
 
-Do not proceed until you have read the relevant memories. This requirement also applies to small code changes.
+| Area | What belongs there | Start here | Continue with |
+|---|---|---|---|
+| Global project context | Project summary, memory map, source precedence, and unresolved conflicts | `knowledge/critical-info.md` | The affected areas below |
+| Brand | Brand principles, positioning language, voice, tone, vocabulary, taglines, and customer-facing expression | `knowledge/brand/core.md` | `knowledge/brand/design.md` for visual identity, UI, accessibility, logos, icons, illustrations, or other assets |
+| Product | The proposed service itself: plans, prices, scope, protocol, communication, evidence, extras, limits, data rules, and allowed or prohibited claims | `knowledge/product/core.md` | Its decision statuses and validation gates; this is the canonical product source |
+| Business | General business context, audiences, positioning inputs, pricing analysis, economics, and commercial hypotheses | `knowledge/business/core.md` | `knowledge/business/personas.md` for audience hypotheses; `knowledge/business/pricing-and-economics.md` for prices, economics, VAT, scope, or coverage analysis |
+| Web | Current runtime architecture, source locations, implementation constraints, required references, and known blockers | `knowledge/web/core.md` | The product, brand, business, and design sources it links for the specific change |
+| Research | External observations and competitive evidence; never product approval | `knowledge/research/serenohome-competitive-analysis.md` | The relevant canonical area before applying a finding |
+| Plans | Proposed implementation sequences; never approval of product or business decisions | `knowledge/plans/serenohome-improvements.md` | The source documents and validation gates referenced by the plan |
+| Workflow | Repository procedures | `knowledge/workflow/core.md` | `knowledge/workflow/creating-commits.md` before every commit |
 
-Before creating any commit, read `knowledge/workflow/creating-commits.md`. It is the source of truth for commit format, line limits, AI attribution, and amend permissions. Never amend a pushed commit unless the user explicitly asks.
+### Knowledge authority and conflicts
+
+- `knowledge/product/core.md` defines what the proposed product is and what may
+  be claimed. Never turn a provisional, pending, research, persona, pricing, or
+  plan hypothesis into a public promise.
+- `knowledge/brand/core.md` defines how HappyHomes speaks;
+  `knowledge/brand/design.md` defines how it looks and behaves.
+- `knowledge/business/` contains business context and analysis. Its personas and
+  economic scenarios are inputs, not validated facts or current product terms.
+- `knowledge/research/` records evidence and recommendations;
+  `knowledge/plans/` records proposed sequencing. Neither overrides the product
+  canon or constitutes implementation approval.
+- Manifests, config, scripts, and current source wiring define current technical
+  behavior. If they conflict with business memory, report the conflict rather
+  than guessing or silently blending alternatives.
+
+Do not proceed until the required knowledge has been read.
+
+Before creating any commit, read `knowledge/workflow/creating-commits.md`. It is
+the source of truth for commit format, line limits, AI attribution, and amend
+permissions. Never amend a pushed commit unless the user explicitly asks.
 
 ## Tooling and commands
 
