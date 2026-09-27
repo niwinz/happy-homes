@@ -14,9 +14,12 @@ critical-info
 ├── brand/core
 │   └── brand/design
 ├── product/core
+│   └── product/service-agreement-template
 ├── business/core
 │   ├── business/personas
-│   └── business/pricing-and-economics
+│   ├── business/pricing-and-economics
+│   ├── business/legal-identity.json
+│   └── business/clients/README
 ├── web/core
 │   └── brand/design
 ├── research/serenohome-competitive-analysis
@@ -34,6 +37,7 @@ task. Follow links from that core only when they are relevant.
 | Product, plans, service, protocol, communication, data, or claims | `product/core.md` |
 | Audience or positioning | `business/core.md`, then `business/personas.md` |
 | Plans, prices, service scope | `product/core.md`; then `business/pricing-and-economics.md` for analysis |
+| Agreement data or document generation | `product/core.md`, `business/core.md`, `product/service-agreement-template.md`, `business/legal-identity.json`, `business/clients/README.md`, then `../scripts/contract-gen/AGENTS.md` |
 | UI, components, or accessibility | `web/core.md`, then `brand/design.md` |
 | Logo or illustration assets | `brand/core.md`, then `brand/design.md` |
 | Creating a commit | `workflow/core.md`, then `workflow/creating-commits.md` |

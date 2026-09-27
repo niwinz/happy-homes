@@ -1,0 +1,12 @@
+{
+  "name": "@happy-homes/contract-gen",
+  "version": "1.0.0",
+  "description": "Local HappyHomes agreement DOCX and PDF generator",
+  "scripts": {
+    "cli": "node src/cli.js",
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MPL-2.0",
+  "type": "module",
+  "private": true
+}

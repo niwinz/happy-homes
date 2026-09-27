@@ -19,29 +19,29 @@ legal_review_required: true
 
 ## Datos del acuerdo
 
-**Número de acuerdo:** `{{agreement_id}}`
+**Número de acuerdo:** `{{contractId}}`
 
-**Fecha y lugar de firma:** `{{signed_at_date}}`, `{{signed_at_place}}`
+**Fecha y lugar de firma:** `{{signedAtDate}}`, `{{signedAtPlace}}`
 
-**Versión de la plantilla:** `{{template_version}}`
+**Versión de la plantilla:** `{{templateVersion}}`
 
 ### HappyHomes
 
-- **Nombre o razón social:** `{{provider_legal_name}}`
-- **NIF/CIF:** `{{provider_tax_id}}`
-- **Domicilio:** `{{provider_registered_address}}`
-- **Email contractual:** `{{provider_contract_email}}`
-- **Teléfono:** `{{provider_phone}}`
-- **Representante, si procede:** `{{provider_representative}}`
+- **Nombre o razón social:** `{{providerLegalName}}`
+- **NIF/CIF:** `{{providerTaxId}}`
+- **Domicilio:** `{{providerRegisteredAddress}}`
+- **Email contractual:** `{{providerContractEmail}}`
+- **Teléfono:** `{{providerPhone}}`
+- **Representante, si procede:** `{{providerRepresentative}}`
 
 ### Propietario o persona autorizante
 
-- **Nombre y apellidos:** `{{customer_full_name}}`
-- **DNI/NIE/pasaporte:** `{{customer_identity_document}}`
-- **Domicilio a efectos de notificaciones:** `{{customer_notice_address}}`
-- **Email:** `{{customer_email}}`
-- **Teléfono:** `{{customer_phone}}`
-- **Condición en la que firma:** `{{customer_authority_basis}}`
+- **Nombre y apellidos:** `{{customerFullName}}`
+- **DNI/NIE/pasaporte:** `{{customerIdentityDocument}}`
+- **Domicilio a efectos de notificaciones:** `{{customerNoticeAddress}}`
+- **Email:** `{{customerEmail}}`
+- **Teléfono:** `{{customerPhone}}`
+- **Condición en la que firma:** `{{customerAuthorityBasis}}`
 
 La persona firmante declara que es titular de la vivienda o que dispone de
 facultades suficientes para contratar el servicio, autorizar los accesos
@@ -150,17 +150,17 @@ HappyHomes y la persona firmante se denominan conjuntamente **las partes**.
 El propietario debe marcar **una sola opción**. No autorizar vídeo no impide
 contratar el servicio ni reduce el protocolo de visita.
 
-- [ ] **Opción A — vídeo sin audio.** Autorizo de forma expresa, libre, específica
+- {{evidenceVideoCheckbox}} **Opción A — vídeo sin audio.** Autorizo de forma expresa, libre, específica
       e informada la grabación de vídeo continuo y sin sonido durante las visitas
       para documentar la prestación y facilitarme el informe. El vídeo se
-      eliminará como máximo `{{video_retention_days}}` días después de entregarse
+      eliminará como máximo `{{videoRetentionDays}}` días después de entregarse
       el informe. Pueden añadirse fotografías puntuales cuando expliquen mejor
       una observación.
-- [ ] **Opción B — solo fotografías.** No autorizo la grabación de vídeo y autorizo
+- {{evidencePhotosCheckbox}} **Opción B — solo fotografías.** No autorizo la grabación de vídeo y autorizo
       que la visita se documente exclusivamente mediante fotografías fechadas y
       las anotaciones del informe.
 
-**Iniciales del propietario junto a la opción elegida:** `{{evidence_choice_initials}}`
+**Iniciales del propietario junto a la opción elegida:** `{{evidenceChoiceInitials}}`
 
 ### 5.2 Reglas comunes
 
@@ -174,7 +174,7 @@ contratar el servicio ni reduce el protocolo de visita.
    haya autorizado. Nunca se utilizarán en publicidad, redes sociales, formación
    o demostraciones sin un consentimiento separado, específico y posterior.
 4. El propietario puede cambiar la modalidad para visitas futuras escribiendo a
-   `{{privacy_contact_email}}`. Retirar el consentimiento para vídeo no afecta a
+   `{{privacyContactEmail}}`. Retirar el consentimiento para vídeo no afecta a
    la licitud del tratamiento anterior a la retirada ni cancela el servicio. Los
    vídeos basados en ese consentimiento se suprimirán sin demora, salvo
    conservación legalmente exigible, y las visitas siguientes se documentarán
@@ -206,9 +206,9 @@ contratar el servicio ni reduce el protocolo de visita.
 
 ### 7.1 Responsable, datos y finalidades
 
-El responsable del tratamiento es `{{data_controller_legal_name}}`, con NIF/CIF
-`{{data_controller_tax_id}}`, domicilio en `{{data_controller_address}}` y
-contacto de privacidad `{{privacy_contact_email}}`.
+El responsable del tratamiento es `{{dataControllerLegalName}}`, con NIF/CIF
+`{{dataControllerTaxId}}`, domicilio en `{{dataControllerAddress}}` y
+contacto de privacidad `{{privacyContactEmail}}`.
 
 HappyHomes tratará, según resulte necesario:
 
@@ -251,12 +251,12 @@ validados jurídicamente y poder ejecutarse técnicamente antes de firmar:
 
 | Categoría | Conservación propuesta |
 |---|---|
-| Acuerdo y autorizaciones | Durante la relación y después durante `{{agreement_retention_period}}`, atendiendo a los plazos legales de responsabilidad aplicables |
-| Facturación y pagos | Durante `{{billing_retention_period}}`, según las obligaciones contables y fiscales aplicables |
-| Informes y fotografías | Durante el servicio y `{{report_retention_months}}` meses después de la baja |
-| Vídeo de una visita | Hasta `{{video_retention_days}}` días desde la entrega del informe, o menos si así se acuerda |
+| Acuerdo y autorizaciones | Durante la relación y después durante `{{agreementRetentionPeriod}}`, atendiendo a los plazos legales de responsabilidad aplicables |
+| Facturación y pagos | Durante `{{billingRetentionPeriod}}`, según las obligaciones contables y fiscales aplicables |
+| Informes y fotografías | Durante el servicio y `{{reportRetentionMonths}}` meses después de la baja |
+| Vídeo de una visita | Hasta `{{videoRetentionDays}}` días desde la entrega del informe, o menos si así se acuerda |
 | Evidencia vinculada a una incidencia o reclamación | Mientras sea necesaria para gestionarla; después quedará bloqueada durante el plazo legal aplicable y se eliminará al terminarlo |
-| Registro de llaves y accesos | Durante el servicio y `{{access_log_retention_months}}` meses después de la baja |
+| Registro de llaves y accesos | Durante el servicio y `{{accessLogRetentionMonths}}` meses después de la baja |
 | Conversaciones rutinarias | Se depurarán después de la baja, una vez incorporadas a la ficha las decisiones y autorizaciones que deban conservarse |
 
 Cuando termine un plazo, los datos se eliminarán o anonimizarán de forma segura,
@@ -268,13 +268,13 @@ su plazo máximo.
 
 La persona interesada puede solicitar acceso, rectificación, supresión,
 oposición, limitación o portabilidad, cuando proceda, y retirar el consentimiento
-para vídeo escribiendo a `{{privacy_contact_email}}` o a
-`{{privacy_postal_address}}`. También puede reclamar ante la Agencia Española de
+para vídeo escribiendo a `{{privacyContactEmail}}` o a
+`{{privacyPostalAddress}}`. También puede reclamar ante la Agencia Española de
 Protección de Datos en <https://www.aepd.es>.
 
 La información adicional se encuentra en la política de privacidad versión
-`{{privacy_notice_version}}`, entregada junto con este acuerdo y disponible en
-`{{privacy_notice_url_or_attachment}}`.
+`{{privacyNoticeVersion}}`, entregada junto con este acuerdo y disponible en
+`{{privacyNoticeUrlOrAttachment}}`.
 
 ## 8. Precio, duración, cambios y baja
 
@@ -298,11 +298,11 @@ La información adicional se encuentra en la política de privacidad versión
 ## 9. Derecho de desistimiento cuando resulte aplicable
 
 Si el acuerdo se celebra a distancia o fuera del establecimiento, el propietario
-consumidor puede desistir sin indicar motivo dentro de `{{withdrawal_days}}` días
+consumidor puede desistir sin indicar motivo dentro de `{{withdrawalDays}}` días
 naturales desde su celebración, mediante una declaración inequívoca enviada a
-`{{withdrawal_contact}}`. Se entrega como anexo el modelo de desistimiento.
+`{{withdrawalContact}}`. Se entrega como anexo el modelo de desistimiento.
 
-- [ ] **Solicitud de inicio anticipado.** Solicito expresamente que el servicio
+- {{earlyStartCheckbox}} **Solicitud de inicio anticipado.** Solicito expresamente que el servicio
       comience antes de que termine el plazo de desistimiento. Entiendo que, si
       desisto después de su inicio, deberé abonar el importe proporcional a la
       parte efectivamente prestada en los términos legalmente aplicables.
@@ -325,10 +325,10 @@ posterior indicada en la ficha.
    aplicable. La parte afectada informará sin demora y procurará reducir sus
    consecuencias.
 4. Las dudas, incidencias contractuales y reclamaciones pueden dirigirse a
-   `{{complaints_contact}}`. Las partes intentarán resolverlas de buena fe, sin
+   `{{complaintsContact}}`. Las partes intentarán resolverlas de buena fe, sin
    limitar el derecho del consumidor a acudir a las autoridades o tribunales que
    resulten competentes.
-5. El acuerdo se rige por `{{applicable_law}}`, respetando siempre las normas
+5. El acuerdo se rige por `{{applicableLaw}}`, respetando siempre las normas
    imperativas de protección de consumidores y datos personales.
 
 ## 11. Aceptación y firmas
@@ -339,10 +339,10 @@ La elección de vídeo se presta de manera separada en la sección 5.
 
 | Por HappyHomes | Propietario o persona autorizante |
 |---|---|
-| Nombre: `{{provider_signatory_name}}` | Nombre: `{{customer_full_name}}` |
-| Cargo: `{{provider_signatory_role}}` | Documento: `{{customer_identity_document}}` |
+| Nombre: `{{providerSignatoryName}}` | Nombre: `{{customerFullName}}` |
+| Cargo: `{{providerSignatoryRole}}` | Documento: `{{customerIdentityDocument}}` |
 | Firma: | Firma: |
-| Fecha: `{{provider_signature_date}}` | Fecha: `{{customer_signature_date}}` |
+| Fecha: `{{providerSignatureDate}}` | Fecha: `{{customerSignatureDate}}` |
 
 ---
 
@@ -352,88 +352,87 @@ La elección de vídeo se presta de manera separada en la sección 5.
 
 | Campo | Condición acordada |
 |---|---|
-| Código interno de casa | `{{home_code}}` |
-| Dirección completa | `{{service_address}}` |
-| Tipología y superficie aproximada | `{{home_type_and_size}}` |
-| Plan o propuesta aceptada | `{{plan_name_or_quote_id}}` |
-| Visitas por mes natural | `{{visits_per_calendar_month}}` |
-| Fecha de inicio | `{{service_start_date}}` |
-| Duración/modalidad | `{{service_term_and_billing_mode}}` |
-| Precio final | `{{final_price_and_vat}}` |
-| Cobro | `{{billing_schedule_and_method}}` |
-| Ventana y horario de visita | `{{visit_window_and_service_hours}}` |
-| Entrega ordinaria del informe | `{{report_delivery_term_and_channel}}` |
-| Responsable de Casa | `{{home_manager_name_and_contact}}` |
-| Contactos autorizados | `{{authorized_contacts}}` |
+| Dirección completa | `{{serviceAddress}}` |
+| Tipología y superficie aproximada | `{{homeTypeAndSize}}` |
+| Plan o propuesta aceptada | `{{planNameOrQuoteId}}` |
+| Visitas por mes natural | `{{visitsPerCalendarMonth}}` |
+| Fecha de inicio | `{{serviceStartDate}}` |
+| Duración/modalidad | `{{serviceTermAndBillingMode}}` |
+| Precio final | `{{finalPriceAndVat}}` |
+| Cobro | `{{billingScheduleAndMethod}}` |
+| Ventana y horario de visita | `{{visitWindowAndServiceHours}}` |
+| Entrega ordinaria del informe | `{{reportDeliveryTermAndChannel}}` |
+| Responsable de Casa | `{{homeManagerNameAndContact}}` |
+| Contactos autorizados | `{{authorizedContacts}}` |
 
 ## B. Protocolo
 
-**Zonas incluidas:** `{{included_areas}}`
+**Zonas incluidas:** `{{includedAreas}}`
 
-**Zonas o elementos excluidos:** `{{excluded_areas}}`
+**Zonas o elementos excluidos:** `{{excludedAreas}}`
 
 **Comprobaciones autorizadas:**
 
-- [ ] Abrir grifos accesibles y descargar inodoros.
-- [ ] Encender luces o equipos concretos: `{{authorized_equipment}}`.
-- [ ] Ventilar brevemente cuando resulte seguro y apropiado.
-- [ ] Abrir/cerrar contraventanas o persianas indicadas: `{{authorized_shutters}}`.
-- [ ] Leer temperatura o humedad disponible sin certificar su exactitud.
-- [ ] Restituir a la salida el siguiente perfil: `{{exit_profile}}`.
-- [ ] Otra actuación simple: `{{other_authorized_simple_action}}`.
+- {{protocolWaterCheckbox}} Abrir grifos accesibles y descargar inodoros.
+- {{protocolEquipmentCheckbox}} Encender luces o equipos concretos: `{{authorizedEquipment}}`.
+- {{protocolVentilationCheckbox}} Ventilar brevemente cuando resulte seguro y apropiado.
+- {{protocolShuttersCheckbox}} Abrir/cerrar contraventanas o persianas indicadas: `{{authorizedShutters}}`.
+- {{protocolClimateReadingCheckbox}} Leer temperatura o humedad disponible sin certificar su exactitud.
+- {{protocolExitProfileCheckbox}} Restituir a la salida el siguiente perfil: `{{exitProfile}}`.
+- {{protocolOtherCheckbox}} Otra actuación simple: `{{otherAuthorizedSimpleAction}}`.
 
-**No se autoriza:** `{{explicitly_unauthorized_actions}}`
+**No se autoriza:** `{{explicitlyUnauthorizedActions}}`
 
 ## C. Acceso y llaves
 
 | Campo | Condición acordada |
 |---|---|
-| Medio de acceso, sin incluir secretos | `{{access_method_category}}` |
-| Custodia de una llave por HappyHomes | `{{key_custody_yes_no}}` |
-| Referencia del justificante separado | `{{key_receipt_reference}}` |
-| Personas/equipo autorizados para acceder | `{{authorized_access_roles_or_people}}` |
-| Procedimiento si el acceso falla | `{{failed_access_rule}}` |
-| Condición de reprogramación | `{{rescheduling_rule}}` |
+| Medio de acceso, sin incluir secretos | `{{accessMethodCategory}}` |
+| Custodia de una llave por HappyHomes | `{{keyCustodyYesNo}}` |
+| Referencia del justificante separado | `{{keyReceiptReference}}` |
+| Personas/equipo autorizados para acceder | `{{authorizedAccessRolesOrPeople}}` |
+| Procedimiento si el acceso falla | `{{failedAccessRule}}` |
+| Condición de reprogramación | `{{reschedulingRule}}` |
 
 ## D. Evidencia y entrega
 
 | Campo | Condición acordada |
 |---|---|
-| Modalidad elegida en la sección 5 | `{{evidence_mode_video_or_photos}}` |
-| Contingencia aprobada si falla la grabación | `{{recording_failure_contingency}}` |
-| Personas autorizadas para recibir informes | `{{report_recipients}}` |
-| Canal seguro de entrega | `{{secure_delivery_channel}}` |
-| Plazo de vídeo, máximo desde la entrega | `{{video_retention_days}}` días |
+| Modalidad elegida en la sección 5 | `{{evidenceModeVideoOrPhotos}}` |
+| Contingencia aprobada si falla la grabación | `{{recordingFailureContingency}}` |
+| Personas autorizadas para recibir informes | `{{reportRecipients}}` |
+| Canal seguro de entrega | `{{secureDeliveryChannel}}` |
+| Plazo de vídeo, máximo desde la entrega | `{{videoRetentionDays}}` días |
 
 ## E. Incidencias y gasto
 
 **Límite elegido para una medida urgente destinada a reducir un daño aparente:**
 
-- [ ] **0 €** — toda actuación o gasto requiere aprobación previa.
-- [ ] **Hasta 100 €**, impuestos incluidos.
-- [ ] **Otro límite:** `{{custom_emergency_spend_limit}}`.
+- {{emergencyZeroCheckbox}} **0 €** — toda actuación o gasto requiere aprobación previa.
+- {{emergencyHundredCheckbox}} **Hasta 100 €**, impuestos incluidos.
+- {{emergencyCustomCheckbox}} **Otro límite:** `{{customEmergencySpendLimit}}`.
 
-**Personas que pueden autorizar gastos:** `{{spend_authorizers}}`
+**Personas que pueden autorizar gastos:** `{{spendAuthorizers}}`
 
-**Canal para autorización escrita:** `{{written_authorization_channel}}`
+**Canal para autorización escrita:** `{{writtenAuthorizationChannel}}`
 
-**Contacto prioritario durante una incidencia:** `{{incident_contact_order}}`
+**Contacto prioritario durante una incidencia:** `{{incidentContactOrder}}`
 
 ## F. Baja y devolución
 
 | Campo | Condición acordada |
 |---|---|
-| Preaviso y forma de baja | `{{termination_notice_and_method}}` |
-| Efecto de visitas no utilizadas | `{{unused_visits_rule}}` |
-| Condiciones específicas de modalidad anual, si procede | `{{annual_plan_termination_terms_or_na}}` |
-| Devolución de llaves/revocación de acceso | `{{access_return_method}}` |
+| Preaviso y forma de baja | `{{terminationNoticeAndMethod}}` |
+| Efecto de visitas no utilizadas | `{{unusedVisitsRule}}` |
+| Condiciones específicas de modalidad anual, si procede | `{{annualPlanTerminationTermsOrNa}}` |
+| Devolución de llaves/revocación de acceso | `{{accessReturnMethod}}` |
 
 Firmas de conformidad con la ficha:
 
 | Por HappyHomes | Propietario o persona autorizante |
 |---|---|
 | Firma: | Firma: |
-| Fecha: `{{provider_annex_signature_date}}` | Fecha: `{{customer_annex_signature_date}}` |
+| Fecha: `{{providerAnnexSignatureDate}}` | Fecha: `{{customerAnnexSignatureDate}}` |
 
 ---
 
@@ -442,16 +441,16 @@ Firmas de conformidad con la ficha:
 > Completar y enviar únicamente si desea desistir y este derecho resulta
 > aplicable.
 
-A la atención de `{{withdrawal_recipient_legal_name}}`,
-`{{withdrawal_postal_address}}`, `{{withdrawal_email}}`:
+A la atención de `{{withdrawalRecipientLegalName}}`,
+`{{withdrawalPostalAddress}}`, `{{withdrawalEmail}}`:
 
 Por la presente comunico que desisto del acuerdo de prestación del servicio
 HappyHomes identificado a continuación:
 
-- Número de acuerdo: `{{agreement_id}}`
-- Fecha de celebración: `{{signed_at_date}}`
-- Nombre del consumidor: `{{customer_full_name}}`
-- Domicilio: `{{customer_notice_address}}`
+- Número de acuerdo: `{{contractId}}`
+- Fecha de celebración: `{{signedAtDate}}`
+- Nombre del consumidor: `{{customerFullName}}`
+- Domicilio: `{{customerNoticeAddress}}`
 - Fecha de la comunicación: _________________________________________________
 - Firma, solo si se presenta en papel: ______________________________________
 
@@ -491,12 +490,12 @@ Estos valores permiten probar la futura generación, pero mantienen el estado
 
 | Variable | Valor de trabajo | Estado/origen |
 |---|---|---|
-| `report_retention_months` | `12` después de la baja | Provisional, producto §12.4 |
-| `video_retention_days` | `15` desde la entrega del informe, como máximo | Provisional, producto §9.3 y §12.4 |
-| `access_log_retention_months` | `12` después de la baja | Provisional, producto §12.4 |
-| `agreement_retention_period` | `plazo legal aplicable`; requiere separar responsabilidades contractuales | Pendiente de revisión legal; producto §12.4 agrupa contrato y facturación |
-| `billing_retention_period` | `plazo legal aplicable`; hipótesis interna de 6 años | Provisional, producto §12.4 |
-| `visits_per_calendar_month` | `1`, `2` o `4` | Provisional, producto §6.2 |
+| `reportRetentionMonths` | `12` después de la baja | Provisional, producto §12.4 |
+| `videoRetentionDays` | `15` desde la entrega del informe, como máximo | Provisional, producto §9.3 y §12.4 |
+| `accessLogRetentionMonths` | `12` después de la baja | Provisional, producto §12.4 |
+| `agreementRetentionPeriod` | `plazo legal aplicable`; requiere separar responsabilidades contractuales | Pendiente de revisión legal; producto §12.4 agrupa contrato y facturación |
+| `billingRetentionPeriod` | `plazo legal aplicable`; hipótesis interna de 6 años | Provisional, producto §12.4 |
+| `visitsPerCalendarMonth` | `1`, `2` o `4` | Provisional, producto §6.2 |
 | límite estándar de vivienda | hasta `150 m²` interiores | Provisional, producto §3.2 |
 | límite de gasto | `0 €`, `100 €` u otro pactado | Provisional, producto §10.2 |
 | horario | lunes a viernes, `09:00–18:00` | Provisional, producto §4.3 |
@@ -504,56 +503,65 @@ Estos valores permiten probar la futura generación, pero mantienen el estado
 No incorporar automáticamente precios, anualidad o custodia de llaves hasta que
 sus puertas de validación estén cerradas en `knowledge/product/core.md`.
 
-## 3. Reglas para la futura generación DOCX/PDF
+## 3. Reglas para la generación DOCX/PDF
 
-1. Mantener este Markdown como contenido base versionado y los datos de cada
-   acuerdo en un archivo estructurado separado; nunca guardar datos de clientes
-   en Git.
-2. Definir un esquema de variables con tipo, obligatoriedad, opciones permitidas
-   y reglas condicionales.
+1. Mantener este Markdown como única plantilla de contenido. La identidad del
+   proveedor vive en `knowledge/business/legal-identity.json` y cada contrato en
+   un único `knowledge/business/clients/<contract_id>/contract.json`.
+2. Los campos desconocidos pueden quedar vacíos para rellenarlos a mano. Usar
+   códigos opacos en las rutas y no incluir nombres personales.
 3. Bloquear la generación firmable si:
    - queda cualquier marcador `{{...}}`;
    - `legal_review_required` sigue en `true`;
-   - no se ha elegido exactamente una modalidad de evidencia;
-   - falta la solicitud o no solicitud de inicio durante el desistimiento;
-   - se selecciona vídeo sin consentimiento separado;
    - los plazos del documento no coinciden con la política técnica de borrado;
    - se incluye una modalidad anual sin condiciones aprobadas;
-   - faltan firmas o anexos exigibles.
+   - se intenta retirar el aviso mientras siguen abiertas las aprobaciones.
 4. Generar DOCX y PDF desde el mismo documento resuelto, sin mantener dos
    plantillas legales independientes.
-5. Excluir esta sección interna y el aviso de borrador solo cuando exista una
-   versión aprobada. Conservar en el resultado el identificador y la versión de
-   plantilla, fecha, anexos, elección de evidencia y huella o registro de firma.
+5. Excluir esta sección interna y retirar el aviso de borrador solo cuando exista
+   una versión aprobada.
 6. Comprobar visualmente saltos de página, tablas, casillas, firmas, enlaces y
    accesibilidad del PDF. El PDF final no debe depender del color para mostrar
    elecciones o condiciones.
+7. Guardar el PDF firmado dentro del expediente versionado del acuerdo. No
+   sobrescribirlo ni regenerarlo: una corrección posterior requiere una adenda o
+   un nuevo acuerdo identificado.
 
-## 4. Arquitectura recomendada para el futuro generador
+## 4. Arquitectura del generador
 
 ```text
-plantilla Markdown versionada + datos JSON validados
+knowledge/business/legal-identity.json
+                         +
+knowledge/business/clients/<contract_id>/contract.json
+                         +
+plantilla Markdown versionada
                          ↓
             resolución determinista local
                          ↓
-          Markdown firmable sin notas internas
-                         ↓
-      DOCX con estilos de referencia → PDF derivado
+       Markdown temporal sin notas internas
+                    ↙               ↘
+     DOCX con estilos              PDF XeLaTeX
+                    ↓
+ clients/<contract_id>/agreement-signed.pdf
 ```
 
-- El LLM puede ayudar a mantener la plantilla, pero no debe ser necesario para
-  completar un acuerdo ni recibir datos reales de clientes. La combinación de
-  datos, selección de cláusulas y validación deben ejecutarse localmente mediante
-  código determinista.
-- El archivo de datos debe cumplir un esquema versionado y vivir fuera del
-  repositorio. No debe contener códigos de alarma, ubicación de llaves ni otras
-  credenciales.
-- Una opción práctica para evaluar es generar DOCX con Pandoc y un
-  `reference.docx`, y derivar el PDF de ese DOCX mediante LibreOffice en modo
-  no interactivo. La elección final requiere una prueba de fidelidad,
-  accesibilidad, metadatos y disponibilidad en el entorno de ejecución.
-- Cada resultado debe conservar versión de plantilla, versión del esquema,
-  fecha de generación y una huella del documento final para trazabilidad.
+- El LLM puede ayudar a mantener la plantilla y los datos, pero la
+  combinación de datos, selección de cláusulas y validación debe ejecutarse
+  localmente mediante código determinista.
+- Los archivos JSON no deben contener códigos de alarma, ubicación de llaves ni
+  otras credenciales operativas.
+- El repositorio es privado, pero Git conserva versiones anteriores. La política
+  de retención debe definir cómo retirar y, cuando sea jurídicamente necesario,
+  purgar del historial datos personales vencidos, así como quién puede acceder
+  al repositorio y a sus copias de seguridad.
+- El generador local usa Pandoc para ambos formatos, un `reference.docx` para
+  Word y XeLaTeX para PDF. Ambos parten del mismo Markdown resuelto y requieren
+  una revisión visual antes de entregar el documento.
+- El PDF firmado es la evidencia contractual canónica. `contract.json`, el DOCX
+  y el PDF previo a firma son fuentes o derivados regenerables.
+- Si el documento firmado procede de un escaneo, conservar el archivo original
+  sin modificar. Cualquier versión con OCR o compresión es un derivado separado
+  y no sustituye al original firmado.
 
 ## 5. Fuentes de contraste
 

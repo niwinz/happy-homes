@@ -1,5 +1,6 @@
 packages:
   - web
+  - scripts/contract-gen
   - scripts/video-gen
 allowBuilds:
   esbuild: true

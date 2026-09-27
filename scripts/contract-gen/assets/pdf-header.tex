@@ -1,0 +1,75 @@
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{newunicodechar}
+\usepackage{mdframed}
+\usepackage{colortbl}
+
+\definecolor{HappyPetrol}{HTML}{1A3A4A}
+\definecolor{HappyTerracotta}{HTML}{C76B4C}
+\definecolor{HappyAccentText}{HTML}{A04A2E}
+\definecolor{HappyCream}{HTML}{F2ECE4}
+\definecolor{HappyMuted}{HTML}{4F5B62}
+\definecolor{HappyBorder}{HTML}{CBD3D7}
+
+\newfontfamily\happyheading[
+  BoldFont=EBGaramond-Bold.otf,
+  ItalicFont=EBGaramond-Italic.otf,
+  BoldItalicFont=EBGaramond-BoldItalic.otf
+]{EBGaramond-Regular.otf}
+\newfontfamily\happysymbols{Noto Sans Symbols2}
+\setdefaultlanguage{spanish}
+\newunicodechar{☐}{{\happysymbols ☐}}
+\newunicodechar{☒}{{\happysymbols ☒}}
+
+\color{HappyPetrol}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.42em}
+\renewcommand{\arraystretch}{1.16}
+\arrayrulecolor{HappyBorder}
+
+\titleformat{\section}
+  {\Large\happyheading\bfseries\color{HappyPetrol}}
+  {}{0pt}{}
+  [\vspace{-0.35em}{\color{HappyTerracotta}\titlerule[0.6pt]}]
+\titleformat{\subsection}
+  {\large\happyheading\bfseries\color{HappyPetrol}}
+  {}{0pt}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{HappyAccentText}}
+  {}{0pt}{}
+\titlespacing*{\section}{0pt}{1.3em}{0.55em}
+\titlespacing*{\subsection}{0pt}{1em}{0.35em}
+\titlespacing*{\subsubsection}{0pt}{0.8em}{0.25em}
+
+\renewenvironment{quote}
+  {\begin{mdframed}[
+    backgroundcolor=HappyCream,
+    linecolor=HappyTerracotta,
+    linewidth=0.6pt,
+    leftline=true,
+    rightline=false,
+    topline=false,
+    bottomline=false,
+    innerleftmargin=9pt,
+    innerrightmargin=9pt,
+    innertopmargin=7pt,
+    innerbottommargin=7pt]
+    \small\color{HappyPetrol}}
+  {\end{mdframed}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\happyheading\bfseries\color{HappyPetrol}HappyHomes}
+\fancyhead[R]{\footnotesize\color{HappyMuted}__DOCUMENT_STATUS____AGREEMENT_ID__}
+\fancyfoot[C]{\footnotesize\color{HappyMuted}HappyHomes · Acuerdo de servicio · \thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{HappyTerracotta}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\AtBeginDocument{\hypersetup{
+  pdftitle={HappyHomes — Acuerdo __AGREEMENT_ID__},
+  pdfauthor={HappyHomes}
+}}
