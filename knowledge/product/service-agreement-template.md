@@ -507,7 +507,7 @@ sus puertas de validación estén cerradas en `knowledge/product/core.md`.
 
 1. Mantener este Markdown como única plantilla de contenido. La identidad del
    proveedor vive en `knowledge/business/legal-identity.json` y cada contrato en
-   un único `knowledge/business/clients/<contract_id>/contract.json`.
+   un único `contracts/<contract_id>/contract.json`.
 2. Los campos desconocidos pueden quedar vacíos para rellenarlos a mano. Usar
    códigos opacos en las rutas y no incluir nombres personales.
 3. Bloquear la generación firmable si:
@@ -532,7 +532,7 @@ sus puertas de validación estén cerradas en `knowledge/product/core.md`.
 ```text
 knowledge/business/legal-identity.json
                          +
-knowledge/business/clients/<contract_id>/contract.json
+contracts/<contract_id>/contract.json
                          +
 plantilla Markdown versionada
                          ↓
@@ -542,7 +542,7 @@ plantilla Markdown versionada
                     ↙               ↘
      DOCX con estilos              PDF XeLaTeX
                     ↓
- clients/<contract_id>/agreement-signed.pdf
+ contracts/<contract_id>/agreement-signed.pdf
 ```
 
 - El LLM puede ayudar a mantener la plantilla y los datos, pero la

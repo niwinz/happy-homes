@@ -117,7 +117,7 @@ export function validateRecords({ legalIdentity, contract, expectedContractId })
     errors.push("legal identity.legalReviewApproved must be a boolean.");
   }
   if (contract.contractId && contract.contractId !== expectedContractId) {
-    errors.push("contract.contractId must match its client directory.");
+    errors.push("contract.contractId must match its contract directory.");
   }
   validateChoices(contract.choices, errors);
 

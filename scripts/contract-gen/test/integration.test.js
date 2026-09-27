@@ -8,7 +8,7 @@ import { validateRecords, validateTemplateVersion } from "../src/validation.js";
 
 const rootUrl = new URL("../../../", import.meta.url);
 const legalUrl = new URL("knowledge/business/legal-identity.json", rootUrl);
-const contractUrl = new URL("knowledge/business/clients/HH-TEST-001/contract.json", rootUrl);
+const contractUrl = new URL("contracts/HH-TEST-001/contract.json", rootUrl);
 const templateUrl = new URL("knowledge/product/service-agreement-template.md", rootUrl);
 
 test("the canonical fictitious contract resolves completely", async () => {

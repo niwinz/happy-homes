@@ -21,12 +21,12 @@ economics. Most figures are working assumptions rather than approved terms.
   [`../research/serenohome-competitive-analysis.md`](../research/serenohome-competitive-analysis.md)
   for the competitor evidence behind current web, trust, offer, and local SEO
   recommendations. Use
-  [`../plans/serenohome-improvements.md`](../plans/serenohome-improvements.md)
+  [`../plans/2026-09-27-1-serenohome-improvements.md`](../plans/2026-09-27-1-serenohome-improvements.md)
   only as a proposed sequence; its decisions are not approvals.
 - Read [`legal-identity.json`](legal-identity.json) for the canonical contracting
-  identity and [`clients/AGENTS.md`](clients/AGENTS.md) for versioned client and
-  agreement records. These records instantiate the product; they do not override
-  `product/core.md`.
+  identity and [`../../contracts/AGENTS.md`](../../contracts/AGENTS.md) for
+  operational contract records. These records instantiate the product; they do
+  not override `product/core.md`.
 
 ## Guardrails
 

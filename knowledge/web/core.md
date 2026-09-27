@@ -28,7 +28,7 @@
   prices, coverage, or service promises.
 - Competitive findings and the proposed implementation sequence live in
   [`../research/serenohome-competitive-analysis.md`](../research/serenohome-competitive-analysis.md)
-  and [`../plans/serenohome-improvements.md`](../plans/serenohome-improvements.md).
+  and [`../plans/2026-09-27-1-serenohome-improvements.md`](../plans/2026-09-27-1-serenohome-improvements.md).
 
 ## Current blockers
 

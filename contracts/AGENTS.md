@@ -5,11 +5,13 @@ aplican tanto a agentes como a cualquier automatización que opere aquí.
 
 ## Fuentes
 
-- `../legal-identity.json`: identidad, privacidad y datos del proveedor.
-- `../../product/service-agreement-template.md`: texto contractual canónico.
+- `../knowledge/business/legal-identity.json`: identidad, privacidad y datos del
+  proveedor.
+- `../knowledge/product/service-agreement-template.md`: texto contractual
+  canónico.
 - `_template/contract.json`: estructura inicial de cada expediente.
-- `../../../scripts/contract-gen/AGENTS.md`: CLI, generación y verificación.
-- `../../../.opencode/skills/hh-new-contract/SKILL.md`: alta asistida desde
+- `../scripts/contract-gen/AGENTS.md`: CLI, generación y verificación.
+- `../.opencode/skills/hh-new-contract/SKILL.md`: alta asistida desde
   contexto libre.
 
 El producto canónico prevalece sobre datos provisionales, planes o
@@ -33,12 +35,16 @@ comandos. La confirmación de datos y la firma continúan siendo actos humanos.
 ## Estructura
 
 ```text
-clients/<contractId>/
+contracts/<contractId>/
 ├── contract.json
 ├── agreement-draft.docx
 ├── agreement-draft.pdf
+├── visit-sheet-draft.docx
+├── visit-sheet-draft.pdf
 ├── agreement.docx
 ├── agreement.pdf
+├── visit-sheet.docx
+├── visit-sheet.pdf
 └── agreement-signed.pdf
 ```
 
@@ -46,17 +52,27 @@ clients/<contractId>/
 - Los campos usan `camelCase`; `contractId` es el único identificador.
 - Los valores ausentes o `""` se convierten en líneas para completar a mano.
 - Los archivos `agreement-draft.*` son derivados regenerables y no firmables.
+- Los archivos `visit-sheet-draft.*` son fichas operativas no utilizables en una
+  visita mientras queden aprobaciones o datos pendientes.
 - Los archivos `agreement.*` solo se generan con todas las aprobaciones
   cerradas y constituyen la versión preparada para firma.
+- Los archivos `visit-sheet.*` contienen únicamente instrucciones operativas y
+  una referencia opaca; nunca datos personales, dirección, precio o secretos.
+  El generador rechaza la versión final si faltan condiciones operativas.
 - `agreement-signed.pdf` es el original canónico recibido después de firmar.
 
 ## Invariantes
 
 - Usa códigos opacos en rutas, nunca nombres ni otros datos personales.
 - Haz coincidir exactamente la carpeta y `contractId`.
+- Para contratos reales usa la secuencia `HH-NNN`. Si el usuario no aporta un
+  identificador, `hh-new-contract` asigna el siguiente número disponible entre
+  expedientes no ficticios; `_template` y `fictitious: true` no cuentan.
 - No inventes datos ni conviertas una interpretación ambigua en un valor.
 - No almacenes códigos de alarma o acceso, contraseñas, credenciales ni
   ubicaciones físicas de llaves.
+- No añadas datos personales a una ficha operativa. Una copia impresa debe
+  devolverse o destruirse después de la visita.
 - No cierres aprobaciones legales o de negocio por iniciativa propia.
 - Mientras cualquier aprobación esté abierta, genera únicamente un borrador con
   aviso visible de **NO FIRMAR**.
@@ -89,7 +105,7 @@ enlazadas siguen siendo canónicas.
 | Pendiente | Bloquea | Criterio de cierre |
 |---|---|---|
 | Decisiones legales, de producto y operativas | Documento firmable | Resolver la lista «Decisiones que bloquean el uso de la plantilla» y reflejar las aprobaciones en el producto canónico. |
-| Identidad real del proveedor | Contrato real | Sustituir el fixture de `../legal-identity.json`, usar `fictitious: false` y cerrar sus aprobaciones. El NIF actual es deliberadamente inválido. |
+| Identidad real del proveedor | Contrato real | Sustituir el fixture de `../knowledge/business/legal-identity.json`, usar `fictitious: false` y cerrar sus aprobaciones. El NIF actual es deliberadamente inválido. |
 | Datos y condiciones particulares | Contrato afectado | Confirmar la extracción y aprobar `<contractId>/contract.json`. |
 | Firma e identidad/representación | Primera firma | Aprobar y documentar el mecanismo operativo fuera del generador. |
 | Custodia, permisos, copias, retención y borrado | Datos reales | Aprobar una política que incluya Git, historial, copias de seguridad, acceso y purga. |

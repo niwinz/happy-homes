@@ -28,11 +28,24 @@ function Table(table_block)
   return table_block
 end
 
+local function page_break()
+  if FORMAT:match("latex") then
+    return pandoc.RawBlock("latex", "\\clearpage")
+  end
+  if FORMAT == "docx" then
+    return pandoc.RawBlock(
+      "openxml",
+      '<w:p><w:r><w:br w:type="page"/></w:r></w:p>'
+    )
+  end
+end
+
 function Header(header)
-  if header.level == 1 and pandoc.utils.stringify(header.content):match("^Anexo I ") then
-    return {
-      pandoc.RawBlock("latex", "\\clearpage"),
-      header,
-    }
+  local text = pandoc.utils.stringify(header.content)
+  if header.level == 1 and text:match("^Anexo [IVXLCDM]+ ") then
+    local break_block = page_break()
+    if break_block then
+      return { break_block, header }
+    end
   end
 end

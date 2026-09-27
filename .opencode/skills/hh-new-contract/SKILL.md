@@ -1,6 +1,7 @@
 ---
 name: HH New Contract
-description: Crear o actualizar contratos HappyHomes desde contexto desordenado, confirmar los datos extraídos y generar borradores DOCX/PDF
+description: Crear contratos HappyHomes desde contexto desordenado, confirmar los datos extraídos y generar el acuerdo y la ficha operativa en DOCX/PDF
+slash: true
 ---
 
 # Skill: HH New Contract
@@ -24,9 +25,9 @@ Antes de procesar datos, leer en este orden:
 3. `knowledge/business/core.md`.
 4. `knowledge/product/service-agreement-template.md`.
 5. `knowledge/business/legal-identity.json`.
-6. `knowledge/business/clients/AGENTS.md`.
+6. `contracts/AGENTS.md`.
 7. `scripts/contract-gen/AGENTS.md`.
-8. `knowledge/business/clients/_template/contract.json` y
+8. `contracts/_template/contract.json` y
    `scripts/contract-gen/src/schema.js` para conocer los campos admitidos.
 
 No usar investigación, planes, prototipos ni conversaciones anteriores para
@@ -76,9 +77,18 @@ Usar `_template/contract.json` como estructura y `schema.js` como lista cerrada
 de campos. No crear claves adicionales para conservar notas o información que
 no encaje.
 
-Si falta `contractId`, proponer un identificador opaco que no contenga nombres,
-direcciones, teléfonos ni otra información personal. Comprobar que la carpeta
-no exista. No decidir el identificador definitivamente sin confirmación.
+Si falta `contractId`, asignar automáticamente el siguiente identificador real:
+
+1. leer los `contract.json` existentes;
+2. excluir `_template` y cualquier expediente con `fictitious: true`;
+3. tomar los identificadores con formato `HH-NNN` y hallar su número máximo;
+4. usar el siguiente número, con un mínimo de tres dígitos; si no existe ninguno,
+   empezar por `HH-001`;
+5. comprobar que la carpeta propuesta no exista.
+
+Mostrar el identificador calculado en la confirmación, pero no pedir al usuario
+que invente uno. Si el usuario proporciona un `contractId`, validar su formato y
+que no colisione con otro expediente.
 
 Clasificar el resultado en cuatro grupos:
 
@@ -117,11 +127,13 @@ El silencio o una respuesta ambigua no cuentan como confirmación.
 
 Solo después de la confirmación:
 
-1. Crear `knowledge/business/clients/<contractId>/` si no existe.
-2. Crear un único `contract.json` basado en `_template/contract.json`.
-3. Hacer coincidir exactamente la carpeta y `contractId`.
-4. Escribir solo los valores confirmados y dejar el resto como `""`.
-5. Mantener `status: "draft"` salvo aprobación explícita y verificable de las
+1. Si el identificador fue automático, recalcularlo para evitar una colisión y
+   detenerse si ha cambiado desde la confirmación.
+2. Crear `contracts/<contractId>/` si no existe.
+3. Crear un único `contract.json` basado en `_template/contract.json`.
+4. Hacer coincidir exactamente la carpeta y `contractId`.
+5. Escribir solo los valores confirmados y dejar el resto como `""`.
+6. Mantener `status: "draft"` salvo aprobación explícita y verificable de las
    condiciones particulares.
 
 Si el expediente ya existe, no sobrescribirlo. Leerlo, mostrar un diff de los
@@ -134,6 +146,7 @@ Con barreras de aprobación abiertas, ejecutar desde la raíz:
 ```bash
 pnpm --filter @happy-homes/contract-gen cli -- \
   --contract <contractId> \
+  --document all \
   --format all \
   --draft
 ```
@@ -154,6 +167,7 @@ Comprobar y comunicar:
 
 - ruta de `contract.json`;
 - rutas de DOCX y PDF generados;
+- ruta de la ficha operativa y confirmación de que no contiene datos personales;
 - si son borradores o documentos preparados para firma;
 - campos que siguen vacíos para completar a mano;
 - bloqueos o decisiones que continúan abiertos;
@@ -167,3 +181,7 @@ no sustituir el documento por contenido generado manualmente.
 La persona operadora solo aporta contexto, corrige o confirma la extracción y
 recibe los documentos. No necesita copiar archivos, editar JSON ni recordar el
 comando del generador.
+
+## Contexto de usuario
+
+$ARGUMENTS

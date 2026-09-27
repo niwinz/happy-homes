@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import { getHelpText, parseCliArguments, UsageError } from "./arguments.js";
-import { convertAgreement, ConversionError } from "./convert.js";
+import { convertDocument, ConversionError } from "./convert.js";
 import {
   findRepositoryRoot,
   getContractPaths,
@@ -12,6 +12,7 @@ import {
   RecordError,
 } from "./records.js";
 import { renderAgreement } from "./render.js";
+import { renderVisitSheet, VisitSheetError } from "./visit-sheet.js";
 import {
   requiresDraft,
   validateRecords,
@@ -44,28 +45,35 @@ async function main() {
   }
 
   const isDraft = draftRequired || options.draft;
-  const markdown = renderAgreement({
-    templateSource,
-    legalIdentity,
-    contract,
-    isDraft,
-  });
   const outputDirectory = options.output
     ? path.resolve(rootDirectory, options.output)
-    : paths.clientDirectory;
-  const outputs = await convertAgreement({
-    rootDirectory,
-    markdown,
-    contractId: contract.contractId,
-    format: options.format,
-    outputDirectory,
-    overwrite: options.overwrite,
-    isDraft,
-  });
+    : paths.contractDirectory;
+  const documentTypes = options.document === "all"
+    ? ["agreement", "visit-sheet"]
+    : [options.document];
+  const generated = {};
+
+  for (const documentType of documentTypes) {
+    const markdown = documentType === "agreement"
+      ? renderAgreement({ templateSource, legalIdentity, contract, isDraft })
+      : renderVisitSheet({ contract, isDraft });
+    generated[documentType] = await convertDocument({
+      rootDirectory,
+      markdown,
+      contractId: contract.contractId,
+      documentType,
+      format: options.format,
+      outputDirectory,
+      overwrite: options.overwrite,
+      isDraft,
+    });
+  }
 
   console.log(`Generated ${contract.contractId} (${isDraft ? "draft" : "final"}):`);
-  for (const [kind, filePath] of Object.entries(outputs)) {
-    console.log(`  ${kind}: ${path.relative(rootDirectory, filePath)}`);
+  for (const [documentType, outputs] of Object.entries(generated)) {
+    for (const [format, filePath] of Object.entries(outputs)) {
+      console.log(`  ${documentType}.${format}: ${path.relative(rootDirectory, filePath)}`);
+    }
   }
 }
 
@@ -75,6 +83,7 @@ main().catch((error) => {
     || error instanceof RecordError
     || error instanceof ValidationError
     || error instanceof ConversionError
+    || error instanceof VisitSheetError
   ) {
     console.error(error.message);
     process.exitCode = 2;

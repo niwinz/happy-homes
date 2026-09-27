@@ -18,12 +18,12 @@ critical-info
 ├── business/core
 │   ├── business/personas
 │   ├── business/pricing-and-economics
-│   ├── business/legal-identity.json
-│   └── business/clients/AGENTS
+│   └── business/legal-identity.json
+├── contracts/AGENTS
 ├── web/core
 │   └── brand/design
 ├── research/serenohome-competitive-analysis
-├── plans/serenohome-improvements
+├── plans/2026-09-27-1-serenohome-improvements
 └── workflow/core
     └── workflow/creating-commits
 ```
@@ -37,7 +37,7 @@ task. Follow links from that core only when they are relevant.
 | Product, plans, service, protocol, communication, data, or claims | `product/core.md` |
 | Audience or positioning | `business/core.md`, then `business/personas.md` |
 | Plans, prices, service scope | `product/core.md`; then `business/pricing-and-economics.md` for analysis |
-| Agreement data or document generation | `product/core.md`, `business/core.md`, `product/service-agreement-template.md`, `business/legal-identity.json`, `business/clients/AGENTS.md`, then `../scripts/contract-gen/AGENTS.md` |
+| Agreement data or document generation | `product/core.md`, `business/core.md`, `product/service-agreement-template.md`, `business/legal-identity.json`, `../contracts/AGENTS.md`, then `../scripts/contract-gen/AGENTS.md` |
 | UI, components, or accessibility | `web/core.md`, then `brand/design.md` |
 | Logo or illustration assets | `brand/core.md`, then `brand/design.md` |
 | Creating a commit | `workflow/core.md`, then `workflow/creating-commits.md` |
@@ -48,7 +48,7 @@ task. Follow links from that core only when they are relevant.
   records the observed offer, UX, visual system, trust model, conversion flow,
   local SEO and legal boundaries of SerenoHome. It separates observations,
   inferences and recommendations.
-- [`plans/serenohome-improvements.md`](plans/serenohome-improvements.md) turns
+- [`plans/2026-09-27-1-serenohome-improvements.md`](plans/2026-09-27-1-serenohome-improvements.md) turns
   that research into a phased plan. Its business, legal and operational
   decisions are prerequisites, not approved public promises.
 

@@ -1,5 +1,6 @@
 # Plan de mejoras inspirado por el análisis de SerenoHome
 
+- **Fecha del plan:** 27 de septiembre de 2026
 - **Estado:** propuesto; no aprobado para implementación
 - **Investigación base:** [`../research/serenohome-competitive-analysis.md`](../research/serenohome-competitive-analysis.md)
 - **Objetivo:** hacer que HappyHomes sea más comprensible, demostrable y fácil de contratar sin copiar al competidor ni publicar capacidades no validadas.

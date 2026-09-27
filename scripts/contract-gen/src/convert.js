@@ -38,8 +38,14 @@ function latexSafeIdentifier(value) {
   return value.replace(/[^A-Z0-9-]/g, "");
 }
 
-export function getOutputPaths(outputDirectory, isDraft) {
-  const suffix = `agreement${isDraft ? "-draft" : ""}`;
+export function getOutputPaths(outputDirectory, isDraft, documentType = "agreement") {
+  const names = {
+    agreement: "agreement",
+    "visit-sheet": "visit-sheet",
+  };
+  const name = names[documentType];
+  if (!name) throw new ConversionError(`Unsupported document type: ${documentType}`);
+  const suffix = `${name}${isDraft ? "-draft" : ""}`;
   return {
     docx: path.join(outputDirectory, `${suffix}.docx`),
     pdf: path.join(outputDirectory, `${suffix}.pdf`),
@@ -67,10 +73,11 @@ export async function ensureReferenceDocx(rootDirectory) {
   return referencePath;
 }
 
-export async function convertAgreement({
+export async function convertDocument({
   rootDirectory,
   markdown,
   contractId,
+  documentType,
   format,
   outputDirectory,
   overwrite,
@@ -84,7 +91,11 @@ export async function convertAgreement({
   }
 
   await mkdir(outputDirectory, { recursive: true });
-  const { docx: docxPath, pdf: pdfPath } = getOutputPaths(outputDirectory, isDraft);
+  const { docx: docxPath, pdf: pdfPath } = getOutputPaths(
+    outputDirectory,
+    isDraft,
+    documentType,
+  );
   const requested = [];
   if (format === "docx" || format === "all") requested.push(docxPath);
   if (format === "pdf" || format === "all") requested.push(pdfPath);
@@ -117,7 +128,15 @@ export async function convertAgreement({
       const headerPath = path.join(temporaryDirectory, "header.tex");
       const header = headerTemplate
         .replaceAll("__AGREEMENT_ID__", latexSafeIdentifier(contractId))
-        .replaceAll("__DOCUMENT_STATUS__", isDraft ? "Borrador · " : "");
+        .replaceAll("__DOCUMENT_STATUS__", isDraft ? "Borrador · " : "")
+        .replaceAll(
+          "__DOCUMENT_LABEL__",
+          documentType === "visit-sheet" ? "Ficha operativa de visita" : "Acuerdo de servicio",
+        )
+        .replaceAll(
+          "__PDF_TITLE__",
+          documentType === "visit-sheet" ? "Ficha operativa" : "Acuerdo",
+        );
       await writeFile(headerPath, header, "utf8");
       await execFileAsync("pandoc", [
         markdownPath,

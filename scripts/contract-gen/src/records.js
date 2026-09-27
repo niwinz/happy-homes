@@ -33,16 +33,14 @@ export async function readRecord(filePath) {
 }
 
 export function getContractPaths(rootDirectory, contractId) {
-  const clientDirectory = path.join(
+  const contractDirectory = path.join(
     rootDirectory,
-    "knowledge",
-    "business",
-    "clients",
+    "contracts",
     contractId,
   );
   return {
-    clientDirectory,
-    contractPath: path.join(clientDirectory, "contract.json"),
+    contractDirectory,
+    contractPath: path.join(contractDirectory, "contract.json"),
     legalIdentityPath: path.join(rootDirectory, "knowledge", "business", "legal-identity.json"),
     templatePath: path.join(rootDirectory, "knowledge", "product", "service-agreement-template.md"),
   };

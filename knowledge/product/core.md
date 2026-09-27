@@ -548,6 +548,25 @@ La persona visitante:
   es seguro, está autorizado o resulta razonable para evitar un daño inmediato;
 - documenta toda actuación extraordinaria.
 
+### 8.4 Ficha operativa de visita
+
+**Estado: definido**
+
+La persona visitante puede llevar una ficha operativa de una página derivada de
+las condiciones confirmadas del contrato. Sirve para ejecutar el protocolo sin
+transportar el acuerdo completo y se identifica únicamente mediante un código
+opaco.
+
+La ficha incluye tipología aproximada, ventana de visita, zonas incluidas y
+excluidas, comprobaciones autorizadas, perfil de salida, modalidad de evidencia,
+contingencia de grabación y límite de gasto. Excluye nombres, documentos,
+direcciones, teléfonos, correos, precios, facturación, firmas, códigos,
+credenciales y ubicaciones de llaves.
+
+Una copia impresa es de uso interno y debe devolverse o destruirse al finalizar
+la visita. La ficha no sustituye el contrato, la asignación segura de ruta, el
+registro de acceso ni el informe posterior.
+
 ---
 
 ## 9. Informe y evidencias

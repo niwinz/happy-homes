@@ -1,6 +1,7 @@
 import { parseArgs } from "node:util";
 
 const FORMATS = new Set(["docx", "pdf", "all"]);
+const DOCUMENTS = new Set(["agreement", "visit-sheet", "all"]);
 
 export class UsageError extends Error {
   constructor(message) {
@@ -25,6 +26,7 @@ export function parseCliArguments(argv) {
       options: {
         help: { type: "boolean", short: "h" },
         contract: { type: "string" },
+        document: { type: "string" },
         format: { type: "string" },
         output: { type: "string" },
         draft: { type: "boolean" },
@@ -50,9 +52,15 @@ export function parseCliArguments(argv) {
     throw new UsageError("--format must be docx, pdf, or all.");
   }
 
+  const document = nonEmpty("--document", values.document) || "agreement";
+  if (!DOCUMENTS.has(document)) {
+    throw new UsageError("--document must be agreement, visit-sheet, or all.");
+  }
+
   return {
     action: "generate",
     contractId,
+    document,
     format,
     output: nonEmpty("--output", values.output),
     draft: values.draft ?? false,
@@ -70,8 +78,9 @@ Required:
   --contract <id>           Contract identifier, for example HH-TEST-001
 
 Options:
+  --document <value>        agreement, visit-sheet, or all (default: agreement)
   --format <value>          docx, pdf, or all (default: all)
-  --output <directory>      Output directory; defaults to the client's folder
+  --output <directory>      Output directory; defaults to the contract folder
   --draft                   Allow a visibly marked draft while legal review is
                             pending
   --overwrite               Replace existing unsigned generated artifacts
@@ -83,5 +92,5 @@ Safety:
   draft warning.
 
 Examples:
-  pnpm --filter @happy-homes/contract-gen cli -- --contract HH-TEST-001 --format all --draft --overwrite`;
+  pnpm --filter @happy-homes/contract-gen cli -- --contract HH-TEST-001 --document all --format all --draft --overwrite`;
 }
