@@ -71,10 +71,6 @@ export function collectVariables({ legalIdentity, contract }) {
 
 export function renderAgreement({ templateSource, legalIdentity, contract, isDraft }) {
   let rendered = extractSignableTemplate(templateSource);
-  rendered = rendered.replace(
-    "# HappyHomes — plantilla de acuerdo de prestación de servicios y acceso a la vivienda",
-    "# HappyHomes — acuerdo de prestación de servicios y acceso a la vivienda",
-  );
   rendered = rendered.replace(/^---\r?\n?/gm, "");
   rendered = replaceDraftNotice(rendered, isDraft);
   rendered = replaceTaskCheckboxes(rendered, contract.choices || {});

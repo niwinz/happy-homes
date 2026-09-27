@@ -7,7 +7,7 @@ const templateSource = `---
 legal_review_required: true
 ---
 
-# HappyHomes — plantilla de acuerdo de prestación de servicios y acceso a la vivienda
+# Acuerdo de prestación de servicios y acceso a la vivienda
 
 Nombre: \`{{customerFullName}}\`
 
@@ -45,6 +45,7 @@ function input() {
 
 test("renders filled values and deterministic checkboxes", () => {
   const output = renderAgreement(input());
+  assert.match(output, /^# Acuerdo de prestación de servicios y acceso a la vivienda$/m);
   assert.match(output, /Marta \\| Exemple/);
   assert.match(output, /☐ Vídeo/);
   assert.match(output, /☒ Fotos/);

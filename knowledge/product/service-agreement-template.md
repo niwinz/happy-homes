@@ -8,7 +8,7 @@ canonical_product_source: knowledge/product/core.md@0.2
 legal_review_required: true
 ---
 
-# HappyHomes — plantilla de acuerdo de prestación de servicios y acceso a la vivienda
+# Acuerdo de prestación de servicios y acceso a la vivienda
 
 > **BORRADOR INTERNO. NO USAR PARA CONTRATAR NI FIRMAR.** Esta propuesta traduce
 > el producto canónico actual a una plantilla contractual, pero no constituye
